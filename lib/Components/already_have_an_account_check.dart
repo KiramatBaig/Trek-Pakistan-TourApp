@@ -20,7 +20,7 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
           onTap: press,
           child: Text(
             login? "SignUp":"Sign In",
-            style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold),
+            style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),
           ),
         ),
       ],

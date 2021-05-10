@@ -1,13 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/already_have_an_account_check.dart';
-import 'package:flutter_auth/Components/register_as_business_partner.dart';
+
 import 'package:flutter_auth/Components/rounded_button.dart';
-import 'package:flutter_auth/Components/rounded_icon_button.dart';
+
 import 'package:flutter_auth/Components/rounded_input_field.dart';
 import 'package:flutter_auth/Components/rounded_password_field.dart';
 import 'file:///E:/Flutter%20Projects/trekpakistan_tourapp/lib/Components/background.dart';
-import 'package:flutter_auth/Screens/SignUp/signup_screen.dart';
+import 'package:flutter_auth/Screens/Login/login_screen.dart';
 
 
 
@@ -20,17 +20,18 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
-
     return Background(
-
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Text("LOGIN",style: TextStyle(fontFamily: "Times New Roman",fontWeight: FontWeight.bold,fontSize: 25.0),),
-          Image.asset("assets/images/enter.png",height: size.height*0.1,),
+          Text("SIGN UP",style: TextStyle(fontFamily: "Times New Roman",fontWeight: FontWeight.bold,fontSize: 25.0),),
+          Image.asset("assets/images/add-user.png",height: size.height*0.1,),
           SizedBox(height: size.height*0.04,),
+          RoundedInputField(hintText: "Your Name",
+            onChanged:(value){} ,
+          ),
           RoundedInputField(hintText: "Your Email",
-          onChanged:(value){} ,
+            onChanged:(value){} ,
           ),
           RoundedPasswordField(
             onChanged: (value){},
@@ -38,30 +39,27 @@ class Body extends StatelessWidget {
           ),
           SizedBox(height: size.height*0.03,),
           RoundedButton(
-            text: "Login",
+            text: "Sign Up",
             press: (){},
           ),
-
-          RoundedIconButton(
-            text: "Login with Facebook",
-          ),
-
+          SizedBox(height: size.height*0.03,),
           AlreadyHaveAnAccountCheck(
+            login: false,
             press: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) {
-                    return SignUpScreen();
+                    return LoginScreen();
                   },
                 ),
               );
             },
           ),
-          SizedBox(height: 5.0,),
-          register_as_business_partner(
-            press: (){},
-          ),
+
+
+
+
 
         ],
       ),
