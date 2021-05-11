@@ -20,7 +20,7 @@ class register_as_business_partner extends StatelessWidget {
           onTap: press,
           child: Text(
             "Register Here",
-            style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold),
+            style: TextStyle(color: kPrimaryColor,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),
           ),
         ),
       ],

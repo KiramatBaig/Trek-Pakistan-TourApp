@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/rounded_button.dart';
+import 'package:flutter_auth/Screens/SignUp/signup_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/Components/background.dart';
 
 import '../../../Constants.dart';
@@ -33,7 +34,9 @@ class Body extends StatelessWidget{
 
             RoundedButton(
               text: "SIGN UP",
-              press: (){},
+              press: (){
+                Navigator.push(context,MaterialPageRoute(builder: (context){return SignUpScreen();},),);
+              },
               color: kPrimaryLightColor,
               textColor: Colors.black,
 

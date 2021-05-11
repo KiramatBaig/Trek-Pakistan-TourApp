@@ -11,8 +11,8 @@ class RoundedIconButton extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 10.0),
-      height: size.height*0.07,
+      margin: EdgeInsets.symmetric(vertical: 2.0),
+      height: size.height*0.06,
       width: size.width*0.8,
       color: Colors.transparent,
       child: Container(
