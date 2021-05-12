@@ -5,7 +5,7 @@ import 'package:flutter_auth/Components/register_as_business_partner.dart';
 import 'package:flutter_auth/Components/rounded_button.dart';
 import 'package:flutter_auth/Components/rounded_input_field.dart';
 import 'package:flutter_auth/Components/rounded_password_field.dart';
-import 'file:///E:/Flutter%20Projects/trekpakistan_tourapp/lib/Components/background.dart';
+import 'package:flutter_auth/Components/background.dart';
 import 'package:flutter_auth/Screens/SignUp/signup_screen.dart';
 
 
