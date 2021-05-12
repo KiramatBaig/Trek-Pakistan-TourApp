@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/already_have_an_account_check.dart';
 import 'package:flutter_auth/Components/register_as_business_partner.dart';
 import 'package:flutter_auth/Components/rounded_button.dart';
-import 'package:flutter_auth/Components/rounded_icon_button.dart';
 import 'package:flutter_auth/Components/rounded_input_field.dart';
 import 'package:flutter_auth/Components/rounded_password_field.dart';
 import 'file:///E:/Flutter%20Projects/trekpakistan_tourapp/lib/Components/background.dart';
@@ -42,9 +41,6 @@ class Body extends StatelessWidget {
             press: (){},
           ),
 
-          RoundedIconButton(
-            text: "Login with Facebook",
-          ),
 
           AlreadyHaveAnAccountCheck(
             press: () {
