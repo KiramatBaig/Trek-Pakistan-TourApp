@@ -1,7 +1,8 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Profile_Edit/settings.dart';
+import 'package:flutter_auth/Components/MyNavigationBar.dart';
+
 
 
 class SettingsUI extends StatelessWidget {
@@ -26,27 +27,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        title: Text("Profile"),
+        titleSpacing: 100,
+        backgroundColor: Colors.green,
         elevation: 1,
         leading: IconButton(
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Colors.white,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return MyNavigationBar();
+                },
+              ),
+            );
+          },
         ),
-        actions: [
-          IconButton(
-            icon: Icon(
-              Icons.settings,
-              color: Colors.green,
-            ),
-            onPressed: () {
-              Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => SettingsPage()));
-            },
-          ),
-        ],
       ),
       body: Container(
         padding: EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -58,7 +58,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
             children: [
               Text(
                 "Edit Profile",
-                style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
               ),
               SizedBox(
                 height: 15,

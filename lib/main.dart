@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+
 import 'Constants.dart';
 
 import 'Screens/Welcome/welcome_screen.dart';
@@ -14,7 +15,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'TrekPakistan',
       theme: ThemeData(
         primaryColor: kPrimaryColor,
         scaffoldBackgroundColor: Colors.white,

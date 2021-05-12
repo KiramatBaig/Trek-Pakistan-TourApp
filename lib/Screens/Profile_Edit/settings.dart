@@ -11,7 +11,7 @@ class _SettingsPageState extends State<SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        backgroundColor: Colors.green,
         elevation: 1,
         leading: IconButton(
           onPressed: () {
@@ -19,7 +19,7 @@ class _SettingsPageState extends State<SettingsPage> {
           },
           icon: Icon(
             Icons.arrow_back,
-            color: Colors.green,
+            color: Colors.white,
           ),
         ),
       ),

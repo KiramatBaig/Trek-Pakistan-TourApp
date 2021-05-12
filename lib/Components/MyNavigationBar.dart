@@ -1,4 +1,10 @@
+
+
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Components/drawer.dart';
+import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
+
+
 
 class MyNavigationBar extends StatefulWidget {
   MyNavigationBar ({Key key}) : super(key: key);
@@ -9,14 +15,16 @@ class MyNavigationBar extends StatefulWidget {
 
 class _MyNavigationBarState extends State<MyNavigationBar > {
   int _selectedIndex = 0;
-  static const List<Widget> _widgetOptions = <Widget>[
-    Text('Home', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Search', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Hotel', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text('Transport',
-        style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
-    Text(
-        'Profile', style: TextStyle(fontSize: 35, fontWeight: FontWeight.bold)),
+  final List<Widget> _widgetOptions = [
+    HomeScreen(),
+    Text("Hotels"),
+    Text("Search"),
+    Text("Transport"),
+    Text("Restaurant"),
+
+
+
+
   ];
 
   void _onItemTapped(int index) {
@@ -27,20 +35,33 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       appBar: AppBar(
           title: const Text('Trek Pakistan'),
+          titleSpacing: 70,
           backgroundColor: Colors.green
       ),
+      drawerScrimColor: Colors.transparent,
+      drawer: FrostedDrawer(),
+
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
+
       bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
                 icon: Icon(Icons.home),
-                title: Text('Home'),
+                title: Text('Home',),
+
                 backgroundColor: Colors.green
+            ),
+
+            BottomNavigationBarItem(
+              icon: Icon(Icons.business),
+              title: Text('Hotel'),
+              backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(
                 icon: Icon(Icons.search),
@@ -48,28 +69,24 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
                 backgroundColor: Colors.green
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              title: Text('Hotel'),
-              backgroundColor: Colors.green,
-            ),
-            BottomNavigationBarItem(
               icon: Icon(Icons.bus_alert),
               title: Text('Transport'),
               backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.person),
-              title: Text('Profile'),
+              icon: Icon(Icons.restaurant),
+              title: Text('Restaurants'),
               backgroundColor: Colors.green,
             ),
           ],
           type: BottomNavigationBarType.shifting,
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.black,
-          iconSize: 40,
+          iconSize: 30,
           onTap: _onItemTapped,
           elevation: 5
       ),
     );
   }
 }
+

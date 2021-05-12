@@ -14,53 +14,7 @@ class Body extends StatelessWidget{
   Widget build(BuildContext context){
     Size size=MediaQuery.of(context).size;
     return Scaffold(
-      
-      appBar: AppBar(
-        title: Text("Trek Pakistan"),
-        titleSpacing: 70.0,
-        backgroundColor: kPrimaryColor,
-      ),
 
-      drawer: Drawer(
-
-        child: ListView(
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-
-                color: kPrimaryColor,
-              ),
-              child: Container(
-                
-                child: Column(
-                  children: <Widget>[
-                    Material(
-                      borderRadius: BorderRadius.all(Radius.circular(10.0)),
-
-                      child: Image.asset("assets/images/grassland.png",height: size.height*0.1,),
-                    ),
-                    Padding(padding: EdgeInsets.all(8.0),child: Text("Welcome",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 15),),),
-
-                  ],
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text("Profile",style: TextStyle(fontWeight: FontWeight.bold),),
-              leading: Icon(Icons.account_circle_outlined),
-            ),
-            ListTile(
-              title: Text("Notifications",style: TextStyle(fontWeight: FontWeight.bold),),
-              leading: Icon(Icons.notifications),
-            ),
-            ListTile(
-              title: Text("Logout",style: TextStyle(fontWeight: FontWeight.bold),),
-              leading: Icon(Icons.logout),
-
-            ),
-          ],
-        ),
-      ),
       
       body: Stack(
         fit: StackFit.expand,
