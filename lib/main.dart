@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 
 import 'Constants.dart';
 
-import 'Screens/Welcome/welcome_screen.dart';
+//import 'package:flutter_auth/Components/Location_Error.dart';
+//import 'package:flutter_auth/Screens/Weather/Weather_Screen.dart';
 
+import 'Screens/Welcome/welcome_screen.dart';
 void main() {
   runApp(MyApp());
 }
