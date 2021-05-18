@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Constants.dart';
 import 'package:flutter_auth/Screens/Description/detailsPage.dart';
-import 'package:flutter_auth/Screens/MapScreen/MapScreen.dart';
 import 'package:flutter_auth/Screens/Services/services_screen.dart';
 
 
@@ -66,14 +65,7 @@ class Body extends StatelessWidget{
                   );
                 },text: "Services",icon: Icon(Icons.business_center,color: Colors.white,),),
                 RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return MapScreen();
-                      },
-                    ),
-                  );
+                  
                 },text: "Nearby Places",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
                 RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){},text: "Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
               ],
