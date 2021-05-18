@@ -21,47 +21,49 @@ class Body extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size=MediaQuery.of(context).size;
     return Background(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          Text("SIGN UP",style: TextStyle(fontFamily: "Times New Roman",fontWeight: FontWeight.bold,fontSize: 25.0),),
-          Image.asset("assets/images/add-user.png",height: size.height*0.1,),
-          SizedBox(height: size.height*0.04,),
-          RoundedInputField(hintText: "Your Name",
-            onChanged:(value){} ,
-          ),
-          RoundedInputField(hintText: "Your Email",
-            onChanged:(value){} ,
-          ),
-          RoundedPasswordField(
-            onChanged: (value){},
-
-          ),
-          SizedBox(height: size.height*0.03,),
-          RoundedButton(
-            text: "Sign Up",
-            press: (){},
-          ),
-          SizedBox(height: size.height*0.03,),
-          AlreadyHaveAnAccountCheck(
-            login: false,
-            press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return LoginScreen();
-                  },
-                ),
-              );
-            },
-          ),
+      child: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text("SIGN UP",style: TextStyle(fontFamily: "Times New Roman",fontWeight: FontWeight.bold,fontSize: 25.0),),
+            Image.asset("assets/images/add-user.png",height: size.height*0.1,),
+            SizedBox(height: size.height*0.04,),
+            RoundedInputField(hintText: "Your Name",
+              onChanged:(value){} ,
+            ),
+            RoundedInputField(hintText: "Your Email",
+              onChanged:(value){} ,
+            ),
+            RoundedPasswordField(
 
 
+            ),
+            SizedBox(height: size.height*0.03,),
+            RoundedButton(
+              text: "Sign Up",
+              press: (){},
+            ),
+            SizedBox(height: size.height*0.03,),
+            AlreadyHaveAnAccountCheck(
+              login: false,
+              press: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return LoginScreen();
+                    },
+                  ),
+                );
+              },
+            ),
 
 
 
-        ],
+
+
+          ],
+        ),
       ),
     );
   }
