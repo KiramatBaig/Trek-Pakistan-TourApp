@@ -125,14 +125,8 @@ class FrostedDrawer extends StatelessWidget {
                     ListTile(
                       onTap: () {
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return WelcomeScreen();
-                            },
-                          ),
-                        );
+                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                            WelcomeScreen()), (Route<dynamic> route) => false);
                       },
 
                       leading: Icon(

@@ -5,21 +5,41 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Components/MyNavigationBar.dart';
+import 'package:flutter_auth/Components/drawer.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Constants.dart';
 import 'package:flutter_auth/Screens/Weather/Weather_Screen.dart';
 
 
 class Body extends StatelessWidget{
+
   @override
   Widget build(BuildContext context){
     Size size=MediaQuery.of(context).size;
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+
+        title: const Text('Trek Pakistan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+        titleSpacing: 50,
+        actions: [
+          IconButton(icon: Icon(Icons.home,color: Colors.white,size: 30,), onPressed: (){
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                MyNavigationBar()), (Route<dynamic> route) => false);
+          }),
+        ],
+
+        backgroundColor: Colors.green,
+      ),
+      drawerScrimColor: Colors.transparent,
+      drawer: FrostedDrawer(),
 
 
       body: Stack(
-        fit: StackFit.expand,
+
         children: <Widget>[
+          
           ConstrainedBox(
             constraints: const BoxConstraints.expand(),
             child: Container(
@@ -58,10 +78,11 @@ class Body extends StatelessWidget{
                 text: "Weather",icon: Icon(Icons.wb_cloudy_sharp,color: Colors.white,),),
 
               RectangluarButton(color: Colors.orange.withOpacity(0.8),press: (){},text: "Find route",icon: Icon(Icons.business_center,color: Colors.white,),),
-              RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){},text: "Nearby Places",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
+              RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){},text: "View Hotels",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
               RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){},text: "Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
             ],
           ),
+
 
 
 
