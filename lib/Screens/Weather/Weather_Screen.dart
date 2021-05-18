@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class Weather extends StatefulWidget {
   @override
+
   State<StatefulWidget> createState() => _WeatherState();
 }
 
@@ -17,6 +18,7 @@ class _WeatherState extends State<Weather> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           body: Center(
             child: Column(
@@ -39,11 +41,11 @@ class _WeatherState extends State<Weather> {
                     width: 150,
                     child: TextField(
                         controller: _cityTextController,
-                        decoration: InputDecoration(labelText: 'City'),
+                        decoration: InputDecoration(labelText: 'City',),
                         textAlign: TextAlign.center),
                   ),
                 ),
-                ElevatedButton(onPressed: _search, child: Text('Search'))
+                ElevatedButton(onPressed: _search, child: Text('Search'),),
               ],
             ),
           ),

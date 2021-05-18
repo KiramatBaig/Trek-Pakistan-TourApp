@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Constants.dart';
+import 'package:flutter_auth/Screens/Weather/Weather_Screen.dart';
 
 
 class Body extends StatelessWidget{
@@ -42,7 +43,20 @@ class Body extends StatelessWidget{
             crossAxisSpacing: 15,
             children: <Widget>[
 
-              RectangluarButton(color: kPrimaryColor.withOpacity(0.8),press: (){},text: "Hello",icon: Icon(Icons.place_outlined,color: Colors.white,),),
+              RectangluarButton(color: kPrimaryColor.withOpacity(0.8),
+                press: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return Weather();
+                      },
+                    ),
+                  );
+
+                },
+                text: "Weather",icon: Icon(Icons.wb_cloudy_sharp,color: Colors.white,),),
+
               RectangluarButton(color: Colors.orange.withOpacity(0.8),press: (){},text: "Find route",icon: Icon(Icons.business_center,color: Colors.white,),),
               RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){},text: "Nearby Places",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
               RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){},text: "Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),

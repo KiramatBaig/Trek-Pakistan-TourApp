@@ -1,14 +1,8 @@
 import 'package:flutter/material.dart';
-
-
 import 'Constants.dart';
-
-//import 'package:flutter_auth/Components/Location_Error.dart';
-
-
-import 'Screens/HomeScreen/home_screen.dart';
-import 'Screens/Description/mainPage.dart';
 import 'Screens/Welcome/welcome_screen.dart';
+
+
 void main() {
   runApp(MyApp());
 }

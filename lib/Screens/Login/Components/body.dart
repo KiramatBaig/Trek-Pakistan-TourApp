@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Components/already_have_an_account_check.dart';
 import 'package:flutter_auth/Components/register_as_business_partner.dart';
 import 'package:flutter_auth/Components/rounded_button.dart';
@@ -38,7 +39,16 @@ class Body extends StatelessWidget {
           SizedBox(height: size.height*0.03,),
           RoundedButton(
             text: "Login",
-            press: (){},
+            press: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return MyNavigationBar();
+                  },
+                ),
+              );
+            },
           ),
 
 
