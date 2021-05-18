@@ -110,6 +110,18 @@ class FrostedDrawer extends StatelessWidget {
                       ),
                       title: Text("Settings"),
                     ),
+
+                    ListTile(
+                      onTap: () {
+
+                      },
+
+                      leading: Icon(
+                        Icons.local_phone,
+                        color: Colors.black,
+                      ),
+                      title: Text("Contact Us"),
+                    ),
                     ListTile(
                       onTap: () {
 
@@ -122,12 +134,13 @@ class FrostedDrawer extends StatelessWidget {
                           ),
                         );
                       },
+
                       leading: Icon(
                         Icons.logout,
                         color: Colors.black,
                       ),
                       title: Text("Log Out"),
-                    )
+                    ),
                   ],
                 ),
               )

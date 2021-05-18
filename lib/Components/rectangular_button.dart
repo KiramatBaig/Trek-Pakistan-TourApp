@@ -23,8 +23,10 @@ class RectangluarButton extends StatelessWidget {
     Size size=MediaQuery.of(context).size;
 
     return Container(
+
+
       height: size.height/8,
-      width: 200,
+      width: 300,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         border: Border.all(
@@ -42,7 +44,6 @@ class RectangluarButton extends StatelessWidget {
           color: color,
           label: Text(
             text,
-
             style: TextStyle(fontSize: 15.0,color: Colors.white),
           ),
           icon: icon,

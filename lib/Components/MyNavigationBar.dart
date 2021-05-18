@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/drawer.dart';
 import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
+import 'package:flutter_auth/Screens/Services/services_screen.dart';
 
 
 
@@ -17,7 +18,7 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = [
     HomeScreen(),
-    Text("Hotels"),
+    ServicesScreen(),
     Text("Search"),
     Text("Transport"),
     Text("Restaurant"),
@@ -59,8 +60,8 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
             ),
 
             BottomNavigationBarItem(
-              icon: Icon(Icons.business),
-              title: Text('Hotel'),
+              icon: Icon(Icons.business_center),
+              title: Text('Services'),
               backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(
@@ -69,8 +70,8 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
                 backgroundColor: Colors.green
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.bus_alert),
-              title: Text('Transport'),
+              icon: Icon(Icons.near_me_rounded),
+              title: Text('Attractions'),
               backgroundColor: Colors.green,
             ),
             BottomNavigationBarItem(

@@ -15,7 +15,7 @@ class Body extends StatelessWidget{
     Size size=MediaQuery.of(context).size;
     return Scaffold(
 
-      
+
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -34,15 +34,21 @@ class Body extends StatelessWidget{
             ),
           ),
 
-          Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+          GridView.count(
+            padding: EdgeInsets.only(left: 10,right: 10,top: 200),
+              crossAxisCount: 2,
+              mainAxisSpacing: 15,
+              childAspectRatio: 2,
+              crossAxisSpacing: 15,
               children: <Widget>[
-                RectangluarButton(color: kPrimaryColor.withOpacity(0.8),press: (){},text: "Destinations",icon: Icon(Icons.place_outlined,color: Colors.white,),),
-                SizedBox(height: 10.0,),
-                RectangluarButton(color: Colors.orange.withOpacity(0.8),press: (){},text: "Nearby Attractions",icon: Icon(Icons.location_city_rounded,color: Colors.white,),),
 
+                RectangluarButton(color: kPrimaryColor.withOpacity(0.8),press: (){},text: "Destinations",icon: Icon(Icons.place_outlined,color: Colors.white,),),
+                RectangluarButton(color: Colors.orange.withOpacity(0.8),press: (){},text: "Services",icon: Icon(Icons.business_center,color: Colors.white,),),
+                RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){},text: "Nearby Places",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
+                RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){},text: "Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
               ],
             ),
+          
 
 
         ],
