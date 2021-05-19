@@ -11,7 +11,7 @@ class DataService {
     final queryParameters = {
       'q': city,
       'appid': 'aafac351fe4e0542f7b65abdcb0f8ac4',
-      'units': 'imperial'
+      'units': 'metric'
     };
 
     final uri = Uri.https(

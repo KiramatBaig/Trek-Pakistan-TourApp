@@ -21,17 +21,29 @@ class TemperatureInfo {
     return TemperatureInfo(temperature: temperature);
   }
 }
+class PressureInfo {
+  final double pressure;
+
+  PressureInfo({this.pressure});
+
+  factory PressureInfo.fromJson(Map<String, dynamic> json) {
+    final pressure = json['pressure'];
+    return PressureInfo(pressure: pressure);
+  }
+}
 
 class WeatherResponse {
   final String cityName;
   final TemperatureInfo tempInfo;
   final WeatherInfo weatherInfo;
+  final PressureInfo pressureInfo;
+
 
   String get iconUrl {
-    return 'https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png';
+    return 'https://openweathermap.org/img/wn/${weatherInfo.icon}@01d.png';
   }
 
-  WeatherResponse({this.cityName, this.tempInfo, this.weatherInfo});
+  WeatherResponse({this.cityName, this.tempInfo, this.weatherInfo, this.pressureInfo});
 
   factory WeatherResponse.fromJson(Map<String, dynamic> json) {
     final cityName = json['name'];
@@ -41,8 +53,11 @@ class WeatherResponse {
 
     final weatherInfoJson = json['weather'][0];
     final weatherInfo = WeatherInfo.fromJson(weatherInfoJson);
+    final PressureInfoJson = json['pressure'];
+    final  pressureInfo = PressureInfo.fromJson(PressureInfoJson);
 
     return WeatherResponse(
-        cityName: cityName, tempInfo: tempInfo, weatherInfo: weatherInfo);
+        cityName: cityName, tempInfo: tempInfo, weatherInfo: weatherInfo, pressureInfo: pressureInfo);
   }
 }
+

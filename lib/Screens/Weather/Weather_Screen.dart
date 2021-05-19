@@ -22,6 +22,7 @@ class _WeatherState extends State<Weather> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // ignore: sdk_version_ui_as_code
                 if (_response != null)
                   Column(
                     children: [
@@ -43,7 +44,13 @@ class _WeatherState extends State<Weather> {
                         textAlign: TextAlign.center),
                   ),
                 ),
-                ElevatedButton(onPressed: _search, child: Text('Search'))
+                ElevatedButton(onPressed: _search,
+                    child: Text('Search'),
+                    style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.green),
+        padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+        textStyle: MaterialStateProperty.all(TextStyle(fontSize: 18))),
+    )
               ],
             ),
           ),
