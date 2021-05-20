@@ -1,8 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.trekpakistan_tourapp">
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <application
         android:label="trekpakistan_tourapp"
         android:icon="@mipmap/ic_launcher">
+        <!-- Add your Google Maps API Key here -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDjY1BGWRw9VJ9bSoDDI9bVO5HPMcFLopU"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
@@ -37,5 +42,6 @@
         <meta-data
             android:name="flutterEmbedding"
             android:value="2" />
+
     </application>
 </manifest>
