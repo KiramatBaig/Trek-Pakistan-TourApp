@@ -16,6 +16,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+        elevation: 4,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.green,
+          ),
+        ),
+      ),
       body: Container(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 64),
         width: double.infinity,

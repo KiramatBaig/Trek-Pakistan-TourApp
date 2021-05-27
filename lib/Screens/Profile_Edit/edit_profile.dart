@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/settings.dart';
 
 
@@ -33,7 +34,11 @@ class _EditProfilePageState extends State<EditProfilePage> {
             Icons.arrow_back,
             color: Colors.green,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => HomeScreen()),
+            );},
         ),
         actions: [
           IconButton(

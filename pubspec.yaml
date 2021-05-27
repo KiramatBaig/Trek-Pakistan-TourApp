@@ -31,6 +31,9 @@ dependencies:
   flutter_layout_grid: ^0.10.1
   google_fonts: ^2.0.0
   dio: ^4.0.0
+  google_maps_flutter: 0.5.21+8
+  auto_size_text: ^2.1.0
+  font_awesome_flutter: '>= 4.7.0'
 
 
 
