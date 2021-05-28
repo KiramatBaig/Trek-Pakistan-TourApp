@@ -9,6 +9,7 @@ import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Components/drawer.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Constants.dart';
+import 'package:flutter_auth/Screens/HotelBooking/Hotel_Book.dart';
 import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
 import 'package:flutter_auth/Screens/Weather/Weather_Screen.dart';
 
@@ -87,8 +88,17 @@ class Body extends StatelessWidget{
                     },
                   ),
                 );
-              },text: "Find route",icon: Icon(Icons.business_center,color: Colors.white,),),
-              RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){},text: "View Hotels",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
+              },text: "Find route",icon: Icon(Icons.alt_route,color: Colors.white,),),
+              RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return HotelBookingPage();
+                    },
+                  ),
+                );
+              },text: "View Hotels",icon: Icon(Icons.hotel,color: Colors.white,),),
               RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){},text: "Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
             ],
           ),

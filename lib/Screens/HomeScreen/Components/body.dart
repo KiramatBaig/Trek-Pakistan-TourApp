@@ -7,7 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Constants.dart';
-import 'package:flutter_auth/Screens/Description/detailsPage.dart';
+import 'package:flutter_auth/Screens/Destination/home_screen.dart';
 import 'package:flutter_auth/Screens/Services/services_screen.dart';
 
 
@@ -49,7 +49,7 @@ class Body extends StatelessWidget{
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return DetailsPage();
+                        return HomeScreen();
                       },
                     ),
                   );

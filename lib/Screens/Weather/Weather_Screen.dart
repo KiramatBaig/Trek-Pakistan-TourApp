@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 class Weather extends StatefulWidget {
   @override
-
   State<StatefulWidget> createState() => _WeatherState();
 }
 
@@ -18,12 +17,25 @@ class _WeatherState extends State<Weather> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner: false,
         home: Scaffold(
+          appBar: AppBar(
+            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+            elevation: 1,
+            leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon: Icon(
+                Icons.arrow_back,
+                color: Colors.green,
+              ),
+            ),
+          ),
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                // ignore: sdk_version_ui_as_code
                 if (_response != null)
                   Column(
                     children: [
@@ -41,11 +53,17 @@ class _WeatherState extends State<Weather> {
                     width: 150,
                     child: TextField(
                         controller: _cityTextController,
-                        decoration: InputDecoration(labelText: 'City',),
+                        decoration: InputDecoration(labelText: 'City'),
                         textAlign: TextAlign.center),
                   ),
                 ),
-                ElevatedButton(onPressed: _search, child: Text('Search'),),
+                ElevatedButton(onPressed: _search,
+                  child: Text('Search'),
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(Colors.green),
+                      padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                      textStyle: MaterialStateProperty.all(TextStyle(fontSize: 18))),
+                )
               ],
             ),
           ),

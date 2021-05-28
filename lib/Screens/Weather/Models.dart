@@ -22,10 +22,13 @@ class TemperatureInfo {
   }
 }
 
+
 class WeatherResponse {
   final String cityName;
   final TemperatureInfo tempInfo;
   final WeatherInfo weatherInfo;
+  //final PressureInfo pressureInfo;
+
 
   String get iconUrl {
     return 'https://openweathermap.org/img/wn/${weatherInfo.icon}@2x.png';
@@ -41,6 +44,8 @@ class WeatherResponse {
 
     final weatherInfoJson = json['weather'][0];
     final weatherInfo = WeatherInfo.fromJson(weatherInfoJson);
+
+
 
     return WeatherResponse(
         cityName: cityName, tempInfo: tempInfo, weatherInfo: weatherInfo);

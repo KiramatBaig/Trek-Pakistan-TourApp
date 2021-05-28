@@ -276,7 +276,6 @@ class _MapViewState extends State<MapView> {
       PointLatLng(destination.latitude, destination.longitude),
       travelMode: TravelMode.transit,
     );
-    print(result);
 
     if (result.points.isNotEmpty) {
       result.points.forEach((PointLatLng point) {
@@ -289,7 +288,7 @@ class _MapViewState extends State<MapView> {
       polylineId: id,
       color: Colors.red,
       points: polylineCoordinates,
-      width: 5,
+      width: 3,
     );
     polylines[id] = polyline;
   }
@@ -353,9 +352,9 @@ class _MapViewState extends State<MapView> {
                     SizedBox(height: 20),
                     ClipOval(
                       child: Material(
-                        color: Colors.green[100], // button color
+                        color: Colors.blue[100], // button color
                         child: InkWell(
-                          splashColor: Colors.green, // inkwell color
+                          splashColor: Colors.blue, // inkwell color
                           child: SizedBox(
                             width: 50,
                             height: 50,
@@ -472,7 +471,7 @@ class _MapViewState extends State<MapView> {
                               });
                             }
                                 : null,
-                            color: Colors.green,
+                            color: Colors.red,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20.0),
                             ),
@@ -502,9 +501,9 @@ class _MapViewState extends State<MapView> {
                   padding: const EdgeInsets.only(right: 10.0, bottom: 10.0),
                   child: ClipOval(
                     child: Material(
-                      color: Colors.green[100], // button color
+                      color: Colors.orange[100], // button color
                       child: InkWell(
-                        splashColor: Colors.green, // inkwell color
+                        splashColor: Colors.orange, // inkwell color
                         child: SizedBox(
                           width: 56,
                           height: 56,
