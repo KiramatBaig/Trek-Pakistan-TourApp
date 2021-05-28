@@ -1,7 +1,8 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/MyMaps/ui/screens/details.dart';
+import 'package:flutter_auth/Screens/MapsAPI/MapsScreen.dart';
+
 import 'package:flutter_auth/Screens/MyMaps/ui/screens/home.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/settings.dart';
@@ -93,7 +94,7 @@ class FrostedDrawer extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return DetailsScreen();
+                              return MapsHomeScreen();
                             },
                           ),
                         );
@@ -103,6 +104,23 @@ class FrostedDrawer extends StatelessWidget {
                         color: Colors.black,
                       ),
                       title: Text("Search Route"),
+                    ),
+                    ListTile(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return MapScreen();
+                            },
+                          ),
+                        );
+                      },
+                      leading: Icon(
+                        Icons.map,
+                        color: Colors.black,
+                      ),
+                      title: Text("Maps"),
                     ),
                     ListTile(
                       onTap: () {

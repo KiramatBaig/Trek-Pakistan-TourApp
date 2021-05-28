@@ -2,14 +2,13 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Components/Destination.dart';
-import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
+import 'package:flutter_auth/Components/BottomNavBar/fancy_tab_bar.dart';
 import 'package:flutter_auth/Screens/Destination/home_screen.dart';
 import 'package:flutter_auth/Screens/HotelBooking/Hotel_Book.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter_auth/Components/Drawer.dart';
-import 'package:google_fonts/google_fonts.dart';
+
 
 class Body extends StatelessWidget{
   @override
@@ -51,6 +50,7 @@ class Body extends StatelessWidget{
       ),
 
       drawer: FrostedDrawer(),
+      bottomNavigationBar: FancyTabBar(),
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
@@ -59,8 +59,16 @@ class Body extends StatelessWidget{
             child: Container(
               height: size.height,
               width: size.width,
+
               decoration: BoxDecoration(
                 shape: BoxShape.rectangle,
+                color: Colors.purple,
+                gradient: new LinearGradient(
+                    colors: [Colors.green, Colors.cyan],
+                    begin: Alignment.centerRight,
+                    end: new Alignment(-1.0, -1.0)
+                ),
+
               ),
             ),
           ),
@@ -93,9 +101,9 @@ class Body extends StatelessWidget{
                         padding: EdgeInsets.all(10.0),
                         child: Column( // Replace with a Row for horizontal icon + text
                           children: <Widget>[
-                            Icon(Icons.dinner_dining,color:Colors.white,size: 60,),
+                            Icon(Icons.miscellaneous_services,color:Colors.white,size: 60,),
                             Text("   "),
-                            Text("Resturants",style: TextStyle(color: Colors.white),)
+                            Text("Services",style: TextStyle(color: Colors.white),)
                           ],
                         ),
                       ),

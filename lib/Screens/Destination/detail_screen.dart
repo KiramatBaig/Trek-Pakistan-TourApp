@@ -1,7 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Constants.dart';
-import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'Global/app_colors.dart';
@@ -56,7 +54,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         ),
 
                         SizedBox(
-                          height: 8,
+                          height: 2,
                         ),
 
                         ///Container for data
@@ -155,12 +153,12 @@ class _DetailScreenState extends State<DetailScreen> {
 
                   ///Back button
                   Positioned(
-                    top: 40,
+                    top: 30,
                     left: 24,
                     child: IconButton(
                       icon: Icon(
                         Icons.arrow_back_ios,
-                        color: Colors.white,
+                        color: Colors.green,
                         size: 30,
                       ),
                       onPressed: () {

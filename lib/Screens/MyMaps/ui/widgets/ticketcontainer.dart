@@ -166,7 +166,7 @@ class TicketContainer extends StatelessWidget {
                       SizedBox(
                         width: 9.0,
                       ),
-                      Text("Boghni",
+                      Text("Hunza",
                           style: Theme.of(context).textTheme.subtitle),
                     ],
                   ),
@@ -187,7 +187,7 @@ class TicketContainer extends StatelessWidget {
                       SizedBox(
                         width: 9.0,
                       ),
-                      Text("Tizi Ouzou",
+                      Text("Islamabad",
                           style: Theme.of(context).textTheme.subtitle),
                     ],
                   ),

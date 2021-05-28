@@ -1,3 +1,7 @@
+//import 'package:path/path.dart' as path;
+
+//import 'dart:js';
+
 import 'package:flutter/material.dart';
 
 import 'dart:ui';
@@ -5,10 +9,11 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_auth/Components/Drawer.dart';
 import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
+
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../Constants.dart';
+
 
 class Hotel {
   String imageUrl;
@@ -350,13 +355,9 @@ _hotelPackage(int index) {
             bottom: 30,
             left: 230,
             child: Center(
-              // child: Transform.rotate(
-              //  angle: pi / -1,
-              
               child: Container(
-                height: 30,
+                height: 40,
                 width: 100,
-
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20.0),
                   color: Colors.green,
@@ -369,19 +370,23 @@ _hotelPackage(int index) {
                   ],
                 ),
                 child: Center(
+                  child: TextButton(
+                  onPressed: () {
+
+                  },
                   child: Text(
                     'Book Now',
                     style: TextStyle(
-                        fontSize: 13.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        letterSpacing: .1),
-                  ),
+                        fontWeight: FontWeight.bold,
+                        fontSize:15,
+                        color: Colors.white
+                    ),
+                    textAlign: TextAlign.center,),
                 ),
+              ),
               ),
             ),
           ),
-          // )
         ],
       ),
     ),

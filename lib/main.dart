@@ -1,14 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
 
-import 'Components/Drawer.dart';
+
 import 'Constants.dart';
 
-import 'Screens/HotelBooking/Hotel_Detail.dart';
-import 'Screens/MyMaps/ui/screens/home.dart';
-import 'Screens/HotelBooking/Hotel_Book.dart';
 
-import 'Screens/Profile_Edit/settings.dart';
 
 
 void main() {
