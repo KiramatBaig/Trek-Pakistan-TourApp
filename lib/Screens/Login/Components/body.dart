@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/AdminHomeScreen.dart';
 import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Components/already_have_an_account_check.dart';
 import 'package:flutter_auth/Components/register_as_business_partner.dart';
@@ -67,6 +68,23 @@ class Body extends StatelessWidget {
           SizedBox(height: 5.0,),
           register_as_business_partner(
             press: (){},
+          ),
+          SizedBox(height: 5.0,),
+          GestureDetector(
+            onTap: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) {
+                    return HomeScreenWidget();
+                  },
+                ),
+              );
+            },
+            child: Text(
+              "Admin",
+              style: TextStyle(color: Colors.green,fontWeight: FontWeight.bold,decoration: TextDecoration.underline),
+            ),
           ),
 
         ],
