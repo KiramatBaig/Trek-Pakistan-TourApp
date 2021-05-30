@@ -17,6 +17,7 @@ class _FlowExampleState extends State<FlowExample>
     Icons.email,
     Icons.settings,
     Icons.notifications,
+    Icons.bus_alert,
   ];
 
   @override
@@ -33,7 +34,7 @@ class _FlowExampleState extends State<FlowExample>
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: RawMaterialButton(
-        fillColor: Colors.teal,
+        fillColor: Color(0xFF66BB6A),
         splashColor: Colors.grey,
         shape: CircleBorder(),
         constraints: BoxConstraints.tight(Size.square(50.0)),
@@ -55,7 +56,7 @@ class _FlowExampleState extends State<FlowExample>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Container(color: Colors.grey),
+        Container(color: Colors.white60),
         Flow(
           delegate: FlowExampleDelegate(myAnimation: _myAnimation),
           children: _icons
@@ -82,21 +83,21 @@ class FlowExampleDelegate extends FlowDelegate {
   @override
   void paintChildren(FlowPaintingContext context) {
     for (int i = context.childCount - 1; i >= 0; i--) {
-      double dx = (context.getChildSize(i).height + 10) * i;
+      double dx = (context.getChildSize(i).height + 5) * i;
       context.paintChild(
         i,
-        transform: Matrix4.translationValues(0, dx * myAnimation.value + 10, 0),
+        transform: Matrix4.translationValues(dx * myAnimation.value + 10, 5, 0),
       );
     }
   }
 
   @override
   Size getSize(BoxConstraints constraints) {
-    return Size(70.0, double.infinity);
+    return Size(300.0, 60);
   }
 
   @override
   BoxConstraints getConstraintsForChild(int i, BoxConstraints constraints) {
-    return i == 0 ? constraints : BoxConstraints.tight(const Size(50.0, 50.0));
+    return i == 0 ? constraints : BoxConstraints.tight(const Size(70.0, 50.0));
   }
 }
