@@ -17,17 +17,20 @@ class _WeatherState extends State<Weather> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
-            backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-            elevation: 1,
+            backgroundColor: Colors.green,
+            elevation: 0,
+            title: const Text('Trek Pakistan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+            titleSpacing: 50,
             leading: IconButton(
               onPressed: () {
                 Navigator.of(context).pop();
               },
               icon: Icon(
                 Icons.arrow_back,
-                color: Colors.green,
+                color: Colors.white,
               ),
             ),
           ),

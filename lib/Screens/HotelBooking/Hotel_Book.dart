@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_auth/Components/Drawer.dart';
+import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
 
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
@@ -64,35 +65,18 @@ class _HotelBookingPageState extends State<HotelBookingPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Trek Pakistan",style: TextStyle(color: Colors.green),),
-        titleSpacing: 50.0,
-        backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.green),
+        elevation: 0,
+
+        title: const Text('Trek Pakistan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+        titleSpacing: 50,
         actions: [
-          Align(
-            alignment: Alignment(0.3, 0.35),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.15,
-              height: MediaQuery.of(context).size.width * 0.15,
-              clipBehavior: Clip.antiAlias,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-              ),
-              child: IconButton(
-                icon: Icon(
-                  Icons.person,
-                  color: Colors.green,
-                ),
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => SettingsUI()));
-                },
-              ),
-            ),
-          ),
+          IconButton(icon: Icon(Icons.home,color: Colors.white,size: 30,), onPressed: (){
+            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                MyNavigationBar()), (Route<dynamic> route) => false);
+          }),
         ],
-        centerTitle: true,
-        elevation: 4,
+
+        backgroundColor: Colors.green,
       ),
 
       drawer: FrostedDrawer(),
