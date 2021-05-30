@@ -109,7 +109,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                 Align(
                                   alignment: Alignment(0.06, 0.87),
                                   child: Text(
-                                    'KIRAMAT BAIG',
+                                    'Admin123',
                                     style: TextStyle(
                                       fontFamily: 'Poppins',
                                       color: Color(0xFF8D8181),
