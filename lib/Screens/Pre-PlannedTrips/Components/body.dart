@@ -1,18 +1,18 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
+import 'package:flutter_auth/Screens/Pre-PlannedTrips/Components/TripDetails.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'Global/app_colors.dart';
-import 'detail_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class Body extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _HomeScreenState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Destinations",
+                          "Pre-Planned Trips",
                           style: GoogleFonts.playfairDisplay(
                               color: AppColors.darkTextColor,
                               fontWeight: FontWeight.bold,
@@ -61,8 +61,43 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            ///vertical spacing
+            SizedBox(
+              height: 20,
+            ),
 
-
+            ///Container for actionables
+            Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Top",
+                    style: GoogleFonts.poppins(
+                      color: Colors.green,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    "Suggested",
+                    style: GoogleFonts.poppins(
+                      color: AppColors.veryLightTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    "Historical",
+                    style: GoogleFonts.poppins(
+                      color: AppColors.veryLightTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                ],
+              ),
+            ),
             //horizontal line
             Divider(
               thickness: 2,
@@ -154,7 +189,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hunza",
+                      "Islamabad",
                       style: GoogleFonts.poppins(
                           fontSize: 18,
                           color: Colors.white,
@@ -171,7 +206,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           ///For  space
                           SizedBox(width: 4,),
                           Text(
-                            "4.5",
+                            "5.0",
                             style: GoogleFonts.poppins(
                                 fontSize: 14,
                                 color: AppColors.veryLightTextColor,

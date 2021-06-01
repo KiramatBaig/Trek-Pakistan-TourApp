@@ -11,6 +11,7 @@ import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Constants.dart';
 import 'package:flutter_auth/Screens/HotelBooking/Hotel_Book.dart';
 import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
+import 'package:flutter_auth/Screens/Pre-PlannedTrips/PrePlannedTrips.dart';
 import 'package:flutter_auth/Screens/Weather/Weather_Screen.dart';
 
 
@@ -100,6 +101,22 @@ class Body extends StatelessWidget{
                 );
               },text: "View Hotels",icon: Icon(Icons.hotel,color: Colors.white,),),
               RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){},text: "Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
+              RectangluarButton(color: Colors.teal.withOpacity(0.8),press: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return PrePlannedTrip();
+                    },
+                  ),
+                );
+              },text: "Planned Trips",icon: Icon(Icons.assignment_rounded,color: Colors.white,),),
+              RectangluarButton(color: Colors.deepOrangeAccent.withOpacity(0.8),press: (){
+
+              },text: "Trekking",icon: Icon(Icons.directions_walk,color: Colors.white,),),
+              RectangluarButton(color: Colors.deepOrangeAccent.withOpacity(0.8),press: (){
+
+              },text: "Auto Tour",icon: Icon(Icons.settings_applications,color: Colors.white,),),
             ],
           ),
 

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Constants.dart';
 import 'package:flutter_auth/Screens/Destination/home_screen.dart';
+import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:flutter_auth/Screens/Services/services_screen.dart';
 
 
@@ -67,7 +68,16 @@ class Body extends StatelessWidget{
                 RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){
                   
                 },text: "Nearby Places",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
-                RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){},text: "Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
+                RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return SettingsUI();
+                      },
+                    ),
+                  );
+                },text: "Profile",icon: Icon(Icons.person,color: Colors.white,),),
               ],
             ),
           
