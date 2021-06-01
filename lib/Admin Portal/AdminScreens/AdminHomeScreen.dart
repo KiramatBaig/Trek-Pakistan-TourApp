@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/AdminHotelScreen.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/AdminProfileScreen.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/ManageDestination.dart';
+import 'package:flutter_auth/Admin%20Portal/Components/adminFrostedDrawer.dart';
+
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -19,7 +23,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
     return Scaffold(
       key: scaffoldKey,
       appBar:PreferredSize(
-        preferredSize: Size.fromHeight(70.0), // here the desired height
+        preferredSize: Size.fromHeight(60.0), // here the desired height
         child: AppBar(
           backgroundColor: Colors.white,
           iconTheme: IconThemeData(color: Color(0xFF43A047)),
@@ -36,7 +40,8 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
           actions: [
             IconButton(
               onPressed: () {
-
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => AdminProfileWidget()));
               },
               icon: Icon(
                 Icons.admin_panel_settings,
@@ -51,9 +56,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
         ),
       ),
       backgroundColor: Color(0xFF43A047),
-      drawer: Drawer(
-        elevation: 16,
-      ),
+      drawer: FrostedDrawer(),
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -118,18 +121,6 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                                 )
                               ],
                             ),
-                            Image.network(
-                              'https://picsum.photos/seed/713/600',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            ),
-                            Image.network(
-                              'https://picsum.photos/seed/435/600',
-                              width: 100,
-                              height: 100,
-                              fit: BoxFit.cover,
-                            )
                           ],
                         ),
                       ),
@@ -178,16 +169,16 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                   padding: EdgeInsets.zero,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 4,
-                    mainAxisSpacing: 6,
-                    childAspectRatio: 1,
+                    crossAxisSpacing: 0,
+                    mainAxisSpacing: 5,
+                    childAspectRatio: 1.2,
                   ),
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
-                      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 5),
                       child: ConstrainedBox(
-                        constraints: BoxConstraints.tightFor(width: 110, height:35),
+                        constraints: BoxConstraints.tightFor(width: 80, height:25),
                         child: ElevatedButton(
                           onPressed: () {
 
@@ -200,16 +191,38 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                               primary: Color(0xFF66BB6A),
                               //padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                               textStyle: TextStyle(
-                                  fontSize: 26,
+                                  fontSize: 20,
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 5),
                       child: ConstrainedBox(
-                        constraints: BoxConstraints.tightFor(width: 120, height:40),
+                        constraints: BoxConstraints.tightFor(width: 80, height:25),
+                        child: ElevatedButton(
+                          onPressed: () {
+
+                          },
+                          child: Text("Add Trips",),
+                          style: ElevatedButton.styleFrom(
+                              shape: new RoundedRectangleBorder(
+                                borderRadius: new BorderRadius.circular(30.0),
+                              ),
+                              primary: Color(0xFF66BB6A),
+                              //padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                              textStyle: TextStyle(
+                                  fontSize: 20,
+                                  fontFamily: 'Poppins',
+                                  fontWeight: FontWeight.bold)),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
+                      child: ConstrainedBox(
+                        constraints: BoxConstraints.tightFor(width: 80, height:25),
                         child: ElevatedButton(
                           onPressed: () {
                           },
@@ -221,16 +234,16 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                               primary: Color(0xFF66BB6A),
                               //padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                               textStyle: TextStyle(
-                                  fontSize: 26,
+                                  fontSize: 20,
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      padding: EdgeInsets.fromLTRB(20, 10, 10, 5),
                       child: ConstrainedBox(
-                        constraints: BoxConstraints.tightFor(width: 120, height:40),
+                        constraints: BoxConstraints.tightFor(width: 80, height:25),
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -245,21 +258,24 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                               primary: Color(0xFF66BB6A),
                               //padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                               textStyle: TextStyle(
-                                  fontSize: 26,
+                                  fontSize: 20,
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold)),
                         ),
                       ),
                     ),
                     Padding(
-                      padding: EdgeInsets.fromLTRB(5, 5, 5, 5),
+                      padding: EdgeInsets.fromLTRB(10, 10, 20, 5),
                       child: ConstrainedBox(
-                        constraints: BoxConstraints.tightFor(width: 120, height:40),
+                        constraints: BoxConstraints.tightFor(width: 80, height:25),
                         child: ElevatedButton(
                           onPressed: () {
-
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (BuildContext context) => DestinationScreenWidget()
+                            )
+                            );
                           },
-                          child: Text("Destination",),
+                          child: Text("Manage Destination",),
                           style: ElevatedButton.styleFrom(
                               shape: new RoundedRectangleBorder(
                                 borderRadius: new BorderRadius.circular(30.0),
@@ -267,7 +283,7 @@ class _HomeScreenWidgetState extends State<HomeScreenWidget> {
                               primary: Color(0xFF66BB6A),
                               //padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
                               textStyle: TextStyle(
-                                  fontSize: 26,
+                                  fontSize: 20,
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.bold)),
                         ),

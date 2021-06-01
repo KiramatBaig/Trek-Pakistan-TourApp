@@ -35,7 +35,7 @@ class _FlowExampleState extends State<FlowExample>
       padding: const EdgeInsets.symmetric(horizontal: 10.0),
       child: RawMaterialButton(
         fillColor: Color(0xFF66BB6A),
-        splashColor: Colors.grey,
+        splashColor: Colors.teal,
         shape: CircleBorder(),
         constraints: BoxConstraints.tight(Size.square(50.0)),
         onPressed: () {

@@ -40,7 +40,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         actions: [
           IconButton(
             onPressed: () {
-
+              Navigator.of(context).pop();
             },
             icon: Icon(
               Icons.admin_panel_settings,
@@ -608,7 +608,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             Expanded(
                                               flex: 2,
                                               child: Align(
-                                                alignment: Alignment(1, 0),
+                                                alignment: Alignment(0.7, 0),
                                                 child: Container(
                                                   width: 40,
                                                   height: 40,
@@ -717,7 +717,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                             Expanded(
                                               flex: 1,
                                               child: Align(
-                                                alignment: Alignment(0.05, 0),
+                                                alignment: Alignment(0.5, 0),
                                                 child: Icon(
                                                   Icons.chevron_right,
                                                   color: Color(0xFF66BB6A),
@@ -790,9 +790,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                                               ),
                                             ),
                                             Expanded(
-                                              flex: 2,
+                                              flex: 1,
                                               child: Align(
-                                                alignment: Alignment(1, 0),
+                                                alignment: Alignment(0.9, 0),
                                                 child: Container(
                                                   width: 40,
                                                   height: 40,
