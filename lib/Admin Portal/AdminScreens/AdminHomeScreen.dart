@@ -7,14 +7,14 @@ import 'package:flutter_auth/Admin%20Portal/Components/adminFrostedDrawer.dart';
 
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
-class HomeScreenWidget extends StatefulWidget {
-  HomeScreenWidget({Key key}) : super(key: key);
+class AdminHomeScreen extends StatefulWidget {
+  AdminHomeScreen({Key key}) : super(key: key);
 
   @override
-  _HomeScreenWidgetState createState() => _HomeScreenWidgetState();
+  _AdminHomeScreenState createState() => _AdminHomeScreenState();
 }
 
-class _HomeScreenWidgetState extends State<HomeScreenWidget> {
+class _AdminHomeScreenState extends State<AdminHomeScreen> {
   final pageViewController = PageController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
 

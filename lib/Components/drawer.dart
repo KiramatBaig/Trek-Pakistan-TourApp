@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/settings.dart';
@@ -85,23 +86,7 @@ class FrostedDrawer extends StatelessWidget {
                       ),
                       title: Text("Profile"),
                     ),
-                    ListTile(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return MapView();
-                            },
-                          ),
-                        );
-                      },
-                      leading: Icon(
-                        Icons.alt_route,
-                        color: Colors.black,
-                      ),
-                      title: Text("Search Route"),
-                    ),
+
                     ListTile(
                       onTap: () {
                         Navigator.push(
@@ -141,7 +126,7 @@ class FrostedDrawer extends StatelessWidget {
                       onTap: () {
 
                         Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                            WelcomeScreen()), (Route<dynamic> route) => false);
+                            LoginScreen()), (Route<dynamic> route) => false);
                       },
 
                       leading: Icon(

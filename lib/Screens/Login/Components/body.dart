@@ -8,6 +8,8 @@ import 'package:flutter_auth/Components/rounded_button.dart';
 import 'package:flutter_auth/Components/rounded_input_field.dart';
 import 'package:flutter_auth/Components/rounded_password_field.dart';
 import 'package:flutter_auth/Components/background.dart';
+import 'package:flutter_auth/Screens/Destination/home_screen.dart';
+import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/SignUp/signup_screen.dart';
 
 
@@ -72,14 +74,8 @@ class Body extends StatelessWidget {
           SizedBox(height: 5.0,),
           GestureDetector(
             onTap: (){
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return HomeScreenWidget();
-                  },
-                ),
-              );
+              Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                  AdminHomeScreen()), (Route<dynamic> route) => false);
             },
             child: Text(
               "Admin",

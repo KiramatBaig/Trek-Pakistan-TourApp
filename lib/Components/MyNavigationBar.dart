@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/drawer.dart';
 import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
+import 'package:flutter_auth/Screens/Information%20Screen/AboutUs.dart';
+import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 
 
 
@@ -18,7 +20,7 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = [
     HomeScreen(),
-    Text("Search"),
+    AboutUs()
 
   ];
 
@@ -59,8 +61,8 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
 
 
             BottomNavigationBarItem(
-                icon: Icon(Icons.search),
-                title: Text('Search'),
+                icon: Icon(Icons.info_outline),
+                title: Text('About Us'),
                 backgroundColor: Colors.green
             ),
 

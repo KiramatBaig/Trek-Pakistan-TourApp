@@ -6,8 +6,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_auth/Components/Drawer.dart';
 import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
+import 'package:flutter_auth/Screens/HotelBooking/Hotel_Detail.dart';
 
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
+import 'package:flutter_auth/Screens/Transport/SelectTransport.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -79,38 +81,38 @@ class _HotelBookingPageState extends State<HotelBookingPage> {
         backgroundColor: Colors.green,
       ),
 
-      drawer: FrostedDrawer(),
 
       body: ListView(
 
         children: <Widget>[
 
           SizedBox(height: 10.0,),
-          Text("Type your Location", textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(
-                color: AppColors.darkTextColor,
-                fontSize: 20,
-                fontWeight: FontWeight.w800),
-          ),
-          Container(
-            margin: EdgeInsets.symmetric(horizontal: 30,vertical: 10),
-            padding: EdgeInsets.all(5.0),
-            decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(40.0)
-            ),
-            child: TextField(
-              decoration: InputDecoration(
-                hintText: "Hunza",
-                border: InputBorder.none,
-                icon: IconButton(onPressed: (){}, icon: Icon(Icons.search)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+
+              Text("Book a Hotel", textAlign: TextAlign.center,
+                style: GoogleFonts.poppins(
+                    color: AppColors.darkTextColor,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w800),
               ),
-            ),
+              SizedBox(width: 120.0,),
+              TextButton(onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) =>Transport() ));
+              }, child:
+              Text("Skip")),
+
+
+            ],
           ),
+
+          Divider(color: Colors.black,height: 10,),
           Padding(
-            padding: const EdgeInsets.only(left: 20.0),
+            padding: const EdgeInsets.only(left: 20.0,top: 50.0),
             child: Text(
-              'Suggested Locations',
+              'Top Rated Hotels',
               style: GoogleFonts.poppins(
                   color: AppColors.darkTextColor,
                   fontSize: 20,
@@ -124,13 +126,13 @@ class _HotelBookingPageState extends State<HotelBookingPage> {
             height: 250,
             width: double.infinity,
             child: ListView.builder(
-              padding: EdgeInsets.symmetric(horizontal: 10),
+              padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
               scrollDirection: Axis.horizontal,
               itemCount: hotels.length,
               itemBuilder: (BuildContext context, index) {
                 return Container(
                   margin: EdgeInsets.symmetric(horizontal: 10.0),
-                  height: 200,
+                  height: 80,
                   width: 170,
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10),
@@ -218,10 +220,7 @@ class _HotelBookingPageState extends State<HotelBookingPage> {
                   'Hotel Packages',
                   style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w600),
                 ),
-                Text(
-                  'view all',
-                  style: TextStyle(fontSize: 18.0, color: Colors.greenAccent),
-                )
+
               ],
             ),
           ),

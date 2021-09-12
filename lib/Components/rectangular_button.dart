@@ -44,6 +44,7 @@ class RectangluarButton extends StatelessWidget {
           color: color,
           label: Text(
             text,
+
             style: TextStyle(fontSize: 15.0,color: Colors.white),
           ),
           icon: icon,

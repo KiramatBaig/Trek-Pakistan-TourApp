@@ -38,11 +38,13 @@ dependencies:
   auto_size_text: ^2.1.0
   font_awesome_flutter: '>= 4.7.0'
 
-  google_maps_flutter: ^1.0.6
+  google_maps_flutter: ^2.0.2
   geolocator: ^6.1.7
   geocoding: ^1.0.5
+  google_maps_webservice:  0.0.20-nullsafety.5
   smooth_page_indicator: ^0.2.3
-  flutter_polyline_points: ^0.2.4
+  flutter_polyline_points: ^0.2.6
+  country_state_city_picker: ^1.2.8
 
 
 

@@ -2,17 +2,13 @@
 
 
 import 'dart:ui';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Components/drawer.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
-import 'package:flutter_auth/Constants.dart';
-import 'package:flutter_auth/Screens/HotelBooking/Hotel_Book.dart';
-import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
+import 'package:flutter_auth/Screens/Destination/home_screen.dart';
+import 'package:flutter_auth/Screens/MapsScreen/MapView2.dart';
 import 'package:flutter_auth/Screens/Pre-PlannedTrips/PrePlannedTrips.dart';
-import 'package:flutter_auth/Screens/Weather/Weather_Screen.dart';
 
 
 class Body extends StatelessWidget{
@@ -28,9 +24,7 @@ class Body extends StatelessWidget{
         titleSpacing: 50,
         actions: [
           IconButton(icon: Icon(Icons.home,color: Colors.white,size: 30,), onPressed: (){
-            Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                MyNavigationBar()), (Route<dynamic> route) => false);
-          }),
+            Navigator.pop(context);}),
         ],
 
         backgroundColor: Colors.green,
@@ -59,48 +53,35 @@ class Body extends StatelessWidget{
           ),
 
           GridView.count(
-            padding: EdgeInsets.only(left: 10,right: 10,top: 200),
-            crossAxisCount: 2,
-            mainAxisSpacing: 15,
-            childAspectRatio: 2,
-            crossAxisSpacing: 15,
+            padding: EdgeInsets.only(left: 50,right: 50,top: 100,bottom: 100),
+            crossAxisCount: 1,
+            mainAxisSpacing: 20,
+            childAspectRatio: 3,
+            crossAxisSpacing: 20,
             children: <Widget>[
 
-              RectangluarButton(color: kPrimaryColor.withOpacity(0.8),
-                press: (){
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Weather();
-                      },
-                    ),
-                  );
 
-                },
-                text: "Weather",icon: Icon(Icons.wb_cloudy_sharp,color: Colors.white,),),
 
               RectangluarButton(color: Colors.orange.withOpacity(0.8),press: (){
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return MapView();
+                      return MapView2();
                     },
                   ),
                 );
-              },text: "Find route",icon: Icon(Icons.alt_route,color: Colors.white,),),
-              RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){
+              },text: "Track route",icon: Icon(Icons.alt_route,color: Colors.white,),),
+              RectangluarButton(color: Colors.limeAccent.withOpacity(0.5),press: (){
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return HotelBookingPage();
+                      return HomeScreen();
                     },
                   ),
                 );
-              },text: "View Hotels",icon: Icon(Icons.hotel,color: Colors.white,),),
-              RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){},text: "Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
+              },text: "Plan a Trip",icon: Icon(Icons.airport_shuttle_outlined,color: Colors.white,),),
               RectangluarButton(color: Colors.teal.withOpacity(0.8),press: (){
                 Navigator.push(
                   context,
@@ -114,7 +95,7 @@ class Body extends StatelessWidget{
               RectangluarButton(color: Colors.deepOrangeAccent.withOpacity(0.8),press: (){
 
               },text: "Trekking",icon: Icon(Icons.directions_walk,color: Colors.white,),),
-              RectangluarButton(color: Colors.deepOrangeAccent.withOpacity(0.8),press: (){
+              RectangluarButton(color: Colors.amber.withOpacity(0.8),press: (){
 
               },text: "Auto Tour",icon: Icon(Icons.settings_applications,color: Colors.white,),),
             ],

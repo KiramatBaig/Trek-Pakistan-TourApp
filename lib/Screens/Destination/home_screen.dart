@@ -154,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Hunza",
+                      "Islamabad",
                       style: GoogleFonts.poppins(
                           fontSize: 18,
                           color: Colors.white,
