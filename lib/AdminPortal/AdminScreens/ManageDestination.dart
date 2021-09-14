@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/AdminPortal/AdminScreens/EditDestinationScreen.dart';
 import 'package:flutter_auth/AdminPortal/Components/FlowBar.dart';
 
 class DestinationScreenWidget extends StatefulWidget {
@@ -13,8 +14,33 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
+  TextEditingController customController = new TextEditingController();
   final scaffoldKey = GlobalKey<ScaffoldState>();
+    createAlertDialog(BuildContext context){
+      return showDialog(context: context, builder: (context){
+        return AlertDialog(
+          title: Text("Caution?"),
+          content : Text("Do you Really want to Delete?"),
 
+          actions: <Widget>[
+            MaterialButton(
+              elevation: (0.5),
+              color: Colors.green,
+              onPressed: (){
+                Navigator.pop(context);
+              },
+            child: Text("CANCEL"),),
+            MaterialButton(
+              elevation: (0.5),
+              color: Colors.green,
+              onPressed: (){
+                print("button pressed");
+              },
+              child: Text("DELETE"),)
+          ],
+        );
+      });
+  }
   @override
   void initState() {
     super.initState();
@@ -254,8 +280,8 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
                                                         1, 0, 5, 0),
                                                     child: IconButton(
                                                       onPressed: () {
-                                                        print(
-                                                            'IconButton pressed ...');
+                                                        Navigator.of(context).push(MaterialPageRoute(
+                                                            builder: (BuildContext context) => EditDestinationScreenWidget()));
                                                       },
                                                       icon: Icon(
                                                         Icons
@@ -279,8 +305,7 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
                                                         0, 0, 5, 0),
                                                     child: IconButton(
                                                       onPressed: () {
-                                                        print(
-                                                            'IconButton pressed ...');
+                                                        createAlertDialog(context);
                                                       },
                                                       icon: Icon(
                                                         Icons.delete_forever,
