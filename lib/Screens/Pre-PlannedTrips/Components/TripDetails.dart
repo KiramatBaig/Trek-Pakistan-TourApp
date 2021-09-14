@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/HotelBooking/Hotel_Book.dart';
+import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'Global/app_colors.dart';
+
 
 
 
@@ -47,7 +47,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Hunza",
+                          "Islamabad",
                           style: GoogleFonts.poppins(
                               color: AppColors.darkTextColor,
                               fontSize: 24,
@@ -75,7 +75,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     width: 4,
                                   ),
                                   Text(
-                                    "4.5",
+                                    "5.0",
                                     style: GoogleFonts.poppins(
                                       color: AppColors.darkTextColor,
                                       fontSize: 14,
@@ -216,7 +216,7 @@ class _DetailScreenState extends State<DetailScreen> {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 32),
               child: Text(
-                "Hunza is a mountainous valley in the autonomous Gilgit-Baltistan region of Pakistan. Hunza is situated in the northern part of Gilgit-Baltistan,",
+                "Islamabad is the capital city of Pakistan, Islamabad is noted for its high standards of living, safety, and abundant greenery.",
                 style: GoogleFonts.poppins(
                     color: AppColors.veryLightTextColor,
                     fontSize: 14,
@@ -238,20 +238,41 @@ class _DetailScreenState extends State<DetailScreen> {
                   color: Colors.white),
               child: Row(
                 children: [
+                  ///fees
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Approx Cost",
+                        style: GoogleFonts.poppins(
+                            color: Colors.green,
+                            fontSize: 14,
+                            fontWeight: FontWeight.w600),
+                      ),
+                      Text(
+                        "1200 rupees",
+                        style: GoogleFonts.poppins(
+                            color: AppColors.darkTextColor,
+                            fontSize: 22,
+                            fontWeight: FontWeight.w700),
+                      )
+                    ],
+                  ),
+
                   Spacer(),
 
                   ///Button
                   FlatButton(
                     child: Text(
-                      "Select Destination",
+                      "Booking",
                       style: GoogleFonts.poppins(
                           color: Colors.white,
                           fontSize: 14,
                           fontWeight: FontWeight.w600),
                     ),
                     onPressed: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (BuildContext context) =>HotelBookingPage() ));
+
+
                     },
                     color: Colors.green,
                     shape: RoundedRectangleBorder(

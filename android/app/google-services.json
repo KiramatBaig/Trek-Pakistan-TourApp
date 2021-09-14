@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "810191468683",
+    "firebase_url": "https://trek-pakistan-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "trek-pakistan",
+    "storage_bucket": "trek-pakistan.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:810191468683:android:5c6b66b34d9bd84cb17c8e",
+        "android_client_info": {
+          "package_name": "com.example.trekpakistan_tourapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "810191468683-b64gmv64n824e9i2036hajglau6m93o6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKvY3cFQWF-sApFT-E4W5-7OEiq3aAxrI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "810191468683-b64gmv64n824e9i2036hajglau6m93o6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
