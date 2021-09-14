@@ -1,4 +1,5 @@
 import 'dart:ui';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
@@ -6,9 +7,7 @@ import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/settings.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 class FrostedDrawer extends StatelessWidget {
-  const FrostedDrawer({
-    Key key,
-  }) : super(key: key);
+  final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
@@ -70,15 +69,8 @@ class FrostedDrawer extends StatelessWidget {
 
                     ListTile(
                       onTap: () {
+                        Navigator.push(context,MaterialPageRoute(builder: (context){return SettingsUI();},),);
 
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return SettingsUI();
-                            },
-                          ),
-                        );
                       },
                       leading: Icon(
                         Icons.person,
@@ -89,14 +81,7 @@ class FrostedDrawer extends StatelessWidget {
 
                     ListTile(
                       onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return SettingsPage();
-                            },
-                          ),
-                        );
+                        Navigator.push(context,MaterialPageRoute(builder: (context){return SettingsPage();},),);
                       },
                       leading: Icon(
                         Icons.settings,
@@ -124,9 +109,8 @@ class FrostedDrawer extends StatelessWidget {
                     ),
                     ListTile(
                       onTap: () {
-
-                        Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                            LoginScreen()), (Route<dynamic> route) => false);
+                        auth.signOut();
+                        Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>LoginScreen()));
                       },
 
                       leading: Icon(
