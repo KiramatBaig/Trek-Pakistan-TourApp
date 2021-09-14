@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/AdminHomeScreen.dart';
-import 'package:flutter_auth/Components/MyNavigationBar.dart';
+//import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Components/already_have_an_account_check.dart';
 import 'package:flutter_auth/Components/register_as_business_partner.dart';
 import 'package:flutter_auth/Components/rounded_button.dart';
