@@ -1,13 +1,36 @@
 import 'dart:ui';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Models/user_model.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/settings.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
-class FrostedDrawer extends StatelessWidget {
+class FrostedDrawer extends StatefulWidget{
+  @override
+  _FrostedDrawerState createState()=>_FrostedDrawerState();
+
+}
+class _FrostedDrawerState extends State<FrostedDrawer> {
   final auth = FirebaseAuth.instance;
+  User user= FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser=UserModel();
+  @override
+  void initState(){
+    super.initState();
+    FirebaseFirestore.instance
+        .collection("users")
+        .doc(user.uid)
+        .get()
+        .then((value){
+      this.loggedInUser=UserModel.fromMap(value.data());
+      setState(() {
+
+      });
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +82,12 @@ class FrostedDrawer extends StatelessWidget {
                     SizedBox(
                       width: 20.0,
                     ),
-                    Text("User Name",)
+                    Text("${loggedInUser.firstName} ${loggedInUser.secondName}",)
                   ],
                 ),
               ),
+              SizedBox(height: 10.0,),
+              Text("${loggedInUser.email}",style: TextStyle(fontWeight: FontWeight.bold),),
               Expanded(
                 child: ListView(
                   children: [
