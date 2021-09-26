@@ -2,14 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Components/MyNavigationBar.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_auth/Components/already_have_an_account_check.dart';
-
 import 'package:flutter_auth/Components/rounded_button.dart';
-
-import 'package:flutter_auth/Components/rounded_input_field.dart';
-import 'package:flutter_auth/Components/rounded_password_field.dart';
-import 'package:flutter_auth/Components/background.dart';
 import 'package:flutter_auth/Components/verify.dart';
 import 'package:flutter_auth/Models/user_model.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
@@ -107,6 +102,7 @@ class Body extends StatefulWidget {
         }
         return null;
       },
+
       decoration: InputDecoration(
           prefixIcon: Icon(Icons.mail),
           contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
@@ -117,6 +113,7 @@ class Body extends StatefulWidget {
 
       ),
     );
+
     //passwordField
     final passwordField= TextFormField(
       autofocus: false,
@@ -224,7 +221,7 @@ class Body extends StatefulWidget {
       await auth.createUserWithEmailAndPassword(email: emailEditingController.text, password: passwordEditingController.text).then((_){
       postDetailsToFirestore();
     }).catchError((e){
-      Fluttertoast.showToast(msg: e.toString());
+      Fluttertoast.showToast(msg: "A user with this email already exists");
       });
     }
   }
@@ -255,4 +252,3 @@ class Body extends StatefulWidget {
     Navigator.pushAndRemoveUntil((context), MaterialPageRoute(builder: (context)=>VerifyScreen()), (route) => false);
   }
 }
-
