@@ -70,7 +70,7 @@ class _HotelBookingPageState extends State<HotelBookingPage> {
         elevation: 0,
 
         title: const Text('Trek Pakistan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
-        titleSpacing: 50,
+        centerTitle: true,
         actions: [
           IconButton(icon: Icon(Icons.home,color: Colors.white,size: 30,), onPressed: (){
             Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>

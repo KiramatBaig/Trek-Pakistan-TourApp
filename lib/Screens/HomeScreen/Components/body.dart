@@ -61,14 +61,7 @@ class Body extends StatelessWidget{
 
               },text: "Nearby Attractions",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
               RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return Restaurant();
-                    },
-                  ),
-                );
+
               },text: "Nearby Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
               RectangluarButton(color: kPrimaryColor.withOpacity(0.8),
                 press: (){

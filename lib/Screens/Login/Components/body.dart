@@ -80,14 +80,18 @@ class _BodyState extends State<Body>{
                   SizedBox(height: size.height*0.03,),
                   Padding(padding: EdgeInsets.only(left: 25,right: 25),
                     child: TextFormField(
+
                       obscureText: true,
                       decoration: InputDecoration(
                           hintText: "Password",
+
                         prefixIcon: Icon(Icons.vpn_key),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(10),
                         ),
+
                       ),
+
                       onChanged: (value){
                         setState(() {
                           _password=value.trim();
