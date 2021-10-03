@@ -8,10 +8,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Constants.dart';
 import 'package:flutter_auth/Screens/Destination/home_screen.dart';
+import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
+import 'package:flutter_auth/Screens/MapsScreen/MapView2.dart';
+import 'package:flutter_auth/Screens/NearbyAttractions/Attractions.dart';
 import 'package:flutter_auth/Screens/NearbyRestaurants/Restaurants.dart';
-import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:flutter_auth/Screens/Services/services_screen.dart';
 import 'package:flutter_auth/Screens/Weather/Weather_Screen.dart';
+import 'package:flutter_auth/maps/Screens/Home_Screen.dart';
 
 
 class Body extends StatelessWidget{
@@ -59,9 +62,24 @@ class Body extends StatelessWidget{
               },text: "Services",icon: Icon(Icons.business_center,color: Colors.white,),),
               RectangluarButton(color: Colors.red.withOpacity(0.8),press: (){
 
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Attractions();
+                    },
+                  ),
+                );
               },text: "Nearby Attractions",icon: Icon(Icons.near_me_rounded,color: Colors.white,),),
               RectangluarButton(color: Colors.blue.withOpacity(0.8),press: (){
-
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return Restaurant();
+                    },
+                  ),
+                );
               },text: "Nearby Restaurants",icon: Icon(Icons.restaurant,color: Colors.white,),),
               RectangluarButton(color: kPrimaryColor.withOpacity(0.8),
                 press: (){

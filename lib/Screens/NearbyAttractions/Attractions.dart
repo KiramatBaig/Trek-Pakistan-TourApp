@@ -4,15 +4,15 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 
 final places= GoogleMapsPlaces(apiKey: 'AIzaSyAgelTxEWzhL_XZsRJOtmZxYpGJCunTv0A');
-class Restaurant extends StatelessWidget{
+class Attractions extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text("Nearby Restaurants"),
-          backgroundColor: Colors.green,
-        ),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Nearby Attractions"),
+        backgroundColor: Colors.green,
+      ),
       body: NearbyRestaurants(),
 
     );
@@ -36,7 +36,7 @@ class _NearbyRestaurantsState extends State <NearbyRestaurants>{
   }
 
   Future<void> _retrieveNearbyRestaurants(LatLng _userLocation) async {
-    PlacesSearchResponse _response = await places.searchNearbyWithRadius(Location(lat: _userLocation.latitude, lng: _userLocation.longitude), 10000,type: "restaurant");
+    PlacesSearchResponse _response = await places.searchNearbyWithRadius(Location(lat: _userLocation.latitude, lng: _userLocation.longitude), 10000,type: "attraction");
     Set<Marker> _restaurantMarkers = _response.results
         .map((result) => Marker(
         markerId: MarkerId(result.name),

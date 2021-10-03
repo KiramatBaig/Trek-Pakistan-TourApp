@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/ImagePick.dart';
@@ -8,19 +9,25 @@ import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
-class EditDestinationScreenWidget extends StatefulWidget {
-  EditDestinationScreenWidget({Key key}) : super(key: key);
+class RegisterBussinessScreenWidget extends StatefulWidget {
+  RegisterBussinessScreenWidget({Key key}) : super(key: key);
 
   @override
-  _EditDestinationScreenWidgetState createState() =>
-      _EditDestinationScreenWidgetState();
+  _RegisterBussinessScreenWidgetState createState() =>
+      _RegisterBussinessScreenWidgetState();
 }
 
-class _EditDestinationScreenWidgetState extends State<EditDestinationScreenWidget> {
+class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenWidget> {
+  CollectionReference hotel =
+  FirebaseFirestore.instance.collection("hotel");
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
   TextEditingController textController4;
+  TextEditingController textController5;
+  TextEditingController textController6;
+  String _hotel;
+  String _uploadedFileURL;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
@@ -30,6 +37,8 @@ class _EditDestinationScreenWidgetState extends State<EditDestinationScreenWidge
     textController2 = TextEditingController();
     textController3 = TextEditingController();
     textController4 = TextEditingController();
+    textController5 = TextEditingController();
+    textController6 = TextEditingController();
   }
   File _imageFile;
 
@@ -45,13 +54,35 @@ class _EditDestinationScreenWidgetState extends State<EditDestinationScreenWidge
 
   Future uploadImageToFirebase(BuildContext context) async {
     String fileName = basename(_imageFile.path);
+    _hotel = textController1.text;
     Reference firebaseStorageRef =
-    FirebaseStorage.instance.ref().child('uploads/$fileName');
+    FirebaseStorage.instance.ref().child('hotel/_hotel/$fileName');
     UploadTask uploadTask = firebaseStorageRef.putFile(_imageFile);
     TaskSnapshot taskSnapshot = await uploadTask;
-    taskSnapshot.ref.getDownloadURL().then(
-          (value) => print("Done: $value"),
-    );
+    // taskSnapshot.ref.getDownloadURL().then(
+    //       (value) => print("Done: $value"),
+    // );
+    taskSnapshot.ref.getDownloadURL().then((fileURL) {
+      setState(() {
+        _uploadedFileURL = fileURL;
+        print(_uploadedFileURL);
+
+      });
+      });
+        }
+  Future adddata() async {
+
+    Map<String, dynamic> hotel = {
+      'description': textController2.text,
+      'destinationName': textController3.text,
+      'name':textController1.text,
+      'rating': 5,
+      'price':int.parse(textController5.text),
+      'URL': _uploadedFileURL,
+    };
+    CollectionReference collection =
+    FirebaseFirestore.instance.collection('hotel');
+    collection.add(hotel);
   }
 
   @override
@@ -411,6 +442,82 @@ class _EditDestinationScreenWidgetState extends State<EditDestinationScreenWidge
                               Padding(
                                 padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                 child: Icon(
+                                  Icons.price_change,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 1, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Price Per Night :',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController5,
+                                    obscureText: true,
+                                    decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                      ),
+
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
                                   Icons.image,
                                   color: Color(0xFF66BB6A),
                                   size: 24,
@@ -441,11 +548,11 @@ class _EditDestinationScreenWidgetState extends State<EditDestinationScreenWidge
                               ),
 
                               Container(
-                                  width: 200,
-                                  height: 50,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFEEEEEE),
-                                  ),
+                                width: 200,
+                                height: 50,
+                                decoration: BoxDecoration(
+                                  color: Color(0xFFEEEEEE),
+                                ),
 
                                 child: ClipRRect(
                                   borderRadius: BorderRadius.circular(30.0),
@@ -484,7 +591,9 @@ class _EditDestinationScreenWidgetState extends State<EditDestinationScreenWidge
                         ),
                         RaisedButton(
                           onPressed: () {
+                            adddata();
                             uploadImageToFirebase(context);
+
                           },
                           color: Colors.green,
                           padding: EdgeInsets.symmetric(horizontal: 50),
