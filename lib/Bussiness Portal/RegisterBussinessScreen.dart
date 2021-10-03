@@ -66,6 +66,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
       setState(() {
         _uploadedFileURL = fileURL;
         print(_uploadedFileURL);
+        adddata();
 
       });
       });
@@ -591,7 +592,6 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                         ),
                         RaisedButton(
                           onPressed: () {
-                            adddata();
                             uploadImageToFirebase(context);
 
                           },
