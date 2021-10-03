@@ -30,7 +30,7 @@ class _Transport2State extends State<Transport2> {
         new NumberFormatter()
       ],
       validator: (String Value) {
-        if (Value.isEmpty) {
+        if (Value.isEmpty || Value.length<13) {
           return "Please enter your CNIC";
         }
 
@@ -42,23 +42,6 @@ class _Transport2State extends State<Transport2> {
     );
   }
 
-  Widget _buildDeparture() {
-    return GestureDetector(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-
-          Text("Select Departure City "),
-          Icon(Icons.arrow_forward_ios,),
-        ],
-      ),
-      onTap: (){
-        print("Select City");
-      },
-    );
-
-
-  }
 
   DateTime selectedDate = DateTime.now();
 
@@ -74,6 +57,9 @@ class _Transport2State extends State<Transport2> {
       });
   }
 
+  List<String> _locations = ['A', 'B', 'C', 'D'];
+  String _selectedLocation;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -86,22 +72,38 @@ class _Transport2State extends State<Transport2> {
         backgroundColor: Colors.green,
       ),
       body: ListView(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(30),
         children:[ Form(
 
           key: _formKey,
           child: Column(
 
             mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
 
               _buildCNIC(),
-              SizedBox(height: 4,),
+              SizedBox(height: 10,),
               Text("Please remember that CNIC will be checked at Departure",style: TextStyle(fontWeight: FontWeight.bold,color: Colors.red,fontSize: 10,),),
               Divider(color: Colors.black,),
-              SizedBox(height: 5.0,),
-              _buildDeparture(),
+              SizedBox(height: 20.0,),
+              DropdownButton(
+                hint: Text('Choose Pick Up'), // Not necessary for Option 1
+                value: _selectedLocation,
+                borderRadius: BorderRadius.circular(20.0),
+
+                onChanged: (newValue) {
+                  setState(() {
+                    _selectedLocation = newValue;
+                  });
+                },
+                items: _locations.map((location) {
+                  return DropdownMenuItem(
+                    child: new Text(location),
+                    value: location,
+                  );
+                }).toList(),
+              ),
               Divider(color: Colors.black,),
               Text("${selectedDate.toLocal()}".split(' ')[0],style: TextStyle(fontWeight: FontWeight.bold),),
               SizedBox(height: 5.0,),

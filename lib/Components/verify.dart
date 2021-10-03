@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +39,7 @@ class _VerifyScreenState extends State<VerifyScreen>{
 
           children: [
             Padding(padding: EdgeInsets.only(left:25.0,right: 15.0),
-            child: Text('A verification email has been sent to ${user.email}',style: TextStyle(fontWeight: FontWeight.bold),),),
+            child: Text('Plase verify email on your ${user.email} account',style: TextStyle(fontWeight: FontWeight.bold),),),
 
           ],
         ),
@@ -54,7 +53,7 @@ class _VerifyScreenState extends State<VerifyScreen>{
     if(user.emailVerified){
       timer.cancel();
       Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context)=>MyNavigationBar()));
-      Fluttertoast.showToast(msg: "Account created Successfully");
+      Fluttertoast.showToast(msg: "Account Verified Successfully");
     }
   }
 }
