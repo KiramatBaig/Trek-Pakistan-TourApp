@@ -8,7 +8,10 @@ import 'package:flutter_auth/Components/rounded_button.dart';
 import 'package:flutter_auth/Components/verify.dart';
 import 'package:flutter_auth/Models/user_model.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
+import 'package:flutter_auth/Screens/SignUp/google_sign_in_provider.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 
 
@@ -27,7 +30,7 @@ class Body extends StatefulWidget {
     final _formKey=GlobalKey<FormState>();
     //editing controllers
     final firstNameEditingController=new TextEditingController();
-    final secondNameEditingController=new TextEditingController();
+
     final emailEditingController=new TextEditingController();
     final passwordEditingController=new TextEditingController();
     final confirmpasswordEditingController=new TextEditingController();
@@ -52,38 +55,14 @@ class Body extends StatefulWidget {
       decoration: InputDecoration(
         prefixIcon: Icon(Icons.person_rounded),
         contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-        hintText: "First Name",
+        hintText: "Full Name",
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
         )
 
       ),
     );
-    //secondNameField
-    final secondNameField= TextFormField(
-      autofocus: false,
-      controller: secondNameEditingController,
-      keyboardType: TextInputType.name,
-      validator: (value){
-        if(value.isEmpty){
-          return ("Second name cannot be empty");
-        }
-        return null;
-      },
-      onSaved: (value){
-        secondNameEditingController.text=value;
-      },
-      textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-          prefixIcon: Icon(Icons.person_rounded),
-          contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-          hintText: "Second Name",
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(10),
-          )
 
-      ),
-    );
     //emailField
     final emailField= TextFormField(
       autofocus: false,
@@ -187,12 +166,12 @@ class Body extends StatefulWidget {
                     ),
                     SizedBox(height: 35,),
                     firstNameField,
-                    SizedBox(height: 15,),
-                    secondNameField,
+
                     SizedBox(height: 15,),
                     emailField,
                     SizedBox(height: 15,),
                     passwordField,
+
                     SizedBox(height: 15,),
                     confirmpasswordField,
                     SizedBox(height: 15,),
@@ -204,7 +183,9 @@ class Body extends StatefulWidget {
                     ),
                     RoundedButton(text: "Sign Up",press: (){
                       signUp(emailEditingController.text, passwordEditingController.text);
-                    },)
+                    },),
+
+
 
                   ],
                 ),
@@ -217,14 +198,15 @@ class Body extends StatefulWidget {
   }
 
   void signUp(String email, String password) async{
-    if(_formKey.currentState.validate()){
-      await auth.createUserWithEmailAndPassword(email: emailEditingController.text, password: passwordEditingController.text).then((_){
-      postDetailsToFirestore();
-    }).catchError((e){
-      Fluttertoast.showToast(msg: "A user with this email already exists");
-      });
+      if(_formKey.currentState.validate()){
+        await auth.createUserWithEmailAndPassword(email: emailEditingController.text, password: passwordEditingController.text).then((_){
+          postDetailsToFirestore();
+        }).catchError((e){
+          Fluttertoast.showToast(msg: "A user with this email already exists");
+        });
+      }
     }
-  }
+
 
 
   postDetailsToFirestore() async{
@@ -240,8 +222,9 @@ class Body extends StatefulWidget {
     //writing all the values
     userModel.email=user.email;
     userModel.uid=user.uid;
-    userModel.firstName=firstNameEditingController.text;
-    userModel.secondName=secondNameEditingController.text;
+    userModel.FullName=firstNameEditingController.text;
+    userModel.Image="https://cdn-icons-png.flaticon.com/128/3135/3135715.png";
+
 
     await firebaseFirestore
     .collection("users")

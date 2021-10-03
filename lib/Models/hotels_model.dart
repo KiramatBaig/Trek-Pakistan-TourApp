@@ -3,9 +3,9 @@ class HotelModel{
   String description;
   int price;
   String rating;
-
-
-  HotelModel({this.title,this.description,this.price,this.rating});
+  String location;
+  String image;
+  HotelModel({this.image,this.title,this.description,this.price,this.rating,this.location});
 
   //receive data from server
   factory HotelModel.fromMap(map){
@@ -14,6 +14,8 @@ class HotelModel{
       description: map['description'],
       price: map['price'],
       rating: map['rating'],
+      location: map['destinationName'],
+      image: map['image']
     );
   }
 

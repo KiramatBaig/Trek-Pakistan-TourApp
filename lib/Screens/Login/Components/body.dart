@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,13 +7,17 @@ import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Components/already_have_an_account_check.dart';
 import 'package:flutter_auth/Components/register_as_business_partner.dart';
 import 'package:flutter_auth/Components/rounded_button.dart';
+import 'package:flutter_auth/Components/rounded_icon_button.dart';
 import 'package:flutter_auth/Components/rounded_input_field.dart';
 import 'package:flutter_auth/Components/rounded_password_field.dart';
 import 'package:flutter_auth/Components/background.dart';
 import 'package:flutter_auth/Components/verify.dart';
+import 'package:flutter_auth/Models/user_model.dart';
+import 'package:flutter_auth/Screens/SignUp/google_sign_in_provider.dart';
 import 'package:flutter_auth/Screens/SignUp/signup_screen.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:provider/provider.dart';
 
 import '../../../Constants.dart';
 
@@ -109,9 +114,7 @@ class _BodyState extends State<Body>{
                     ),
                   ),
                   SizedBox(height: size.height*0.03,),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: [
+
                       RoundedButton(
                         text: "Login",
                         press: (){
@@ -120,13 +123,11 @@ class _BodyState extends State<Body>{
                         },
                       ),
 
-                    ],
-                  ),
                   SizedBox(height: 5.0,),
-                  IconButton(icon: Icon(FontAwesomeIcons.google,color: Colors.red,), onPressed: (){
-
-                  }),
-                  SizedBox(height: 5.0,),
+                  RoundedIconButton(onTap: (){
+                    signUpwithGoogle();
+                  },text: "Sign In with Google",),
+                  SizedBox(height: 10.0,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -145,11 +146,11 @@ class _BodyState extends State<Body>{
                       ),
                     ],
                   ),
-                  SizedBox(height: 5.0,),
+                  SizedBox(height: 10.0,),
                   register_as_business_partner(
                     press: (){},
                   ),
-                  SizedBox(height: 5.0,),
+                  SizedBox(height: 10.0,),
                   GestureDetector(
                     onTap: (){
                       Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
@@ -169,6 +170,16 @@ class _BodyState extends State<Body>{
       ),
     );
   }
+  void signUpwithGoogle() async{
+
+      final provider=Provider.of<GoogleSignInProvider>(context,listen: false);
+      await provider.googleLogin().then((_){
+        postDetailsToFirestore()
+            .catchError((e){
+          Fluttertoast.showToast(msg: "A user with this email already exists");
+        });
+      });
+  }
   void signIn(String email,String password)async{
     if(_formKey.currentState.validate()){
       await auth.signInWithEmailAndPassword(email: _email, password: _password).then((_){
@@ -178,6 +189,31 @@ class _BodyState extends State<Body>{
         Fluttertoast.showToast(msg: "Invalid Email or Password");
       }) ;
     }
+  }
+  postDetailsToFirestore() async{
+    //calling our firestore
+    //calling our userModel
+    //sending these values
+
+    FirebaseFirestore firebaseFirestore= FirebaseFirestore.instance;
+    User user=auth.currentUser;
+
+    UserModel userModel=UserModel();
+
+    //writing all the values
+    userModel.email=user.email;
+    userModel.uid=user.uid;
+    userModel.FullName= user.displayName;
+    userModel.Image=user.photoURL;
+
+
+
+    await firebaseFirestore
+        .collection("users")
+        .doc(user.uid)
+        .set(userModel.toMap());
+
+    Navigator.pushAndRemoveUntil((context), MaterialPageRoute(builder: (context)=>MyNavigationBar()), (route) => false);
   }
 }
 

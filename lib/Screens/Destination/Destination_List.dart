@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Components/loading.dart';
 import 'package:flutter_auth/Components/rounded_button.dart';
 import 'package:flutter_auth/Screens/Destination/destinationDBService.dart';
 import 'package:flutter_auth/Screens/HotelBooking/HotelScreen.dart';
@@ -14,24 +16,7 @@ class DestinationList extends StatefulWidget {
 }
 
 class _DestinationListState extends State<DestinationList> {
-  List destinationsList=[];
-  @override
-  void initState() {
-    super.initState();
-    fetchDatabaseList();
 
-  }
-
-  fetchDatabaseList() async{
-    dynamic resultant= await destinationDBService().getDestinationList();
-    if(resultant==null){
-      print("unable to retrieve");
-    }else{
-      setState(() {
-        destinationsList=resultant;
-      });
-    }
-  }
   @override
   Widget build(BuildContext context) {
 
@@ -91,17 +76,27 @@ class _DestinationListState extends State<DestinationList> {
           SizedBox(
             height: 10,
           ),
+          Expanded(
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance.collection('destinations').snapshots(),
+                builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> querySnapshot){
+              if(querySnapshot.hasError){
+                return(Text("An error has occured"));
+              }
+              if(querySnapshot.connectionState==ConnectionState.waiting){
+                return Loading();
+              }else{
+                final list=querySnapshot.data.docs;
+                return ListView.builder(
+                  itemCount: list.length,
+                  scrollDirection: Axis.vertical,
+                  shrinkWrap: true,
+                  physics: BouncingScrollPhysics(),
+                  itemBuilder: (context,index){
+                    return  Padding(
+                      padding: EdgeInsets.only(left: 20,right: 20,top: 10),
 
-          Expanded(child: ListView.builder(
-              itemCount: destinationsList.length,
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              physics: BouncingScrollPhysics(),
-              itemBuilder: (context,index){
-                return  Padding(
-                  padding: EdgeInsets.only(left: 20,right: 20,top: 10),
-
-                  child: Card(
+                      child: Card(
 
                         child: Container(
                           padding: EdgeInsets.only(left: 10,top: 0,right: 10),
@@ -113,14 +108,14 @@ class _DestinationListState extends State<DestinationList> {
 
                             tilePadding: EdgeInsets.only(left: 10,right: 10),
                             leading: Text(
-                              destinationsList[index]['name'],textAlign: TextAlign.justify,
+                              list[index]['name'],textAlign: TextAlign.justify,
                               style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
                             ),
 
                             title: RatingBar.builder(
                               ignoreGestures: true,
 
-                              initialRating: double.parse(destinationsList[index]['rating']),
+                              initialRating: double.parse(list[index]['rating']),
                               itemSize: 15,
                               itemCount: 5,
                               itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
@@ -135,18 +130,19 @@ class _DestinationListState extends State<DestinationList> {
                             childrenPadding: EdgeInsets.only(left: 20,right: 20),
                             children: [
                               Column(
-                                children:[
-                                  ListTile(
-                                    title: Text(
-                                      destinationsList[index]['description'],
-                                      style: TextStyle(fontWeight: FontWeight.w300,),textAlign: TextAlign.start,
+                                  children:[
+                                    ListTile(
+                                      title: Text(
+                                        list[index]['description'],
+                                        style: TextStyle(fontWeight: FontWeight.w300,),textAlign: TextAlign.start,
+                                      ),
                                     ),
-                                  ),
-                                  SizedBox(height: 5,),
-                                  RoundedButton(press: (){
-                                    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Hotels(destinationsList[index]['name'])));
-                                  },text: "Select",),
-                                ]
+                                    SizedBox(height: 5,),
+                                    RoundedButton(press: (){
+
+                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Hotels(list[index]['name'])));
+                                    },text: "Select",),
+                                  ]
                               )
                             ],
 
@@ -155,8 +151,13 @@ class _DestinationListState extends State<DestinationList> {
                       ),
 
 
+                    );
+                  },
                 );
-              }),)
+              }
+            },
+          ))
+          
         ],
       )
     );
