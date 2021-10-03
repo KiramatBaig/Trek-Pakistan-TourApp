@@ -77,7 +77,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
       'description': textController2.text,
       'destinationName': textController3.text,
       'title':textController1.text,
-      'rating': 5,
+      'rating': '5',
       'price':int.parse(textController5.text),
       'image': _uploadedFileURL,
     };
