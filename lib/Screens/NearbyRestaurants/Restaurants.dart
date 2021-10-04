@@ -1,23 +1,12 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Components/loading.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_maps_webservice/places.dart';
 
-final places= GoogleMapsPlaces(apiKey: 'AIzaSyAgelTxEWzhL_XZsRJOtmZxYpGJCunTv0A');
-class Restaurant extends StatelessWidget{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text("Nearby Restaurants"),
-          backgroundColor: Colors.green,
-        ),
-      body: NearbyRestaurants(),
+final places= GoogleMapsPlaces(apiKey: "AIzaSyAgelTxEWzhL_XZsRJOtmZxYpGJCunTv0A");
 
-    );
-  }
-}
 class NearbyRestaurants extends StatefulWidget{
   @override
   State <StatefulWidget> createState(){
@@ -36,7 +25,9 @@ class _NearbyRestaurantsState extends State <NearbyRestaurants>{
   }
 
   Future<void> _retrieveNearbyRestaurants(LatLng _userLocation) async {
-    PlacesSearchResponse _response = await places.searchNearbyWithRadius(Location(lat: _userLocation.latitude, lng: _userLocation.longitude), 10000,type: "restaurant");
+    Location location= Location(lat: _userLocation.latitude, lng: _userLocation.longitude);
+    PlacesSearchResponse _response = await places.searchNearbyWithRadius(location, 10000,type: "restaurant");
+
     Set<Marker> _restaurantMarkers = _response.results
         .map((result) => Marker(
         markerId: MarkerId(result.name),
@@ -54,6 +45,7 @@ class _NearbyRestaurantsState extends State <NearbyRestaurants>{
       _markers.addAll(_restaurantMarkers);
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -86,8 +78,11 @@ class _NearbyRestaurantsState extends State <NearbyRestaurants>{
               return Center(child: Text("Failed to get user location."));
             }
           }
-          // While the connection is not in the done state yet
-          return Center(child: CircularProgressIndicator());
+          else if(snapshot.connectionState==ConnectionState.waiting){
+
+            // While the connection is not in the done state yet
+            return Loading();
+          }
         });
   }
 }

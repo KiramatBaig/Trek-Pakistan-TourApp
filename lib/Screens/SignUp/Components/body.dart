@@ -232,6 +232,6 @@ class Body extends StatefulWidget {
     .set(userModel.toMap());
 
 
-    Navigator.pushAndRemoveUntil((context), MaterialPageRoute(builder: (context)=>VerifyScreen()), (route) => false);
+    Navigator.of(context).push(MaterialPageRoute(builder: (context)=>VerifyScreen()));
   }
 }
