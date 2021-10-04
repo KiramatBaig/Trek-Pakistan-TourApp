@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
 import 'package:flutter_auth/Bussiness%20Portal/RegisterBussinessScreen.dart';
+import 'package:flutter_auth/Bussiness%20Portal/RegisterTourguideScreen.dart';
 
 
 
@@ -349,8 +350,9 @@ class _SelectBussinessWidgetState extends State<SelectBussinessWidget> {
                                                         0, 5, 5, 0),
                                                     child: IconButton(
                                                       onPressed: () {
-                                                        print(
-                                                            'IconButton pressed ...');
+                                                        Navigator.of(context).push(MaterialPageRoute(
+                                                            builder: (BuildContext context) => RegisterTourguideScreenWidget()));
+
                                                       },
                                                       icon: Icon(
                                                         Icons.arrow_forward_ios_rounded,
