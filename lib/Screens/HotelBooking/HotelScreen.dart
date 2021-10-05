@@ -77,7 +77,7 @@ class _HotelsState extends State<Hotels> {
               height: 20,
             ),
             StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection('hotel').where(
+                stream: FirebaseFirestore.instance.collection('hotels').where(
                     'destinationName', isEqualTo: widget.destination).snapshots(),
                 builder: (BuildContext context,
                     AsyncSnapshot<QuerySnapshot> querySnapshot) {

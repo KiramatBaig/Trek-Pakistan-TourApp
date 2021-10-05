@@ -45,6 +45,7 @@ class _HotelDetailsPageState extends State<HotelDetailsPage> {
                         color: Colors.black26
                     ),
                     height: 400,
+                    width: 400,
                     child: Image.network(hotel.image, fit: BoxFit.cover)),
                 SingleChildScrollView(
                   padding: const EdgeInsets.only(top: 16.0,bottom: 20.0),

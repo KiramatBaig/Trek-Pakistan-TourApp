@@ -30,7 +30,7 @@ class _tourguideDetailsPageState extends State<tourguideDetailsPage> {
 
 
 
-      future: FirebaseFirestore.instance.collection('TourGuide').where('name',isLessThanOrEqualTo: widget.name).get().then((value) {
+      future: FirebaseFirestore.instance.collection('TourGuide').where('name',isEqualTo: widget.name).get().then((value) {
           value.docs.forEach((element) {
             this.TourGuide = tourguideModel.fromMap(element.data());
           });
