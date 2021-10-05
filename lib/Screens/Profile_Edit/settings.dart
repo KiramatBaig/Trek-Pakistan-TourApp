@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/SignUp/google_sign_in_provider.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -59,10 +60,7 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildAccountOptionRow(context, "Change password"),
-            buildAccountOptionRow(context, "Content settings"),
-            buildAccountOptionRow(context, "Social"),
-            buildAccountOptionRow(context, "Language"),
+
             buildAccountOptionRow(context, "Privacy and security"),
             SizedBox(
               height: 40,
@@ -89,9 +87,7 @@ class _SettingsPageState extends State<SettingsPage> {
             SizedBox(
               height: 10,
             ),
-            buildNotificationOptionRow("New for you", true),
-            buildNotificationOptionRow("Account activity", true),
-            buildNotificationOptionRow("Recomendation", false),
+            buildNotificationOptionRow("Recommendations", false),
             SizedBox(
               height: 50,
             ),
@@ -102,7 +98,10 @@ class _SettingsPageState extends State<SettingsPage> {
                     borderRadius: BorderRadius.circular(20)),
                 onPressed: () {
                   final provider=Provider.of<GoogleSignInProvider>(context,listen: false);
-                  provider.logout();
+                  provider.logout().then((value) => {
+                    Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                        WelcomeScreen()), (Route<dynamic> route) => false),
+                  });
                 },
                 child: Text("SIGN OUT",
                     style: TextStyle(
@@ -128,9 +127,17 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
         Transform.scale(
             scale: 0.7,
-            child: CupertinoSwitch(
+            child: Switch(
               value: isActive,
-              onChanged: (bool val) {},
+              onChanged: (bool val) {
+                setState(() {
+                  isActive=val;
+                  print(isActive);
+                });
+              },
+
+              activeTrackColor: Colors.lightGreenAccent,
+              activeColor: Colors.green,
             ))
       ],
     );
@@ -139,28 +146,7 @@ class _SettingsPageState extends State<SettingsPage> {
   GestureDetector buildAccountOptionRow(BuildContext context, String title) {
     return GestureDetector(
       onTap: () {
-        showDialog(
-            context: context,
-            builder: (BuildContext context) {
-              return AlertDialog(
-                title: Text(title),
-                content: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Option 1"),
-                    Text("Option 2"),
-                    Text("Option 3"),
-                  ],
-                ),
-                actions: [
-                  FlatButton(
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-                      child: Text("Close")),
-                ],
-              );
-            });
+        _launchInWebViewWithJavaScript('https://www.termsfeed.com/live/f3b8eef1-fa03-4f8f-b435-37ac9df57872');
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -183,5 +169,17 @@ class _SettingsPageState extends State<SettingsPage> {
         ),
       ),
     );
+  }
+  Future<void> _launchInWebViewWithJavaScript(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: true,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
   }
 }

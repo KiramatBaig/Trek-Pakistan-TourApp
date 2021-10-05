@@ -4,13 +4,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/loading.dart';
 import 'package:flutter_auth/Models/user_model.dart';
-import 'package:flutter_auth/Screens/Login/login_screen.dart';
-import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/settings.dart';
 import 'package:flutter_auth/Screens/SignUp/google_sign_in_provider.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FrostedDrawer extends StatefulWidget{
   @override
@@ -113,8 +112,7 @@ class _FrostedDrawerState extends State<FrostedDrawer> {
                                 showDialog(
                                     context: context,
                                     builder:(context){
-                                      return ContactUsDialog(title: "Contact Us",description: "Email: TrekPakistan@gmail.com"
-                                          "  Contact: 061-123521",);
+                                      return ContactUsDialog(title: "Contact Us",description: "0301594632",);
                                     }
                                 );
                               },
@@ -153,13 +151,18 @@ class _FrostedDrawerState extends State<FrostedDrawer> {
 }
 }
 
-class ContactUsDialog extends StatelessWidget {
+class ContactUsDialog extends StatefulWidget {
   final String title,description;
 
   ContactUsDialog({
     this.title, this.description,
   });
 
+  @override
+  State<ContactUsDialog> createState() => _ContactUsDialogState();
+}
+
+class _ContactUsDialogState extends State<ContactUsDialog> {
   @override
   Widget build(BuildContext context) {
     return Dialog(
@@ -172,6 +175,7 @@ class ContactUsDialog extends StatelessWidget {
       child: dialogContent(context),
     );
   }
+
   dialogContent(BuildContext context){
     return Stack(
       children: <Widget>[
@@ -199,22 +203,62 @@ class ContactUsDialog extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              Text(
-                title,
-                style: TextStyle(
-                  fontSize: 24.0,
-                  fontWeight: FontWeight.bold,
+              InkWell(
 
+                child: Text(
+                  widget.title,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+
+
+                  ),
                 ),
+                onTap: (){
+
+                },
               ),
               SizedBox(height: 16.0,),
-              Text(
-                description,
-                style: TextStyle(
-                  fontSize: 16.0,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("Telephone:",style: TextStyle(fontWeight: FontWeight.bold),),
+                  InkWell(
+                    child: Text(
+                      widget.description,
+                      style: TextStyle(
+                        fontSize: 16.0,
+                        color: Colors.blue,
+                        decoration: TextDecoration.underline
+                      ),
 
-                ),
+                    ),
+                    onTap:  () => setState(() {
+                      _makePhoneCall(widget.description);
+                    }),
+                  ),
+                ],
+              ),
+              SizedBox(height: 10,),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text("Email:",style: TextStyle(fontWeight: FontWeight.bold),),
+                  InkWell(
+                    child: Text(
+                      'zeshank1098@gmail.com',
+                      style: TextStyle(
+                          fontSize: 16.0,
+                          color: Colors.blue,
+                          decoration: TextDecoration.underline
+                      ),
 
+                    ),
+                    onTap:  () => setState(() {
+                      launch('mailto:zeshank1098@gmail.com?');
+                    }),
+                  ),
+                ],
               ),
               SizedBox(height: 24.0,),
               Align(
@@ -244,4 +288,11 @@ class ContactUsDialog extends StatelessWidget {
     );
   }
 
+  Future<void> _makePhoneCall(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
 }
