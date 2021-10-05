@@ -29,21 +29,10 @@ class EditProfilePage extends StatefulWidget {
 class _EditProfilePageState extends State<EditProfilePage> {
   User user= FirebaseAuth.instance.currentUser;
   UserModel loggedInUser=UserModel();
-
+  TextEditingController updatednameEditingController= new TextEditingController();
   bool showPassword = false;
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: FirebaseFirestore.instance.collection('users').doc(user.uid).get().then((value){
-        this.loggedInUser=UserModel.fromMap(value.data());
-      }),
-        builder: (context,snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Loading();
-          }
-          else if (snapshot.hasError) {
-            return Center(child: Text("Something went wrong"));
-          } else {
             return Scaffold(
               appBar: AppBar(
                 title: Text("Profile"),
@@ -107,7 +96,7 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                   image: DecorationImage(
                                       fit: BoxFit.cover,
                                       image: NetworkImage(
-                                        loggedInUser.Image,
+                                        user.photoURL,
                                       ))),
                             ),
                             Positioned(
@@ -143,10 +132,26 @@ class _EditProfilePageState extends State<EditProfilePage> {
                       SizedBox(
                         height: 35,
                       ),
-                      buildTextField("Full Name", loggedInUser.FullName, false),
-                      buildTextField("E-mail", loggedInUser.email, false),
-                      buildTextField("Password", "********", true),
-                      buildTextField("Phone #", "034x_xxxx_xxx", false),
+                      TextField(
+                        autofocus: false,
+                        controller: updatednameEditingController,
+                        keyboardType: TextInputType.name,
+                        onSubmitted: (value){
+                          updatednameEditingController.text=value;
+                        },
+                        decoration: InputDecoration(
+                            prefixIcon: Icon(Icons.person_rounded),
+                            contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+                            hintText: user.displayName,
+
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            )
+
+                        ),
+
+                      ),
+
                       SizedBox(
                         height: 35,
                       ),
@@ -167,7 +172,25 @@ class _EditProfilePageState extends State<EditProfilePage> {
                                     color: Colors.black)),
                           ),
                           RaisedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              try{
+                                if(updatednameEditingController.text.isEmpty){
+                                  Fluttertoast.showToast(msg: "Cannot Update Empty Name");
+                                }
+                                else{
+                                  FirebaseAuth.instance.currentUser.updateDisplayName(updatednameEditingController.text);
+                                  FirebaseFirestore.instance.collection('users').doc(user.uid).update(
+                                      {'Name':updatednameEditingController.text});
+                                  Fluttertoast.showToast(msg: "Update Successful");
+                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                                      MyNavigationBar()), (Route<dynamic> route) => false);
+
+                                }
+                              }catch(e){
+
+                              }
+                            },
+
                             color: Colors.green,
                             padding: EdgeInsets.symmetric(horizontal: 50),
                             elevation: 2,
@@ -189,39 +212,8 @@ class _EditProfilePageState extends State<EditProfilePage> {
               ),
             );
           }
-        });
   }
 
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 35.0),
-      child: TextField(
-        obscureText: isPasswordTextField ? showPassword : false,
-        decoration: InputDecoration(
-            suffixIcon: isPasswordTextField
-                ? IconButton(
-              onPressed: () {
-                setState(() {
-                  showPassword = !showPassword;
-                });
-              },
-              icon: Icon(
-                Icons.remove_red_eye,
-                color: Colors.grey,
-              ),
-            )
-                : null,
-            contentPadding: EdgeInsets.only(bottom: 3),
-            labelText: labelText,
-            floatingLabelBehavior: FloatingLabelBehavior.always,
-            hintText: placeholder,
-            hintStyle: TextStyle(
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
-            )),
-      ),
-    );
-  }
-}
+
+
+

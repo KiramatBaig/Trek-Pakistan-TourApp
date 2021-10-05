@@ -25,19 +25,8 @@ class _FrostedDrawerState extends State<FrostedDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
 
-        future: FirebaseFirestore.instance.collection('users').doc(user.uid).get().then((value){
-          this.loggedInUser=UserModel.fromMap(value.data());
-        }),
-        builder: (context,snapshot){
-          if(snapshot.connectionState==ConnectionState.waiting){
-            return Loading();
-          }
-          else if(snapshot.hasError){
-            return Center(child: Text("Something went wrong"));
-          }
-          else{
+
             return Container(
               width: 300,
               height: double.infinity,
@@ -80,18 +69,18 @@ class _FrostedDrawerState extends State<FrostedDrawer> {
                           children: [
 
                             CircleAvatar(
-                              backgroundImage: NetworkImage(loggedInUser.Image),
+                              backgroundImage: NetworkImage(user.photoURL),
                               radius: 30.0,
                             ),
                             SizedBox(
                               width: 20.0,
                             ),
-                            Text("${loggedInUser.FullName} ",)
+                            Text("${user.displayName} ",)
                           ],
                         ),
                       ),
                       SizedBox(height: 10.0,),
-                      Text("${loggedInUser.email}",style: TextStyle(fontWeight: FontWeight.bold),),
+                      Text("${user.email}",style: TextStyle(fontWeight: FontWeight.bold),),
                       Expanded(
                         child: ListView(
                           children: [
@@ -139,9 +128,11 @@ class _FrostedDrawerState extends State<FrostedDrawer> {
                             ListTile(
                               onTap: () {
                                 final provider=Provider.of<GoogleSignInProvider>(context,listen: false);
-                                provider.logout();
-                                Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                                    LoginScreen()), (Route<dynamic> route) => false);
+                                provider.logout().then((value) => {
+                                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                                      WelcomeScreen()), (Route<dynamic> route) => false),
+                                });
+
                               },
 
                               leading: Icon(
@@ -158,12 +149,8 @@ class _FrostedDrawerState extends State<FrostedDrawer> {
                 ],
               ),
             );
-          }
-        },
 
-
-    );
-  }
+}
 }
 
 class ContactUsDialog extends StatelessWidget {

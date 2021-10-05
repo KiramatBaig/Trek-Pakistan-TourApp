@@ -76,7 +76,7 @@ class _NearbyAttractionsandRestaurantsState extends State<NearbyAttractionsandRe
           ],
           type: BottomNavigationBarType.shifting,
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
+          selectedItemColor: Colors.white,
           iconSize: 30,
           onTap: _onItemTapped,
           elevation: 5

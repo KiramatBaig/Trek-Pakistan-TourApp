@@ -173,10 +173,10 @@ class _BodyState extends State<Body>{
   void signUpwithGoogle() async{
 
       final provider=Provider.of<GoogleSignInProvider>(context,listen: false);
-      await provider.googleLogin().then((_){
+      await provider.signInWithGoogle().then((_){
         postDetailsToFirestore()
             .catchError((e){
-          Fluttertoast.showToast(msg: "A user with this email already exists");
+          Fluttertoast.showToast(msg: "Sign In Cancelled");
         });
       });
   }

@@ -75,7 +75,7 @@ class _NearbyAttractionState extends State <NearbyAttraction>{
                       position: _userLocation)),
               );
             } else {
-              return Center(child: Text("Failed to get user location."));
+              return Center(child: Text("Failed to get user location.",style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold),));
             }
           }
           else if(snapshot.connectionState==ConnectionState.waiting){

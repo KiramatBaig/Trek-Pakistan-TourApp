@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/SignUp/google_sign_in_provider.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
+import 'package:provider/provider.dart';
 
 class SettingsPage extends StatefulWidget {
   @override
@@ -99,8 +101,8 @@ class _SettingsPageState extends State<SettingsPage> {
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20)),
                 onPressed: () {
-                  Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
-                      WelcomeScreen()), (Route<dynamic> route) => false);
+                  final provider=Provider.of<GoogleSignInProvider>(context,listen: false);
+                  provider.logout();
                 },
                 child: Text("SIGN OUT",
                     style: TextStyle(

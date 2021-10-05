@@ -25,7 +25,7 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = [
     HomeScreen(),
-    AboutUs()
+    OnBoardingPage(),
 
   ];
 
@@ -74,7 +74,7 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
           ],
           type: BottomNavigationBarType.shifting,
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
+          selectedItemColor: Colors.white,
           iconSize: 30,
           onTap: _onItemTapped,
           elevation: 5

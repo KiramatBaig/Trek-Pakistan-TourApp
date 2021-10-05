@@ -205,7 +205,7 @@ class Body extends StatefulWidget {
           Fluttertoast.showToast(msg: "A user with this email already exists");
         });
       }
-    }
+  }
 
 
 

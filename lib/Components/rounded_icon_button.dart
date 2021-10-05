@@ -38,7 +38,7 @@ class RoundedIconButton extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
 
-              Icon(FontAwesomeIcons.google,color: Colors.red,),
+              Icon(FontAwesomeIcons.google,color: Colors.amber,),
 
               SizedBox(width: 10.0),
               Center(

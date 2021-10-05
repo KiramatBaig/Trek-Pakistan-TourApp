@@ -129,7 +129,7 @@ class _HotelsState extends State<Hotels> {
                   width: double.infinity,
                   child: ListView.builder(
                   padding: EdgeInsets.symmetric(horizontal: 10,vertical: 10),
-                  scrollDirection: Axis.vertical,
+                  scrollDirection: Axis.horizontal,
                   itemCount: list.length,
                   itemBuilder: (BuildContext context, index) {
                   return GestureDetector(
