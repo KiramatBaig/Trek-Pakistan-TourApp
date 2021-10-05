@@ -1,4 +1,3 @@
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 
@@ -9,14 +8,14 @@ class tourguideDBService{
 
   //Destination List from Snapshot
   Future gettourguideList() async {
-    List destinationList=[];
+    List tourguideList=[];
     try{
       await TourGuideCollection.get().then((querySnapshots) {
         querySnapshots.docs.forEach((element) {
-          destinationList.add(element.data());
+          tourguideList.add(element.data());
         });
       });
-      return destinationList;
+      return tourguideList;
     }catch(e){
       print(e.toString());
       return null;

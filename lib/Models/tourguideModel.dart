@@ -1,22 +1,22 @@
 class tourguideModel{
   String name;
-  String detail;
-  int fee;
-  String rating;
-  String location;
   String image;
+  String detail;
+  String fee;
+  String rating;
+  String destinationName;
   String contact;
-  tourguideModel({this.image,this.name,this.detail,this.fee,this.rating,this.location,this.contact});
+  tourguideModel({this.name,this.image,this.detail,this.fee,this.rating,this.destinationName,this.contact});
 
   //receive data from server
   factory tourguideModel.fromMap(map){
     return tourguideModel(
         name: map['name'],
+        image: map['image'],
         detail: map['detail'],
         fee: map['fee'],
         rating: map['rating'],
-        location: map['destinationName'],
-        image: map['image'],
+        destinationName: map['location'],
         contact: map['contact']
     );
   }

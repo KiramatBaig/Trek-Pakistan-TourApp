@@ -6,6 +6,8 @@ import 'package:flutter_auth/Screens/Destination/Destination_List.dart';
 import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
 import 'package:flutter_auth/Screens/HotelBooking/Hotel_Detail.dart';
 import 'package:flutter_auth/Screens/HotelBooking/hotelDBService.dart';
+import 'package:flutter_auth/Screens/TourGuide/TourGuideHome.dart';
+import 'package:flutter_auth/Screens/TourGuide/workingfile.dart';
 import 'package:flutter_auth/Screens/Transport/SelectTransport.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -54,7 +56,7 @@ class _HotelsState extends State<Hotels> {
                 TextButton(onPressed: () {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) =>
-                          Transport(widget.destination)));
+                          TourGuideList(widget.destination)));
                 }, child:
                 Text("Skip")),
 
@@ -84,7 +86,7 @@ class _HotelsState extends State<Hotels> {
                   if (querySnapshot.hasError) {
                     return (Text("An error has occured"));
                   }
-                  if (querySnapshot.connectionState == ConnectionState.waiting) {
+                  else if (querySnapshot.connectionState == ConnectionState.waiting) {
                     return Loading();
                   }
                   else if (querySnapshot.data.docs.isEmpty) {

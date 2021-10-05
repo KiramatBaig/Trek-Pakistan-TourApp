@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Models/tourguideModel.dart';
 import 'package:flutter_auth/Screens/TourGuide/TourGuideHome.dart';
+import 'package:flutter_auth/Screens/TourGuide/tourguideDBService.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class tourguideDetailsPage extends StatefulWidget {
@@ -30,7 +31,7 @@ class _tourguideDetailsPageState extends State<tourguideDetailsPage> {
 
 
 
-      future: FirebaseFirestore.instance.collection('TourGuide').where('name',isEqualTo: widget.name).get().then((value) {
+        future: FirebaseFirestore.instance.collection('TourGuide').where('name',isLessThanOrEqualTo: widget.name).get().then((value) {
           value.docs.forEach((element) {
             this.TourGuide = tourguideModel.fromMap(element.data());
           });
@@ -42,8 +43,9 @@ class _tourguideDetailsPageState extends State<tourguideDetailsPage> {
             );
           }
           else{
+            print(tourguideDBService().gettourguideList().toString());
             print('i am${widget.name} hello');
-            print('i am${TourGuide.location} hello');
+            print('i am${TourGuide.destinationName.toString()} hello');
             return Stack(
               children: <Widget>[
                 Container(
@@ -51,8 +53,8 @@ class _tourguideDetailsPageState extends State<tourguideDetailsPage> {
                         color: Colors.black26
                     ),
                     height: 400,
-                   child: Image.network(TourGuide.image, fit: BoxFit.cover)
-                    ),
+                    child: Image.network(TourGuide.image, fit: BoxFit.cover)
+                ),
                 SingleChildScrollView(
                   padding: const EdgeInsets.only(top: 16.0,bottom: 20.0),
                   child: Column(
@@ -81,27 +83,28 @@ class _tourguideDetailsPageState extends State<tourguideDetailsPage> {
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
-                                      // RatingBar.builder(
-                                      //   ignoreGestures: true,
-                                      //   allowHalfRating: true,
-                                      //   initialRating: double.parse(TourGuide.rating),
-                                      //   itemSize: 15,
-                                      //   itemCount: 5,
-                                      //   itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
-                                      //   itemBuilder: (context, _) => Icon(
-                                      //     Icons.star,
-                                      //     color: Colors.amber,
-                                      //
-                                      //   ),
-                                      // ),
+                                      RatingBar.builder(
+                                        ignoreGestures: true,
+                                        allowHalfRating: true,
+                                        initialRating: double.parse(TourGuide.rating),
+                                        itemSize: 15,
+                                        itemCount: 5,
+                                        itemPadding: EdgeInsets.symmetric(horizontal: 4.0),
+                                        itemBuilder: (context, _) => Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+
+                                        ),
+                                      ),
+
                                       Text.rich(TextSpan(children: [
                                         WidgetSpan(
                                             child: Icon(Icons.location_on, size: 16.0, color: Colors.grey,)
                                         ),
                                         TextSpan(
-                                            text: TourGuide.location
+                                            text: TourGuide.destinationName
                                         )
-                                      ]), style: TextStyle(color: Colors.grey, fontSize: 12.0),)
+                                      ]), style: TextStyle(color: Colors.green, fontSize: 20.0),)
                                     ],
                                   ),
                                 ),
@@ -145,11 +148,11 @@ class _tourguideDetailsPageState extends State<tourguideDetailsPage> {
                                 fontSize: 14.0
                             ),),
                             const SizedBox(height: 10.0),
-                            // Text(
-                            //   TourGuide.detail, textAlign: TextAlign.justify, style: TextStyle(
-                            //     fontWeight: FontWeight.w300,
-                            //     fontSize: 14.0
-                            // ),),
+                            Text(
+                              TourGuide.detail, textAlign: TextAlign.justify, style: TextStyle(
+                                fontWeight: FontWeight.w300,
+                                fontSize: 14.0
+                            ),),
                             const SizedBox(height: 10.0),
 
                           ],
