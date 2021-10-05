@@ -3,15 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_auth/Bussiness%20Portal/SelectBussiness.dart';
 
-import 'package:flutter_auth/Components/Drawer.dart';
 
-
-class HomeScreen extends StatefulWidget {
+class BusinessHomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  _BusinessHomeScreenState createState() => _BusinessHomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
