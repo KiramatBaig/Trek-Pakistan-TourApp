@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Payment/PaymentDetail.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -118,11 +119,11 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => DetailScreen(),
-                //     ));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(),
+                    ));
               },
             ),
           )

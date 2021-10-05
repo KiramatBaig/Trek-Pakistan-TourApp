@@ -176,7 +176,7 @@ class _TourGuideListState extends State<TourGuideList> {
                                                   ),
                                                 ),
                                                 Text(
-                                                  list[index]['fee'],
+                                                  list[index]['location'],
                                                   style: TextStyle(
                                                     fontFamily:
                                                         'Playfair Display',

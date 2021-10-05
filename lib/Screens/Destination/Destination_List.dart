@@ -140,7 +140,7 @@ class _DestinationListState extends State<DestinationList> {
                                     SizedBox(height: 5,),
                                     RoundedButton(press: (){
 
-                                      Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Hotels(list[index]['name'])));
+                                     // Navigator.of(context).push(MaterialPageRoute(builder: (context)=>Hotels(list[index]['name'])));
                                     },text: "Select",),
                                   ]
                               )
