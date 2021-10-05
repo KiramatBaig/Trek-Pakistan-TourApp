@@ -1,10 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Payment/PaymentDetail.dart';
 
 
-class HomeScreen extends StatelessWidget {
+class PaymentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Trek Pakistan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+        titleSpacing: 50,
+        elevation: 4,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+        ),
+      ),
       body: ListView(
         children: <Widget>[
           Stack(
@@ -52,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.only(top: 8.0),
                       child: Text(
-                        '\$3710.00',
+                        'Rs.3710.00',
                         style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 18.0),
                       ),
                     ),
@@ -60,8 +76,8 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               Positioned(
-                top: 182.0,
-                left: 325.0,
+                top: 210.0,
+                left: 295.0,
                 child: Material(
                   elevation: 2.0,
                   borderRadius: BorderRadius.circular(40.0),
@@ -93,15 +109,12 @@ class HomeScreen extends StatelessWidget {
             padding: const EdgeInsets.only(top: 8.0),
             child: Column(
               children: <Widget>[
-                cardWidget(context, 'assets/daewoo.png', 'Daewoo Express', 'ID: 123456789', '', '\Rs.1240.00', 'Due in 3 days', Colors.green),
+                cardWidget(context, 'https://upload.wikimedia.org/wikipedia/en/thumb/c/ce/Daewoo_Express_Pakistan_Logo.png/1200px-Daewoo_Express_Pakistan_Logo.png', 'Daewoo Express', 'ID: 123456789', '', '\Rs.1240.00', 'Due in 3 days', Colors.green),
                 Padding(
                   padding: const EdgeInsets.only(top: 12.0),
                 ),
-                cardWidget(context, 'assets/daewoo.png', ' Serena Hotel', 'ID: 123456789', '', '\Rs. 1490.00', 'Due in 2 days', Colors.grey),
-                Padding(
-                  padding: const EdgeInsets.only(top: 12.0),
-                ),
-                cardWidget(context, 'assets/daewoo.png', 'Tour Guide: Kiramat Baig', 'ID: 123456789', '', '\Rs.1000.00', 'Due in 2 days', Colors.grey),
+                cardWidget(context, 'https://static.wixstatic.com/media/fd5743_ccaef47929724f2791b6dae63fa262cd~mv2_d_6016_3751_s_4_2.jpg/v1/fill/w_640,h_364,al_c,q_80,usm_0.66_1.00_0.01/fd5743_ccaef47929724f2791b6dae63fa262cd~mv2_d_6016_3751_s_4_2.webp', 'Luxus Resort', 'ID: 123456789', '', '\Rs. 1490.00', 'Due in 2 days', Colors.grey),
+
               ],
             ),
           ),
@@ -118,11 +131,11 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
               onPressed: () {
-                // Navigator.push(
-                //     context,
-                //     MaterialPageRoute(
-                //       builder: (context) => DetailScreen(),
-                //     ));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => PaymentDetailScreen(),
+                    ));
               },
             ),
           )
@@ -158,7 +171,7 @@ class HomeScreen extends StatelessWidget {
                       leading: Container(
                         width: 40.0,
                         height: 40.0,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), border: Border.all(color: Colors.black, width: 1), image: DecorationImage(image: AssetImage(image))),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), border: Border.all(color: Colors.black, width: 1), image: DecorationImage(image: NetworkImage(image),fit: BoxFit.fill)),
                       ),
                       subtitle: Text(
                         subtitle,

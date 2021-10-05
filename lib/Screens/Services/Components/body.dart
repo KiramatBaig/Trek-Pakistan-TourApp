@@ -9,7 +9,7 @@ import 'package:flutter_auth/Components/rectangular_button.dart';
 import 'package:flutter_auth/Screens/Destination/Destination_List.dart';
 import 'package:flutter_auth/Screens/MapsScreen/MapView2.dart';
 import 'package:flutter_auth/Screens/Pre-PlannedTrips/Pre-PlannedTrips.dart';
-import 'package:flutter_auth/Screens/Pre-PlannedTrips/PrePlannedTrips.dart';
+
 
 
 class Body extends StatelessWidget{

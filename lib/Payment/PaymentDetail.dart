@@ -1,217 +1,238 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Components/MyNavigationBar.dart';
 
-class DetailScreen extends StatelessWidget {
+class PaymentDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: <Widget>[
-          ClipPath(
-            clipper: OrangeClipper(),
-            child: Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height - 250.0,
-              decoration: BoxDecoration(
-                color: Colors.green,
-              ),
-            ),
+      appBar: AppBar(
+        backgroundColor: Colors.green,
+        title: Text('Trek Pakistan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
+        titleSpacing: 50,
+        elevation: 4,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.white,
           ),
-          ClipPath(
-            clipper: BlackClipper(),
-            child: Container(
-              width: MediaQuery.of(context).size.width - 230.0,
-              height: MediaQuery.of(context).size.height - 250.0,
-              decoration: BoxDecoration(
-                color: Colors.black.withOpacity(0.3),
-              ),
-            ),
-          ),
-          Center(
-            child: Material(
-              elevation: 30.0,
-              color: Colors.white12,
-              borderRadius: BorderRadius.circular(18.0),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Stack(
+          children: <Widget>[
+            ClipPath(
+              clipper: OrangeClipper(),
               child: Container(
-                width: 320.0,
-                height: 330.0,
-                decoration: BoxDecoration(color: Colors.white12, borderRadius: BorderRadius.circular(18.0)),
+                width: MediaQuery.of(context).size.width,
+                height: MediaQuery.of(context).size.height - 280.0,
+                decoration: BoxDecoration(
+                  color: Colors.green,
+                ),
               ),
             ),
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Center(
-                child: ClipPath(
-                  clipper: ZigZagClipper(),
-                  child: Container(
-                    width: 330.0,
-                    height: 530.0,
-                    decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(18.0)),
-                    child: Column(
-                      children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Container(
-                            width: 150.0,
-                            height: 150.0,
-                            decoration: BoxDecoration(image: DecorationImage(image: AssetImage('assets/daewoo.png'))),
-                          ),
-                        ),
-                        Text('Success!', style: TextStyle(fontSize: 22.0, color: Colors.black, fontWeight: FontWeight.bold)),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 4.0),
-                          child: Text('Payment is completed for 2 bills.', style: TextStyle(fontSize: 15.0)),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 12.0),
-                          child: Container(
-                            width: 300.0,
-                            height: 150.0,
-                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0), border: Border.all(color: Colors.grey, width: 1.0)),
-                            child: Column(
-                              children: <Widget>[
-                                ListTile(
-                                  leading: Icon(
-                                    Icons.check_circle,
-                                    color: Colors.green,
-                                    size: 35.0,
-                                  ),
-                                  title: Text(
-                                    'KenZen Power',
-                                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
-                                  ),
-                                  subtitle: Text(
-                                    'Txn ID: 34374287',
-                                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 12.0),
-                                  ),
-                                  trailing: Padding(
-                                    padding: const EdgeInsets.only(top: 20.0),
-                                    child: Text(
-                                      '\$1240.00',
-                                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12.0),
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  width: 300.0,
-                                  height: 1.0,
-                                  color: Colors.grey,
-                                ),
-                                ListTile(
-                                  leading: Icon(
-                                    Icons.check_circle,
-                                    color: Colors.green,
-                                    size: 35.0,
-                                  ),
-                                  title: Text(
-                                    'Total Gas',
-                                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
-                                  ),
-                                  subtitle: Text(
-                                    'Txn ID: 64234285',
-                                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 12.0),
-                                  ),
-                                  trailing: Padding(
-                                    padding: const EdgeInsets.only(top: 20.0),
-                                    child: Text(
-                                      '\$1490.00',
-                                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12.0),
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 40.0),
-                          child: Text(
-                            'Total Amount',
-                            style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15.0),
-                          ),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 8.0),
-                          child: Text(
-                            '\$2730.00',
-                            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+            ClipPath(
+              clipper: BlackClipper(),
+              child: Container(
+                width: MediaQuery.of(context).size.width - 230.0,
+                height: MediaQuery.of(context).size.height - 270.0,
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.3),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0), color: Colors.indigo[700]),
-                          child: Center(
-                            child: Icon(
-                              Icons.share,
-                              color: Colors.white,
-                              size: 20.0,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          'Share',
-                          style: TextStyle(color: Colors.indigo[700], fontSize: 12.0),
-                        )
-                      ],
-                    ),
-                    Column(
-                      children: <Widget>[
-                        Container(
-                          width: 40.0,
-                          height: 40.0,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0), color: Colors.indigo[700]),
-                          child: Center(
-                            child: Icon(
-                              Icons.print,
-                              color: Colors.white,
-                              size: 20.0,
-                            ),
-                          ),
-                        ),
-                        Text(
-                          'Print',
-                          style: TextStyle(color: Colors.indigo[700], fontSize: 12.0),
-                        )
-                      ],
-                    )
-                  ],
+            ),
+            Center(
+              child: Material(
+                elevation: 30.0,
+                color: Colors.white12,
+                borderRadius: BorderRadius.circular(18.0),
+                child: Container(
+                  width: 320.0,
+                  height: 300.0,
+                  decoration: BoxDecoration(color: Colors.white12, borderRadius: BorderRadius.circular(18.0)),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 30.0),
-                child: InkWell(
-                  splashColor: Colors.red,
-                  onTap: () => Navigator.pop(context),
-                  child: Container(
-                    width: 300.0,
-                    height: 50.0,
-                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.0), border: Border.all(color: Colors.indigo[700], width: 1.5), color: Colors.white),
-                    child: Center(
-                      child: Text(
-                        'Done',
-                        style: TextStyle(color: Colors.indigo[700], fontSize: 15.0),
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Center(
+                  child: ClipPath(
+                    clipper: ZigZagClipper(),
+                    child: Container(
+                      width: 330.0,
+                      height: 450.0,
+                      decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(18.0)),
+                      child: Column(
+                        children: <Widget>[
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Container(
+                              width: 150.0,
+                              height: 100.0,
+
+                            ),
+                          ),
+                          Text('Success!', style: TextStyle(fontSize: 22.0, color: Colors.black, fontWeight: FontWeight.bold)),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 4.0),
+                            child: Text('Payment is completed for 2 bills.', style: TextStyle(fontSize: 15.0)),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 12.0),
+                            child: Container(
+                              width: 300.0,
+                              height: 150.0,
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0), border: Border.all(color: Colors.grey, width: 1.0)),
+                              child: Column(
+                                children: <Widget>[
+                                  ListTile(
+                                    leading: Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                      size: 35.0,
+                                    ),
+                                    title: Text(
+                                      'Daewoo Express',
+                                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
+                                    ),
+                                    subtitle: Text(
+                                      'Txn ID: 34374287',
+                                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 12.0),
+                                    ),
+                                    trailing: Padding(
+                                      padding: const EdgeInsets.only(top: 20.0),
+                                      child: Text(
+                                        'Rs.1240.00',
+                                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12.0),
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 300.0,
+                                    height: 1.0,
+                                    color: Colors.grey,
+                                  ),
+                                  ListTile(
+                                    leading: Icon(
+                                      Icons.check_circle,
+                                      color: Colors.green,
+                                      size: 35.0,
+                                    ),
+                                    title: Text(
+                                      'Luxus Resort',
+                                      style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 15.0),
+                                    ),
+                                    subtitle: Text(
+                                      'Txn ID: 64234285',
+                                      style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 12.0),
+                                    ),
+                                    trailing: Padding(
+                                      padding: const EdgeInsets.only(top: 20.0),
+                                      child: Text(
+                                        'Rs.1490.00',
+                                        style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 12.0),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 40.0),
+                            child: Text(
+                              'Total Amount',
+                              style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 15.0),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: Text(
+                              'Rs.2730.00',
+                              style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0),
+                            ),
+                          )
+                        ],
                       ),
                     ),
                   ),
                 ),
-              )
-            ],
-          ),
-        ],
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            width: 40.0,
+                            height: 40.0,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0), color: Colors.indigo[700]),
+                            child: Center(
+                              child: Icon(
+                                Icons.share,
+                                color: Colors.white,
+                                size: 20.0,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Share',
+                            style: TextStyle(color: Colors.indigo[700], fontSize: 12.0),
+                          )
+                        ],
+                      ),
+                      Column(
+                        children: <Widget>[
+                          Container(
+                            width: 40.0,
+                            height: 40.0,
+                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(40.0), color: Colors.indigo[700]),
+                            child: Center(
+                              child: Icon(
+                                Icons.print,
+                                color: Colors.white,
+                                size: 20.0,
+                              ),
+                            ),
+                          ),
+                          Text(
+                            'Print',
+                            style: TextStyle(color: Colors.indigo[700], fontSize: 12.0),
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 30.0),
+                  child: InkWell(
+                    splashColor: Colors.red,
+                    onTap: () {
+                      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                          MyNavigationBar()), (Route<dynamic> route) => false);
+                    },
+                    child: Container(
+                      width: 300.0,
+                      height: 50.0,
+                      decoration: BoxDecoration(borderRadius: BorderRadius.circular(12.0), border: Border.all(color: Colors.indigo[700], width: 1.5), color: Colors.white),
+                      child: Center(
+                        child: Text(
+                          'Done',
+                          style: TextStyle(color: Colors.indigo[700], fontSize: 15.0),
+                        ),
+                      ),
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }

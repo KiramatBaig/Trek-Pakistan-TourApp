@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_auth/Components/MyNavigationBar.dart';
 import 'package:flutter_auth/Components/rounded_button.dart';
+import 'package:flutter_auth/Payment/PaymentHome.dart';
 import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -124,7 +125,7 @@ class _Transport2State extends State<Transport2> {
                     return;
                   }
                   _formKey.currentState.save();
-                  print(_CNIC);
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context)=>PaymentScreen()));
                 },
               ),
             ],

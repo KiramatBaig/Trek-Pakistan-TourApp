@@ -37,7 +37,7 @@ class Body extends StatelessWidget{
           ),
 
           GridView.count(
-            padding: EdgeInsets.only(left: 50,right: 50,top: 100),
+            padding: EdgeInsets.only(left: 50,right: 50,top: 150),
             crossAxisCount: 1,
             mainAxisSpacing: 15,
             childAspectRatio: 3,

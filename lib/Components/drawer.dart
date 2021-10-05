@@ -234,7 +234,7 @@ class _ContactUsDialogState extends State<ContactUsDialog> {
 
                     ),
                     onTap:  () => setState(() {
-                      _makePhoneCall(widget.description);
+                      _makePhoneCall('03015945588');
                     }),
                   ),
                 ],
@@ -254,9 +254,9 @@ class _ContactUsDialogState extends State<ContactUsDialog> {
                       ),
 
                     ),
-                    onTap:  () => setState(() {
+                    onTap:  () {
                       launch('mailto:zeshank1098@gmail.com?');
-                    }),
+                    }
                   ),
                 ],
               ),

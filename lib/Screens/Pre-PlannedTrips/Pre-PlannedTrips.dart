@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/loading.dart';
 import 'package:flutter_auth/Screens/Destination/Global/app_colors.dart';
+import 'package:flutter_auth/Screens/Pre-PlannedTrips/PrePlannedTrip_Details.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 
@@ -73,7 +74,7 @@ class _PreplannedtripsState extends State<Preplannedtrips> {
             ),
             Expanded(
               child: StreamBuilder<QuerySnapshot>(
-                stream: FirebaseFirestore.instance.collection('hotels').snapshots(),
+                stream: FirebaseFirestore.instance.collection('preplannedtrips').snapshots(),
                 builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot){
                   if (!snapshot.hasData) {
                     return Loading();
@@ -83,74 +84,77 @@ class _PreplannedtripsState extends State<Preplannedtrips> {
 
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisSpacing: 10,crossAxisSpacing: 10,childAspectRatio: 0.7),
                     itemBuilder: (BuildContext context,  index) {
-                      return Container(
-                        alignment: Alignment.center,
-                          decoration: BoxDecoration(
+                      return GestureDetector(
+                        onTap: (){
+                          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>TripDetails(list[index]['host'])));
 
-                            image: DecorationImage(image: NetworkImage(list[index]['image']),fit: BoxFit.cover),
-                              borderRadius: BorderRadius.circular(20),
-                              color: AppColors.lightGreenColor),
-                          child: Stack(
-                            children: [
-                               
+                        },
+                        child: Container(
+                          alignment: Alignment.center,
+                            decoration: BoxDecoration(
+
+                              image: DecorationImage(image: NetworkImage(list[index]['image']),fit: BoxFit.cover),
+                                borderRadius: BorderRadius.circular(20),
+                                color: AppColors.lightGreenColor),
+                            child: Stack(
+                              alignment: Alignment.center,
+                              children: [
 
 
-                              ///For rating and title
-                              Positioned(
-                                top: 20,
-                                left: 16,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      list[index]['title'],
-                                      style: GoogleFonts.poppins(
-                                          fontSize: 18,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w700
-                                      ),
-                                    ),
 
-                                    ///Rating
-                                    Chip(
-                                      backgroundColor: Colors.white,
-                                      label: Row(
-                                        children: [
-                                          Icon(Icons.star, color: AppColors.lightGreenColor, size: 15,),
-                                          ///For  space
-                                          SizedBox(width: 4,),
-                                          Text(
-                                            list[index]['rating'],
-                                            style: GoogleFonts.poppins(
-                                                fontSize: 14,
-                                                color: AppColors.veryLightTextColor,
-                                                fontWeight: FontWeight.w700
-                                            ),
-                                          ),
-
-                                        ],
-                                      ),
-                                    ),
-                                    Column(
-                                      crossAxisAlignment: CrossAxisAlignment.start,
-                                      children: [
-                                        Text("5 Days",style: GoogleFonts.poppins(
-                                        fontSize: 18,
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.w700
-                                    ),),
-                                        Text("Islamabad\n To\nNaran",style: GoogleFonts.poppins(
+                                ///For rating and title
+                                Positioned(
+                                  top: 20,
+                                  left: 14,
+                                  child: Column(
+                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Text(
+                                        list[index]['host'],
+                                        style: GoogleFonts.poppins(
                                             fontSize: 18,
                                             color: Colors.white,
                                             fontWeight: FontWeight.w700
-                                        ),),
-                                      ],
-                                    )
-                                  ],
-                                ),
-                              )
-                            ],
-                          )
+                                        ),
+                                      ),
+
+                                      ///Price
+                                      Chip(
+                                        backgroundColor: Colors.white,
+                                        label:
+                                            ///For  space
+
+                                            Text(
+                                              'Rs.${list[index]['priceperhead'].toString()} / head',
+                                              style: GoogleFonts.poppins(
+                                                  fontSize: 14,
+                                                  color: AppColors.veryLightTextColor,
+                                                  fontWeight: FontWeight.w700
+                                              ),
+                                            ),
+
+                                      ),
+                                      Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: [
+                                          Text('${list[index]['days'].toString()} Days from',style: GoogleFonts.poppins(
+                                          fontSize: 18,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w700
+                                      ),),
+                                          Text("${list[index]['fromLocation']}\n To\n${list[index]['toLocation']}",style: GoogleFonts.poppins(
+                                              fontSize: 18,
+                                              color: Colors.white,
+                                              fontWeight: FontWeight.w700
+                                          ),),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                )
+                              ],
+                            )
+                        ),
                       );
                     },
                     itemCount: snapshot.data.docs.length,
