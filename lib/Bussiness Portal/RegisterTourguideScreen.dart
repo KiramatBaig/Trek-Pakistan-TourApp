@@ -97,8 +97,6 @@ class _RegisterTourguideScreenWidgetState extends State<RegisterTourguideScreenW
     textController4.clear();
     textController5.clear();
     textController6.clear();
-    textController6.clear();
-
 
     _imageFile = null;
 
