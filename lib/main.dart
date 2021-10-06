@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Bussiness%20Portal/BussinessHomeScreen.dart';
 import 'package:flutter_auth/Components/loading.dart';
 import 'package:flutter_auth/Screens/SignUp/google_sign_in_provider.dart';
 import 'package:provider/provider.dart';
@@ -33,7 +34,7 @@ class MyApp extends StatelessWidget {
             print('You have an error! ${snapshot.error.toString()}');
             return Text("Something went wrong!");
           }else if(snapshot.hasData ){
-            return WelcomeScreen();
+            return BusinessHomeScreen();
           }else{
             return Loading();
           }

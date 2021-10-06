@@ -72,7 +72,7 @@ class _TourGuideListState extends State<TourGuideList> {
                 ],
               ),
             ),
-            
+
             Expanded(
                 child: StreamBuilder<QuerySnapshot>(
                   stream: FirebaseFirestore.instance
