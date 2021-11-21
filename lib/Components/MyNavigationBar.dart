@@ -5,7 +5,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/drawer.dart';
 import 'package:flutter_auth/Models/user_model.dart';
-import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
+import 'package:flutter_auth/Screens/HomeScreen/Home_Page.dart';
 import 'package:flutter_auth/Screens/Information%20Screen/AboutUs.dart';
 import 'package:flutter_auth/Screens/Profile_Edit/edit_profile.dart';
 
@@ -24,7 +24,7 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
 
   int _selectedIndex = 0;
   final List<Widget> _widgetOptions = [
-    HomeScreen(),
+    HomePage(),
     OnBoardingPage(),
 
   ];

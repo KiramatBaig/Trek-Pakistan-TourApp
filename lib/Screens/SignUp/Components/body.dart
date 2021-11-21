@@ -52,18 +52,18 @@ class Body extends StatefulWidget {
         firstNameEditingController.text=value;
       },
       textInputAction: TextInputAction.next,
-      decoration: InputDecoration(
-        prefixIcon: Icon(Icons.person_rounded),
-        contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
-        hintText: "Full Name",
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10),
-        )
 
-      ),
     );
 
-    //emailField
+    //emailFielddecoration: InputDecoration(
+    //         prefixIcon: Icon(Icons.person_rounded),
+    //         contentPadding: EdgeInsets.fromLTRB(20, 15, 20, 15),
+    //         hintText: "Full Name",
+    //         border: OutlineInputBorder(
+    //           borderRadius: BorderRadius.circular(10),
+    //         )
+    //
+    //       ),
     final emailField= TextFormField(
       autofocus: false,
       controller: emailEditingController,

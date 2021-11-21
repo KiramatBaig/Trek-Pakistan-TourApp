@@ -3,9 +3,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Components/drawer.dart';
-import 'package:flutter_auth/Models/user_model.dart';
-import 'package:flutter_auth/Screens/HomeScreen/home_screen.dart';
+
 import 'package:flutter_auth/Screens/Information%20Screen/AboutUs.dart';
 import 'package:flutter_auth/Screens/NearbyRestaurants/Attractions.dart';
 import 'package:flutter_auth/Screens/NearbyRestaurants/Restaurants.dart';

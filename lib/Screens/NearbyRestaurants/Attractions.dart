@@ -26,7 +26,7 @@ class _NearbyAttractionState extends State <NearbyAttraction>{
 
   Future<void> _retrieveNearbyRestaurants(LatLng _userLocation) async {
     Location location= Location(lat: _userLocation.latitude, lng: _userLocation.longitude);
-    PlacesSearchResponse _response = await places.searchNearbyWithRadius(location, 10000,type: "point_of_interest");
+    PlacesSearchResponse _response = await places.searchNearbyWithRadius(location, 10000,type: "tourist_attraction");
 
     Set<Marker> _restaurantMarkers = _response.results
         .map((result) => Marker(
