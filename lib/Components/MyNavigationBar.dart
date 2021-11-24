@@ -43,9 +43,7 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
       appBar: AppBar(
         elevation: 0,
 
-          title: const Text('Trek Pakistan',style: TextStyle(fontWeight: FontWeight.bold,fontSize: 25),),
-          titleSpacing: 50,
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.green
       ),
       drawerScrimColor: Colors.transparent,
       drawer: FrostedDrawer(),
@@ -55,7 +53,9 @@ class _MyNavigationBarState extends State<MyNavigationBar > {
       ),
 
       bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
+        
+          items:<BottomNavigationBarItem>[
+            
             BottomNavigationBarItem(
 
                 icon: Icon(Icons.home),

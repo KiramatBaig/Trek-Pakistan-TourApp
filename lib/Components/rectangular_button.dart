@@ -26,12 +26,12 @@ class RectangluarButton extends StatelessWidget {
 
 
       height: size.height/8,
-      width: 300,
+      width: 140,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15.0),
         border: Border.all(
           color: Colors.black,
-          width: 2.0,
+          width: 3.0,
           style: BorderStyle.solid,
         ),
       ),

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/drawer.dart';
 import 'package:flutter_auth/Components/rectangular_button.dart';
+import 'package:flutter_auth/Screens/Destination/AllDestinations.dart';
 import 'package:flutter_auth/Screens/Destination/Destination_List.dart';
 
 import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
@@ -48,7 +49,7 @@ class Body extends StatelessWidget{
                   shape: BoxShape.rectangle,
                   image: DecorationImage(
                     fit: BoxFit.fill,
-                    image: AssetImage("assets/images/gilgit.jpg"),
+                    image: AssetImage("assets/images/homebackground.jpg"),
                   )
               ),
             ),
@@ -79,7 +80,7 @@ class Body extends StatelessWidget{
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return DestinationList();
+                      return DestinationScreen();
                     },
                   ),
                 );

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/loading.dart';
+import 'package:flutter_auth/Screens/Destination/AllDestinations.dart';
 import 'package:flutter_auth/Screens/Destination/Destination_List.dart';
 import 'package:flutter_auth/Screens/Transport/TransportScreen2.dart';
 
@@ -59,7 +60,7 @@ class Transport extends StatelessWidget{
                   Text("No Transport available for this location"),
                   TextButton(onPressed: (){
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (BuildContext context) =>DestinationList() ));
+                        builder: (BuildContext context) =>DestinationScreen() ));
                   }, child: Text("Choose another location"))
                 ],
               ),

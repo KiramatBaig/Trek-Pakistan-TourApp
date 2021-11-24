@@ -48,7 +48,7 @@ class _TripDetailsState extends State<TripDetails> {
                     ),
                     height: 400,
                     width: 400,
-                    child: Image.network('https://firebasestorage.googleapis.com/v0/b/trek-pakistan.appspot.com/o/Trips%2FIslamabadtoNaran.jpg?alt=media&token=846d9b2f-fe3e-41f5-aa74-85264b969b39', fit: BoxFit.cover)),
+                    child: Image.network(trip.image, fit: BoxFit.cover)),
                 SingleChildScrollView(
                   padding: const EdgeInsets.only(top: 16.0,bottom: 20.0),
                   child: Column(

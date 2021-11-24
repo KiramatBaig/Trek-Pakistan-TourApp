@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Components/loading.dart';
+import 'package:flutter_auth/Screens/Destination/AllDestinations.dart';
 import 'package:flutter_auth/Screens/Destination/Destination_List.dart';
 import 'package:flutter_auth/Screens/TourGuide/tourguideDetail.dart';
 import 'package:flutter_auth/Screens/Transport/SelectTransport.dart';
@@ -59,11 +60,6 @@ class _TourGuideListState extends State<TourGuideList> {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 36),
                             ),
-                            TextButton(onPressed: (){
-                              Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      Transport(widget.destination)));
-                            }, child: Text("Skip")),
                         Divider(color: Colors.black, height: 10,),
 
                       ], //children
@@ -112,7 +108,7 @@ class _TourGuideListState extends State<TourGuideList> {
                                   Text("No Guides available for this location"),
                                   TextButton(onPressed: (){
                                     Navigator.of(context).push(MaterialPageRoute(
-                                        builder: (BuildContext context) =>DestinationList() ));
+                                        builder: (BuildContext context) =>DestinationScreen() ));
                                   }, child: Text("Choose another location"))
                                 ],
                               ),

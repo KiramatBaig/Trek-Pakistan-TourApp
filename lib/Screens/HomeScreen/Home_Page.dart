@@ -2,14 +2,10 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:flutter_auth/Components/rectangular_button.dart';
-import 'package:flutter_auth/Constants.dart';
 import 'package:flutter_auth/Screens/NearbyRestaurants/TravelAdvisory.dart';
-
-import 'package:flutter_auth/Screens/NearbyRestaurants/Restaurants.dart';
 import 'package:flutter_auth/Screens/Services/services_screen.dart';
 import 'package:flutter_auth/Screens/Weather/OpenWeatherScreen.dart';
-
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 
 class HomePage extends StatelessWidget{
@@ -36,9 +32,15 @@ class HomePage extends StatelessWidget{
               ),
             ),
           ),
-
               Padding(
-                padding: const EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(top: 60,left: 20,right: 20),
+                child: Container(
+                  alignment: Alignment.topCenter,
+                    child: _wavy()
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
@@ -78,7 +80,7 @@ class HomePage extends StatelessWidget{
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.teal.withOpacity(0.9),
+                                color: Colors.teal.withOpacity(0.8),
                                 borderRadius: BorderRadius.circular(10),
 
                               )
@@ -112,7 +114,7 @@ class HomePage extends StatelessWidget{
                                   ),
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.orange.withOpacity(0.9),
+                                  color: Colors.orange.withOpacity(0.8),
                                   borderRadius: BorderRadius.circular(10),
 
                                 )
@@ -146,7 +148,7 @@ class HomePage extends StatelessWidget{
                                   ),
                                 ),
                                 decoration: BoxDecoration(
-                                  color: Colors.blue.withOpacity(0.9),
+                                  color: Colors.blue.withOpacity(0.8),
                                   borderRadius: BorderRadius.circular(10),
 
                                 )
@@ -174,6 +176,25 @@ class HomePage extends StatelessWidget{
   }
 
 
+}
+Widget _wavy(){
+  return DefaultTextStyle(
+    style: const TextStyle(
+      fontSize: 40.0,
+      fontWeight: FontWeight.bold,
+
+    ),
+    child: AnimatedTextKit(
+      animatedTexts: [
+        WavyAnimatedText("Trek Pakistan",
+
+            speed: Duration(milliseconds: 300)),
+
+      ],
+      isRepeatingAnimation: true,
+      repeatForever: true,
+    ),
+  );
 }
 
 
