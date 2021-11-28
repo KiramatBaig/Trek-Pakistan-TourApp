@@ -64,6 +64,8 @@ dependencies:
   introduction_screen: ^2.1.0
   url_launcher: ^6.0.12
   animated_text_kit: ^4.2.1
+  flutter_email_sender: ^5.0.2
+
 
 
 

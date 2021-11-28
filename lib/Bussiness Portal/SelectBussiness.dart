@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
+import 'package:flutter_auth/Bussiness%20Portal/AddTransport.dart';
+import 'package:flutter_auth/Bussiness%20Portal/AddTrek.dart';
 import 'package:flutter_auth/Bussiness%20Portal/RegisterBussinessScreen.dart';
 import 'package:flutter_auth/Bussiness%20Portal/RegisterPreplannedtrip.dart';
 import 'package:flutter_auth/Bussiness%20Portal/RegisterTourguideScreen.dart';
@@ -181,7 +183,8 @@ class _SelectBussinessWidgetState extends State<SelectBussinessWidget> {
                                                   0, 0, 5, 0),
                                               child: IconButton(
                                                 onPressed: () {
-
+                                                  Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: (BuildContext context) => RegisterTransportScreenWidget()));
                                                 },
                                                 icon: Icon(
                                                   Icons.arrow_forward_ios_rounded,
@@ -439,6 +442,92 @@ class _SelectBussinessWidgetState extends State<SelectBussinessWidget> {
                                                 onPressed: () {
                                                   Navigator.of(context).push(MaterialPageRoute(
                                                       builder: (BuildContext context) => RegisterPreplannedScreenWidget()));
+
+                                                },
+                                                icon: Icon(
+                                                  Icons.arrow_forward_ios_rounded,
+                                                  color:
+                                                  Color(0xFF66BB6A),
+                                                  size: 32,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                                child: Container(
+                                  height: 80,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    borderRadius:
+                                    BorderRadius.circular(16),
+                                  ),
+                                  child: Card(
+                                    clipBehavior:
+                                    Clip.antiAliasWithSaveLayer,
+                                    color: Colors.white,
+                                    elevation: 2,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                      BorderRadius.circular(16),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.max,
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.fromLTRB(
+                                              16, 0, 0, 0),
+                                          child: Container(
+                                            width: MediaQuery.of(context)
+                                                .size
+                                                .width *
+                                                0.4,
+                                            child: Stack(
+                                              children: [
+                                                Align(
+                                                  alignment: Alignment(
+                                                      -0.1, -0.5),
+                                                  child: Padding(
+                                                    padding: EdgeInsets
+                                                        .fromLTRB(
+                                                        0, 0, 0, 0),
+                                                    child: Text(
+                                                      'TREKING AND CLIMBING',
+                                                      style: TextStyle(
+                                                        fontFamily:
+                                                        'Montserrat',
+                                                        color: Color(
+                                                            0xFF15212B),
+                                                        fontSize: 18,
+                                                        fontWeight:
+                                                        FontWeight
+                                                            .w500,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Expanded(
+                                          flex: 1,
+                                          child: Align(
+                                            alignment: Alignment(0.85, 0),
+                                            child: Padding(
+                                              padding:
+                                              EdgeInsets.fromLTRB(
+                                                  0, 0, 5, 0),
+                                              child: IconButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).push(MaterialPageRoute(
+                                                      builder: (BuildContext context) => RegisterTrekScreenWidget()));
 
                                                 },
                                                 icon: Icon(

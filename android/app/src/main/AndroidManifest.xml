@@ -2,6 +2,12 @@
     package="com.example.trekpakistan_tourapp">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.SENDTO" />
+            <data android:scheme="mailto" />
+        </intent>
+    </queries>
    <application
         android:label="trekpakistan_tourapp"
         android:icon="@mipmap/ic_launcher">
@@ -44,6 +50,9 @@
             android:value="2" />
        <meta-data android:name="com.google.android.geo.API_KEY"
            android:value="AIzaSyAgelTxEWzhL_XZsRJOtmZxYpGJCunTv0A"/>
+       <meta-data
+           android:name="com.google.android.gms.wallet.api.enabled"
+           android:value="true" />
 
     </application>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />

@@ -11,6 +11,7 @@ import 'package:flutter_auth/Screens/Destination/Destination_List.dart';
 
 import 'package:flutter_auth/Screens/MapsScreen/mapView.dart';
 import 'package:flutter_auth/Screens/Pre-PlannedTrips/Pre-PlannedTrips.dart';
+import 'package:flutter_auth/Screens/Trekking/trekHome.dart';
 
 
 
@@ -96,6 +97,15 @@ class Body extends StatelessWidget{
                 );
               },text: "Planned Trips",icon: Icon(Icons.assignment_rounded,color: Colors.white,),),
               RectangluarButton(color: Colors.deepOrangeAccent.withOpacity(0.8),press: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return TrekcityList();
+                    },
+                  ),
+                );
+
 
               },text: "Trekking",icon: Icon(Icons.directions_walk,color: Colors.white,),),
               RectangluarButton(color: Colors.amber.withOpacity(0.8),press: (){

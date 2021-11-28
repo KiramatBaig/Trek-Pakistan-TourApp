@@ -92,9 +92,8 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
               MaterialButton(
                 elevation: (0.5),
                 color: Colors.green,
-                onPressed: () {
+                onPressed: () async {
                   print('button pressed');
-
                 },
                 child: Text("DELETE"),
               )
@@ -1224,4 +1223,5 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
       ),
     );
   }
+
 }

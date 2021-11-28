@@ -9,26 +9,30 @@ import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
-class RegisterBussinessScreenWidget extends StatefulWidget {
-  RegisterBussinessScreenWidget({Key key}) : super(key: key);
+class RegisterTrekScreenWidget extends StatefulWidget {
+  RegisterTrekScreenWidget({Key key}) : super(key: key);
 
   @override
-  _RegisterBussinessScreenWidgetState createState() =>
-      _RegisterBussinessScreenWidgetState();
+  _RegisterTrekScreenWidgetState createState() =>
+      _RegisterTrekScreenWidgetState();
 }
 
-class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenWidget> {
-  CollectionReference hotel =
-  FirebaseFirestore.instance.collection("hotel");
+class _RegisterTrekScreenWidgetState extends State<RegisterTrekScreenWidget> {
+  CollectionReference Trek =
+  FirebaseFirestore.instance.collection("Trek");
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
   TextEditingController textController4;
   TextEditingController textController5;
   TextEditingController textController6;
-  String _hotel;
+  TextEditingController textController7;
+  TextEditingController textController8;
+  TextEditingController textController9;
+  String _trek;
   String _uploadedFileURL;
   final scaffoldKey = GlobalKey<ScaffoldState>();
+
 
   @override
   void initState() {
@@ -39,6 +43,9 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
     textController4 = TextEditingController();
     textController5 = TextEditingController();
     textController6 = TextEditingController();
+    textController7 = TextEditingController();
+    textController8 = TextEditingController();
+    textController9 = TextEditingController();
   }
   File _imageFile;
 
@@ -54,9 +61,9 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
 
   Future uploadImageToFirebase(BuildContext context) async {
     String fileName = basename(_imageFile.path);
-    _hotel = textController1.text;
+    _trek = textController1.text;
     Reference firebaseStorageRef =
-    FirebaseStorage.instance.ref().child('hotel/_hotel/$fileName');
+    FirebaseStorage.instance.ref().child('trek/$fileName');
     UploadTask uploadTask = firebaseStorageRef.putFile(_imageFile);
     TaskSnapshot taskSnapshot = await uploadTask;
     // taskSnapshot.ref.getDownloadURL().then(
@@ -66,25 +73,53 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
       setState(() {
         _uploadedFileURL = fileURL;
         print(_uploadedFileURL);
+        print("image uploaded");
         adddata();
+        setState(() {});
 
       });
-      });
-        }
+    });
+  }
   Future adddata() async {
 
-    Map<String, dynamic> hotel = {
+    Map<String, dynamic> Trek = {
+
+      'days': textController1.text,
       'description': textController2.text,
-      'destinationName': textController3.text,
-      'title':textController1.text,
-      'rating': '5',
-      'price':int.parse(textController5.text),
-      'image': _uploadedFileURL,
+      'startpoint':textController3.text,
+      'provider': textController4.text,
+      'endpoint':textController5.text,
+      'Image': _uploadedFileURL,
+      'budget':textController6.text,
+      'City':textController8.text,
+      'Category':textController9.text,
+      'trekname':textController7.text,
     };
     CollectionReference collection =
-    FirebaseFirestore.instance.collection('hotel');
-    collection.add(hotel);
+    FirebaseFirestore.instance.collection('Trek');
+    collection.add(Trek).then((value) => clearbutton()).catchError((error) => print("Failed to add data: $error"));
+
+
   }
+  Future clearbutton(){
+    textController1.clear();
+    textController2.clear();
+    textController3.clear();
+    textController4.clear();
+    textController5.clear();
+    textController6.clear();
+    textController7.clear();
+    textController8.clear();
+    textController9.clear();
+
+    _imageFile = null;
+    Image.file(null);
+
+
+
+
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -146,7 +181,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                 Padding(
                   padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                   child: AutoSizeText(
-                    'ADD HOTEL',
+                    'Register Treks',
                     style: TextStyle(
                       fontFamily: 'Ubuntu',
                       color: Colors.black,
@@ -185,7 +220,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                   child: Icon(
-                                    Icons.location_history,
+                                    Icons.today_sharp,
                                     color: Color(0xFF66BB6A),
                                     size: 30,
                                   ),
@@ -203,7 +238,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                                           padding:
                                           EdgeInsets.fromLTRB(5, 15, 5, 0),
                                           child: Text(
-                                            'Name : ',
+                                            'Days : ',
                                             style: TextStyle(
                                               fontFamily: 'Montserrat',
                                               color: Colors.black,
@@ -224,11 +259,6 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                                     controller: textController1,
                                     obscureText: false,
                                     decoration: InputDecoration(
-                                      hintText: 'hello',
-                                      hintStyle:
-                                      TextStyle(
-                                        fontFamily: 'Poppins',
-                                      ),
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
                                           color: Colors.white,
@@ -259,6 +289,15 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                         ),
                       ),
                     ),
+                    // DropdownButton<String>(
+                    //   items: <String>['A', 'B', 'C', 'D'].map((String value) {
+                    //     return DropdownMenuItem<String>(
+                    //       value: value,
+                    //       child: Text(value),
+                    //     );
+                    //   }).toList(),
+                    //   onChanged: (_) {},
+                    // ),
                     Padding(
                       padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
                       child: Container(
@@ -313,7 +352,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                                   padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
                                   child: TextFormField(
                                     controller: textController2,
-                                    //obscureText: false,
+                                    obscureText: false,
                                     decoration: InputDecoration(
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -368,7 +407,95 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                               Padding(
                                 padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                 child: Icon(
-                                  Icons.add_location_alt,
+                                  Icons.pin_drop_outlined,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Start Point :',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController3,
+
+                                    decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.person,
                                   color: Color(0xFF66BB6A),
                                   size: 24,
                                 ),
@@ -383,7 +510,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                                         padding:
                                         EdgeInsets.fromLTRB(5, 15, 5, 0),
                                         child: Text(
-                                          'Location :',
+                                          'Host :',
                                           style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
@@ -400,8 +527,82 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                                   child: TextFormField(
-                                    controller: textController3,
-                                    //obscureText: true,
+                                    controller: textController4,
+                                    decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                      ),
+
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.location_off_rounded,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 1, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'End Point:',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController5,
+
                                     decoration: InputDecoration(
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -458,7 +659,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                                         padding:
                                         EdgeInsets.fromLTRB(5, 15, 5, 0),
                                         child: Text(
-                                          'Price Per Night :',
+                                          'Budget:',
                                           style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
@@ -475,8 +676,233 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                                   child: TextFormField(
-                                    controller: textController5,
-                                    //obscureText: true,
+                                    controller: textController6,
+
+                                    decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                      ),
+
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.category_rounded,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 1, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Category :',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController9,
+
+                                    decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                      ),
+
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.drive_file_rename_outline,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 1, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Trek Name:',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController7,
+
+                                    decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                      ),
+
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.location_city_outlined,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 1, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'City :',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController8,
+
                                     decoration: InputDecoration(
                                       enabledBorder: UnderlineInputBorder(
                                         borderSide: BorderSide(
@@ -583,7 +1009,10 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                           padding: EdgeInsets.symmetric(horizontal: 50),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
-                          onPressed: () {},
+                          onPressed: () {
+                            clearbutton();
+                            //Navigator.pop(context);
+                          },
                           child: Text("CANCEL",
                               style: TextStyle(
                                   fontSize: 14,
@@ -601,7 +1030,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20)),
                           child: Text(
-                            "SAVE",
+                            "REGISTER",
                             style: TextStyle(
                                 fontSize: 14,
                                 letterSpacing: 2.2,
