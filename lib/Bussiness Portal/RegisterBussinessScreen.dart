@@ -80,6 +80,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
       'rating': '5',
       'price':int.parse(textController5.text),
       'image': _uploadedFileURL,
+      'status': 'pending',
     };
     CollectionReference collection =
     FirebaseFirestore.instance.collection('hotel');

@@ -83,6 +83,7 @@ class _RegisterTourguideScreenWidgetState extends State<RegisterTourguideScreenW
       'Contact':textController3.text,
       'image': _uploadedFileURL,
       'detail':textController2.text,
+      'status':'pending',
     };
     CollectionReference collection =
     FirebaseFirestore.instance.collection('TourGuide');

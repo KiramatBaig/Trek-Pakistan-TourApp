@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/AdminHomeScreen.dart';
 import 'package:flutter_auth/Bussiness%20Portal/BussinessHomeScreen.dart';
+import 'package:flutter_auth/Bussiness%20Portal/Login/BusinessLoginScreen.dart';
 import 'package:flutter_auth/Components/loading.dart';
+import 'package:flutter_auth/Payment/Paymentnew.dart';
+import 'package:flutter_auth/Screens/Email/EmailSender.dart';
 import 'package:flutter_auth/Screens/HomeScreen/Home_Page.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/SignUp/google_sign_in_provider.dart';
@@ -38,7 +42,7 @@ class MyApp extends StatelessWidget {
             print('You have an error! ${snapshot.error.toString()}');
             return Text("Something went wrong!");
           }else if(snapshot.hasData ){
-            return WelcomeScreen();
+            return HomeScreen();
           }else{
             return Loading();
           }

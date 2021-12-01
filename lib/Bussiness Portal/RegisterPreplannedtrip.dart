@@ -90,6 +90,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
       'priceperhead':textController6.text,
       'seats':textController7.text,
       'toLocation':textController8.text,
+      'Status':'pending',
     };
     CollectionReference collection =
     FirebaseFirestore.instance.collection('preplannedtrips');

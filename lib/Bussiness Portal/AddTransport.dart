@@ -54,6 +54,7 @@ class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenW
       'name': textController1.text,
       'location': textController2.text,
       'seats':textController3.text,
+      'status':'pending',
 
     };
     CollectionReference collection =

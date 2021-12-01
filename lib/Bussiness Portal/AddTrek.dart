@@ -94,6 +94,7 @@ class _RegisterTrekScreenWidgetState extends State<RegisterTrekScreenWidget> {
       'City':textController8.text,
       'Category':textController9.text,
       'trekname':textController7.text,
+      'status': 'pending',
     };
     CollectionReference collection =
     FirebaseFirestore.instance.collection('Trek');

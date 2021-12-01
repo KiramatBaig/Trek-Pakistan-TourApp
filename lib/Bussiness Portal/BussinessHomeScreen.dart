@@ -1,7 +1,13 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+
+import 'package:flutter_auth/Bussiness%20Portal/BusinessSignUp/BsignupScreen.dart';
+import 'package:flutter_auth/Bussiness%20Portal/Login/BusinessLoginScreen.dart';
 import 'package:flutter_auth/Bussiness%20Portal/SelectBussiness.dart';
+import 'package:flutter_auth/Models/user_model.dart';
+import 'package:provider/provider.dart';
 
 
 class BusinessHomeScreen extends StatefulWidget {
@@ -11,6 +17,11 @@ class BusinessHomeScreen extends StatefulWidget {
 
 class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
   @override
+  final auth = FirebaseAuth.instance;
+  User user= FirebaseAuth.instance.currentUser;
+  UserModel loggedInUser=UserModel();
+
+
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -48,24 +59,24 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
         ),
       ),
 
-      // drawer: Drawer(
-      //   elevation: 16,
-      // ),
       drawer: new Drawer(
         child: new ListView(
           children: <Widget>[
             new UserAccountsDrawerHeader(
-              accountName: new Text("Kiramat baig"),
-              accountEmail: new Text("kiramatbaig@gmail.com"),
-              decoration: new BoxDecoration(
+              accountName: new Text("${user.displayName}",
+        style: TextStyle(
+        color: Colors.black,
 
-                image: new DecorationImage(
-                  image: new ExactAssetImage('assets/images/adminimg.jpg'),
-                  fit: BoxFit.cover,
+        ),),
+              accountEmail: new Text("${user.email}",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 18,
                 ),
               ),
+
               currentAccountPicture: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/dp.jpg'),
+                backgroundImage: NetworkImage(user.photoURL),
               ),
             ),
             new ListTile(
@@ -94,11 +105,17 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                   Navigator.pop(context);
                 }),
             new ListTile(
-                leading: Icon(Icons.power_settings_new),
-                title: new Text("Logout"),
+
                 onTap: () {
-                  Navigator.pop(context);
-                }),
+
+                  // final provider=Provider.of<GoogleSignInProvider>(context,listen: false);
+                  // provider.logout().then((value) => {
+                  //   Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) =>
+                  //       BusinessLoginScreen()), (Route<dynamic> route) => false),
+                  // });
+                },
+              leading: Icon(Icons.power_settings_new),
+              title: new Text("Logout"),),
           ],
         ),
       ),

@@ -29,7 +29,7 @@ class _trekDetailPageState extends State<trekDetailPage> {
     return Scaffold(
 
       body: FutureBuilder<QuerySnapshot>(
-        future: FirebaseFirestore.instance.collection('Trek').where('city',isEqualTo: widget.name).get(),
+        future: FirebaseFirestore.instance.collection('Trek').where('City',isEqualTo: widget.name).get(),
         builder: (context, snap){
           if(snap.connectionState==ConnectionState.waiting){
             return Center(

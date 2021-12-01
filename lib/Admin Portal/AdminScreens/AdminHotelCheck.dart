@@ -80,7 +80,7 @@ class _TrekcityListState extends State<TrekcityList> {
             ),
             Expanded(
                 child: StreamBuilder<QuerySnapshot>(
-                  stream: FirebaseFirestore.instance.collection('Trek').where('status',isEqualTo: 'accepted').snapshots(),
+                  stream: FirebaseFirestore.instance.collection('Trek').snapshots(),
                   builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> querySnapshot){
                     if(querySnapshot.hasError){
                       return(Text("An error has occured"));
@@ -115,7 +115,7 @@ class _TrekcityListState extends State<TrekcityList> {
                                 child: ExpansionTile(
                                   tilePadding: EdgeInsets.only(left: 10,right: 10),
                                   leading: Text(
-                                    list[index]['City'],textAlign: TextAlign.justify,
+                                    list[index]['city'],textAlign: TextAlign.justify,
                                     style: TextStyle(color: Colors.black,fontWeight: FontWeight.bold,fontSize: 20),
                                   ),
                                   childrenPadding: EdgeInsets.only(left: 20,right: 20),
@@ -131,7 +131,7 @@ class _TrekcityListState extends State<TrekcityList> {
                                           SizedBox(height: 5,),
                                           RoundedButton(press: (){
 
-                                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>trekDetailPage(list[index]['City'])));
+                                            Navigator.of(context).push(MaterialPageRoute(builder: (context)=>trekDetailPage(list[index]['city'])));
                                           },text: "Select",),
                                         ]
                                     )

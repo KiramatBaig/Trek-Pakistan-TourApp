@@ -214,7 +214,7 @@ class _BodyState extends State<Body>{
         .doc(user.uid)
         .set(userModel.toMap());
 
-    Navigator.pushAndRemoveUntil((context), MaterialPageRoute(builder: (context)=>MyNavigationBar()), (route) => false);
+    Navigator.pushAndRemoveUntil((context), MaterialPageRoute(builder: (context)=>BusinessHomeScreen()), (route) => false);
   }
 }
 
