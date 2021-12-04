@@ -1,20 +1,22 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/ShowTransport.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/TrekManage/AcceptTrek.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/TrekManage/TrekDelete.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/acceptTransport.dart';
 import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
 import 'package:flutter_auth/Components/loading.dart';
 
 
 
-class AdminTransportPageWidget extends StatefulWidget {
-  AdminTransportPageWidget({Key key}) : super(key: key);
+class TrekmanageHome extends StatefulWidget {
+  TrekmanageHome({Key key}) : super(key: key);
 
   @override
-  _AdminTransportPageWidgetState createState() => _AdminTransportPageWidgetState();
+  _TrekmanageHomeState createState() => _TrekmanageHomeState();
 }
 
-class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
+class _TrekmanageHomeState extends State<TrekmanageHome> {
   String dropDownValue;
   String finalDate = '';
 
@@ -94,7 +96,7 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
               Align(
                 alignment: Alignment(-0.06, -0.83),
                 child: Text(
-                  'MANAGE TRANSPORT',
+                  'MANAGE TREK',
                   style: TextStyle(
                     fontFamily: 'Poppins',
                     fontSize: 26,
@@ -161,7 +163,7 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                   ),
                                   Expanded(
                                       child: StreamBuilder<QuerySnapshot>(
-                                        stream: FirebaseFirestore.instance.collection('Transport').where('status',isEqualTo: 'accepted').snapshots(),
+                                        stream: FirebaseFirestore.instance.collection('Trek').where('status',isEqualTo: 'accepted').snapshots(),
                                         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> querySnapshot){
                                           if(querySnapshot.hasError){
                                             return(Text("An error has occured"));
@@ -205,12 +207,12 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                                                   alignment:
                                                                   Alignment(-0.1, -0.5),
                                                                   child: Text(
-                                                                    list[index]['name'],
+                                                                    list[index]['trekname'],
                                                                     style: TextStyle(
                                                                       fontFamily:
                                                                       'Montserrat',
                                                                       color:
-                                                                      Color(0xFF15212B),
+                                                                      Colors.black,
                                                                       fontSize: 18,
                                                                       fontWeight:
                                                                       FontWeight.w500,
@@ -250,7 +252,7 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                                                   shape: BoxShape.circle,
                                                                 ),
                                                                 child: Image.network(
-                                                                  'https://picsum.photos/seed/913/400',
+                                                                  list[index]['Image'],
                                                                 ),
                                                               ),
                                                             ),
@@ -260,13 +262,13 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                                             child: Align(
                                                               alignment: Alignment(0.05, 0),
                                                               child: IconButton(
-                                                                icon: Icon(Icons.chevron_right,color: Color(0xFF66BB6A),
-                                                                  size: 28,),
-                                                                onPressed: (){
-                                                                  Navigator.of(context).push(MaterialPageRoute(
-                                                                      builder: (BuildContext context) =>
-                                                                      TransportShowPage(list[index]['name'])));
-                                                                }
+                                                                  icon: Icon(Icons.chevron_right,color: Color(0xFF66BB6A),
+                                                                    size: 28,),
+                                                                  onPressed: (){
+                                                                    Navigator.of(context).push(MaterialPageRoute(
+                                                                        builder: (BuildContext context) =>
+                                                                            Trekdel(list[index]['trekname'])));
+                                                                  }
                                                               ),
                                                             ),
                                                           )
@@ -304,7 +306,7 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                   ),
                                   Expanded(
                                       child: StreamBuilder<QuerySnapshot>(
-                                        stream: FirebaseFirestore.instance.collection('Transport').where('status',isEqualTo: 'pending').snapshots(),
+                                        stream: FirebaseFirestore.instance.collection('Trek').where('status',isEqualTo: 'pending').snapshots(),
                                         builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> querySnapshot){
                                           if(querySnapshot.hasError){
                                             return(Text("An error has occured"));
@@ -348,7 +350,7 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                                                   alignment:
                                                                   Alignment(-0.1, -0.5),
                                                                   child: Text(
-                                                                    list[index]['name'],
+                                                                    list[index]['trekname'],
                                                                     style: TextStyle(
                                                                       fontFamily:
                                                                       'Montserrat',
@@ -393,7 +395,7 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                                                   shape: BoxShape.circle,
                                                                 ),
                                                                 child: Image.network(
-                                                                  'https://picsum.photos/seed/913/400',
+                                                                  list[index]['Image'],
                                                                 ),
                                                               ),
                                                             ),
@@ -408,7 +410,7 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                                                   onPressed: (){
                                                                     Navigator.of(context).push(MaterialPageRoute(
                                                                         builder: (BuildContext context) =>
-                                                                            TransportacceptPage(list[index]['name'])));
+                                                                            AcceptTrek(list[index]['trekname'])));
                                                                   }
                                                               ),
                                                             ),

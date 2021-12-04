@@ -66,6 +66,10 @@ dependencies:
   animated_text_kit: ^4.2.1
   flutter_email_sender: ^5.0.2
 
+  remove_emoji: ^0.0.6
+  dart_sentiment: ^0.0.9
+
+
 
 
 

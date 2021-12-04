@@ -1,8 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/TrekManage/TrekManageHome.dart';
 
-import 'package:flutter_auth/Components/Drawer.dart';
+
 
 import 'AdminHotelScreen.dart';
 import 'AdminProfileScreen.dart';
@@ -167,6 +168,21 @@ class _HomeScreenState extends State<HomeScreen> {
                             children: <Widget>[
                               Image.asset('assets/images/download.png',height: 120,),
                               Text('Hotel'),
+                            ],
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap:(){
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) => TrekmanageHome()));
+                        },
+                        child: Card(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: <Widget>[
+                              Icon(Icons.person_pin_circle_sharp,size: 120, color: Colors.green,),
+                              Text('Trek'),
                             ],
                           ),
                         ),
