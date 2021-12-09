@@ -1,15 +1,19 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/TrekManage/TrekManageHome.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/manageHotel/AdminHotelScreen.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/manageTransport/AdminTransportScreen.dart';
+import 'package:flutter_auth/Payment/JazzCash.dart';
+import 'package:flutter_auth/Twilio/SendMessage.dart';
+import 'package:flutter_auth/sentimentalModule/sentichek.dart';
 
 
 
-import 'AdminHotelScreen.dart';
 import 'AdminProfileScreen.dart';
-import 'AdminTourGuideScreen.dart';
-import 'AdminTransportScreen.dart';
-import 'ManageDestination.dart';
+import '../TourGuideManage/AdminTourGuideScreen.dart';
+import 'managedestination/ManageDestination.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -117,9 +121,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 Container(
                   height: 120,
                   width: 500,
-                  decoration: BoxDecoration(
-                    color: Colors.white10,
+                  decoration: new BoxDecoration(
+                    image: new DecorationImage(
+                      image: new ExactAssetImage('assets/images/tourist.jpg'),
+                      fit: BoxFit.cover,
+                      colorFilter: new ColorFilter.mode(Colors.black.withOpacity(0.2), BlendMode.dstATop),
+                    ),
                   ),
+
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
@@ -151,8 +160,19 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.asset('assets/images/transport.png',height: 120,),
-                              Text('Transport'),
+                              Icon(
+                                Icons.bus_alert,
+                                color: Colors.green,
+                                size: 110,
+                              ),
+                              //Image.asset('assets/images/transport.png',height: 120,),
+                              Text(
+                                  'TRANSPORT',
+                                style: TextStyle(
+                                  letterSpacing: 1,
+                                  fontSize: 18,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -166,8 +186,15 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.asset('assets/images/download.png',height: 120,),
-                              Text('Hotel'),
+                              Icon(Icons.hotel_rounded,
+                                color: Colors.green,
+                                size: 110,),
+                              Text(
+                                  'HOTEL',
+                                style: TextStyle(
+                                  letterSpacing: 1,
+                                fontSize: 18,
+                              ),),
                             ],
                           ),
                         ),
@@ -182,7 +209,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Icon(Icons.person_pin_circle_sharp,size: 120, color: Colors.green,),
-                              Text('Trek'),
+                              Text('TREKING',
+                                style: TextStyle(
+                                  letterSpacing: 1,
+                                  fontSize: 18,
+                                ),),
                             ],
                           ),
                         ),
@@ -198,8 +229,12 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.asset('assets/images/tourguide.png',height: 120,),
-                              Text('Tour Guide'),
+                              Image.asset('assets/images/tourguide.png',height: 110,),
+                              Text('TOUR GUIDES',
+                                style: TextStyle(
+                                  letterSpacing: 1,
+                                  fontSize: 18,
+                                ),),
                             ],
                           ),
                         ),
@@ -215,29 +250,45 @@ class _HomeScreenState extends State<HomeScreen> {
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
-                              Image.asset('assets/images/destination.png',height: 120,),
-                              Text('Destination'),
+                              Image.asset('assets/images/destination.png',height: 110,),
+                              Text('DESTINATION',
+                                style: TextStyle(
+                                  letterSpacing: 1,
+                                  fontSize: 18,
+                                ),),
                             ],
                           ),
                         ),
                       ),
                       InkWell(
                         onTap: (){
+                          // Navigator.of(context).push(MaterialPageRoute(
+                          //     builder: (BuildContext context) => MyTwilioScreen()
+                          // )
+                          // );
                         },
                         child: Card(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: <Widget>[
-                              Image.asset('assets/images/stats.jpg',height: 120,),
-                              Text('View Statistics'),
+                              Icon(
+                                Icons.add_chart,
+                                color: Colors.green,
+                                size: 110,
+                              ),
+                              Text('STATISTICS',
+                                style: TextStyle(
+                                  letterSpacing: 1,
+                                  fontSize: 18,
+                                ),),
                             ],
                           ),
                         ),
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           )

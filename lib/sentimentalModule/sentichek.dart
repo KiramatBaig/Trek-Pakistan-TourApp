@@ -2,12 +2,6 @@ import 'package:dart_sentiment/dart_sentiment.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Components/loading.dart';
-import 'package:flutter_auth/Components/rounded_button.dart';
-import 'package:flutter_auth/Screens/Destination/destinationDBService.dart';
-import 'package:flutter_auth/Screens/Destination/detail_screen.dart';
-import 'package:flutter_auth/Screens/HotelBooking/HotelScreen.dart';
-import 'package:flutter_auth/Screens/HotelBooking/Hotel_Book.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 

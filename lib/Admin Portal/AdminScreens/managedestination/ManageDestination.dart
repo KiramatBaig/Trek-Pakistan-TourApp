@@ -22,8 +22,8 @@ class DestinationScreenWidget extends StatefulWidget {
 }
 
 class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
-  CollectionReference destination =
-      FirebaseFirestore.instance.collection("destination");
+  CollectionReference destinations =
+      FirebaseFirestore.instance.collection("destinations");
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
@@ -66,16 +66,17 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
   }
 
   Future adddata() async {
-    Map<String, dynamic> destination = {
+    Map<String, dynamic> destinations = {
       'description': textController3.text,
-      'location': textController2.text + textController4.text,
+      'location': GeoPoint(double.parse(textController2.text), double.parse(textController4.text)),
+      //'location': textController2.text + textController4.text,
       'name': textController1.text,
       'rating': 5,
       'Image': _uploadedFileURL,
     };
     CollectionReference collection =
-        FirebaseFirestore.instance.collection('destination');
-    collection.add(destination);
+        FirebaseFirestore.instance.collection('destinations');
+    collection.add(destinations);
   }
 
   createAlertDialog(BuildContext context, String a) {
@@ -102,13 +103,13 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
                 color: Colors.green,
                 onPressed: () async {
                   var collection =
-                      FirebaseFirestore.instance.collection('destination');
+                      FirebaseFirestore.instance.collection('destinations');
                   var querySnapshots = await collection.where('name',isEqualTo: a).get();
                   for (var snapshot in querySnapshots.docs) {
                     print(snapshot.id);
                     DocumentReference documentreference = FirebaseFirestore
                         .instance
-                        .collection('destination')
+                        .collection('destinations')
                         .doc(snapshot.id);
                     documentreference.delete().whenComplete(() {
                       print("document deleted");
@@ -190,10 +191,10 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
                   size: 50,
                 ),
               ),
-              Align(
-                alignment: Alignment(-0.88, -0.87),
-                child: FlowExample(),
-              ),
+              // Align(
+              //   alignment: Alignment(-0.88, -0.87),
+              //   child: FlowExample(),
+              // ),
               Align(
                 alignment: Alignment(0, -0.80),
                 child: Text(
@@ -307,7 +308,7 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
                                     ),
                                     Expanded(
                                         child: StreamBuilder<QuerySnapshot>(
-                                      stream: FirebaseFirestore.instance.collection('destination').snapshots(),
+                                      stream: FirebaseFirestore.instance.collection('destinations').snapshots(),
                                       builder: (BuildContext context,
                                           AsyncSnapshot<QuerySnapshot>
                                               querySnapshot) {
@@ -419,7 +420,7 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
                                                                           context)
                                                                       .push(MaterialPageRoute(
                                                                           builder: (BuildContext context) =>
-                                                                              EditDestinationScreenWidget()));
+                                                                              EditDestinationScreenWidget(list[index]['name'])));
                                                                 },
                                                                 icon: Icon(
                                                                   Icons

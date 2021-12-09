@@ -18,15 +18,15 @@ class RegisterBussinessScreenWidget extends StatefulWidget {
 }
 
 class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenWidget> {
-  CollectionReference hotel =
-  FirebaseFirestore.instance.collection("hotel");
+  CollectionReference hotels =
+  FirebaseFirestore.instance.collection("hotels");
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
   TextEditingController textController4;
   TextEditingController textController5;
   TextEditingController textController6;
-  String _hotel;
+  String _hotels;
   String _uploadedFileURL;
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -54,9 +54,9 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
 
   Future uploadImageToFirebase(BuildContext context) async {
     String fileName = basename(_imageFile.path);
-    _hotel = textController1.text;
+    _hotels = textController1.text;
     Reference firebaseStorageRef =
-    FirebaseStorage.instance.ref().child('hotel/_hotel/$fileName');
+    FirebaseStorage.instance.ref().child('hotels/_hotels/$fileName');
     UploadTask uploadTask = firebaseStorageRef.putFile(_imageFile);
     TaskSnapshot taskSnapshot = await uploadTask;
     // taskSnapshot.ref.getDownloadURL().then(
@@ -73,7 +73,7 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
         }
   Future adddata() async {
 
-    Map<String, dynamic> hotel = {
+    Map<String, dynamic> hotels = {
       'description': textController2.text,
       'destinationName': textController3.text,
       'title':textController1.text,
@@ -83,8 +83,8 @@ class _RegisterBussinessScreenWidgetState extends State<RegisterBussinessScreenW
       'status': 'pending',
     };
     CollectionReference collection =
-    FirebaseFirestore.instance.collection('hotel');
-    collection.add(hotel);
+    FirebaseFirestore.instance.collection('hotels');
+    collection.add(hotels);
   }
 
   @override

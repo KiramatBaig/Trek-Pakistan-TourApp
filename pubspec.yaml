@@ -69,6 +69,11 @@ dependencies:
   remove_emoji: ^0.0.6
   dart_sentiment: ^0.0.9
 
+  crypto: ^3.0.1
+  charts_flutter: ^0.10.0
+
+  twilio_flutter: ^0.0.9
+
 
 
 

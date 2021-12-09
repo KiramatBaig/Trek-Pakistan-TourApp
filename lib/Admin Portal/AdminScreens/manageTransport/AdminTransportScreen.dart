@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Admin%20Portal/AdminScreens/ShowTransport.dart';
-import 'package:flutter_auth/Admin%20Portal/AdminScreens/acceptTransport.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/manageTransport/ShowTransport.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/manageTransport/acceptTransport.dart';
 import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
 import 'package:flutter_auth/Components/loading.dart';
 
@@ -87,10 +87,10 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                   size: 50,
                 ),
               ),
-              Align(
-                alignment: Alignment(-0.88, -0.87),
-                child: FlowExample(),
-              ),
+              // Align(
+              //   alignment: Alignment(-0.88, -0.87),
+              //   child: FlowExample(),
+              // ),
               Align(
                 alignment: Alignment(-0.06, -0.83),
                 child: Text(

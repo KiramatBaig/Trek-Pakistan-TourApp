@@ -1,9 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Admin%20Portal/AdminScreens/ShowTransport.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/TrekManage/AcceptTrek.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/TrekManage/TrekDelete.dart';
-import 'package:flutter_auth/Admin%20Portal/AdminScreens/acceptTransport.dart';
+import 'package:flutter_auth/Admin%20Portal/AdminScreens/manageTransport/acceptTransport.dart';
 import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
 import 'package:flutter_auth/Components/loading.dart';
 
@@ -83,18 +82,19 @@ class _TrekmanageHomeState extends State<TrekmanageHome> {
           child: Stack(
             children: [
               Align(
+                alignment: Alignment(0, -1),
                 child: Icon(
-                  Icons.hotel,
-                  color: Colors.black,
+                  Icons.person_pin,
+                  color: Colors.green,
                   size: 50,
                 ),
               ),
+              // Align(
+              //   alignment: Alignment(-0.88, -0.87),
+              //   child: FlowExample(),
+              // ),
               Align(
-                alignment: Alignment(-0.88, -0.87),
-                child: FlowExample(),
-              ),
-              Align(
-                alignment: Alignment(-0.06, -0.83),
+                alignment: Alignment(0, -0.80),
                 child: Text(
                   'MANAGE TREK',
                   style: TextStyle(

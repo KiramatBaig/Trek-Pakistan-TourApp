@@ -7,7 +7,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class addDestination extends StatelessWidget {
   final String name;
   final String location;
-  final int description;
+  final String description;
+
 
   addDestination(this.name, this.location, this.description);
 
