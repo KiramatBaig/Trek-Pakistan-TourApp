@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -5,10 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/TrekManage/TrekManageHome.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/manageHotel/AdminHotelScreen.dart';
 import 'package:flutter_auth/Admin%20Portal/AdminScreens/manageTransport/AdminTransportScreen.dart';
-import 'package:flutter_auth/Payment/JazzCash.dart';
-import 'package:flutter_auth/Twilio/SendMessage.dart';
-import 'package:flutter_auth/sentimentalModule/sentichek.dart';
-
+import 'package:flutter_auth/Components/loading.dart';
+import 'package:flutter_auth/charts/barchar.dart';
+import 'package:flutter_auth/charts/piechart.dart';
 
 
 import 'AdminProfileScreen.dart';
@@ -21,6 +21,57 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int tourguideCount;
+  int transCount;
+  int trekCount;
+  int hotelCount;
+  int tripsCount;
+  countDocuments() async {
+    QuerySnapshot _myDoc = await FirebaseFirestore.instance.collection(
+        'TourGuide').get();
+    List<DocumentSnapshot> _myDocCount = _myDoc.docs;
+    tourguideCount = _myDocCount.length;
+    print(tourguideCount);
+
+    QuerySnapshot _trans = await FirebaseFirestore.instance.collection(
+        'Transport').get();
+    List<DocumentSnapshot> _transCount = _trans.docs;
+    transCount = _transCount.length;
+    print(transCount);
+
+    QuerySnapshot _trek = await FirebaseFirestore.instance.collection('Trek')
+        .get();
+    List<DocumentSnapshot> _trekCount = _trek.docs;
+    trekCount = _trekCount.length;
+    print(trekCount);
+
+    QuerySnapshot _hotel = await FirebaseFirestore.instance.collection(
+        'preplannedtrips').get();
+    List<DocumentSnapshot> _hotelCount = _hotel.docs;
+    hotelCount = _hotelCount.length;
+    print(hotelCount);
+
+    QuerySnapshot _trips = await FirebaseFirestore.instance.collection('hotels')
+        .get();
+    List<DocumentSnapshot> _tripsCount = _trips.docs;
+    tripsCount = _tripsCount.length;
+    print(tripsCount);
+    if (ConnectionState.waiting != null) {
+      Navigator.of(context).push(MaterialPageRoute(
+          builder: (BuildContext context) => ChartsScreen(
+              tourguideCount.toString(), transCount.toString(), trekCount.toString(),
+              hotelCount.toString(), tripsCount.toString()
+          )
+              // mypie(
+              // tourguideCount, transCount, trekCount, hotelCount, tripsCount)
+      )
+      );
+
+    } else {
+      return Loading();
+      //mypie(tourguideCount,transCount,trekCount,hotelCount, tripsCount);// Count of Documents in Collection
+    }
+  }
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -262,10 +313,12 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       InkWell(
                         onTap: (){
+                          countDocuments();
                           // Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (BuildContext context) => MyTwilioScreen()
+                          //     builder: (BuildContext context) => mypie(tourguideCount,transCount,trekCount,hotelCount, tripsCount)
                           // )
                           // );
+
                         },
                         child: Card(
                           child: Column(

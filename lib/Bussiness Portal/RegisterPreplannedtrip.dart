@@ -1,16 +1,16 @@
 import 'dart:io';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Admin%20Portal/AdminScreens/ImagePick.dart';
 import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 
 class RegisterPreplannedScreenWidget extends StatefulWidget {
+
   RegisterPreplannedScreenWidget({Key key}) : super(key: key);
+
 
   @override
   _RegisterPreplannedScreenWidgetState createState() =>
@@ -28,6 +28,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
   TextEditingController textController6;
   TextEditingController textController7;
   TextEditingController textController8;
+  TextEditingController textController9;
   String _preplannedtrips;
   String _uploadedFileURL;
   final scaffoldKey = GlobalKey<ScaffoldState>();
@@ -44,6 +45,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
     textController6 = TextEditingController();
     textController7 = TextEditingController();
     textController8 = TextEditingController();
+    textController9 = TextEditingController();
   }
   File _imageFile;
 
@@ -81,20 +83,24 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
 
     Map<String, dynamic> preplannedtrips = {
 
-      'days': textController1.text,
+      'days': int.parse(textController1.text),
       'description': textController2.text,
       'fromLocation':textController3.text,
       'host': textController4.text,
       'pickupLocation':textController5.text,
       'image': _uploadedFileURL,
-      'priceperhead':textController6.text,
-      'seats':textController7.text,
+      'priceperhead':int.parse(textController6.text),
+      'seats':int.parse(textController7.text),
       'toLocation':textController8.text,
       'Status':'pending',
+      'Date_Time':DateTime.parse(textController9.text),
+      'tripID':textController4.text,
     };
     CollectionReference collection =
     FirebaseFirestore.instance.collection('preplannedtrips');
-    collection.add(preplannedtrips).then((value) => clearbutton()).catchError((error) => print("Failed to add data: $error"));
+
+    collection.doc(textController4.text).set(preplannedtrips).then((value) => clearbutton()).catchError((error) => print("Failed to add data: $error"));
+    //String id = collection.getId();
 
 
   }
@@ -107,14 +113,12 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
     textController6.clear();
     textController7.clear();
     textController8.clear();
+    textController9.clear();
 
     _imageFile = null;
     Image.file(null);
-
-
-
-
   }
+
 
 
   @override
@@ -216,7 +220,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                   child: Icon(
-                                    Icons.location_history,
+                                    Icons.today,
                                     color: Color(0xFF66BB6A),
                                     size: 30,
                                   ),
@@ -394,7 +398,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
                               Padding(
                                 padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                 child: Icon(
-                                  Icons.phone,
+                                  Icons.location_on,
                                   color: Color(0xFF66BB6A),
                                   size: 24,
                                 ),
@@ -409,7 +413,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
                                         padding:
                                         EdgeInsets.fromLTRB(5, 15, 5, 0),
                                         child: Text(
-                                          'From Location :',
+                                          'Origin :',
                                           style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
@@ -482,7 +486,96 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
                               Padding(
                                 padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                 child: Icon(
-                                  Icons.add_location_alt,
+                                  Icons.calendar_today_outlined,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Date&Time:',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController9,
+
+                                    decoration: InputDecoration(
+                                      hintText: '2020-03-20 00:00:00.000',
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.person,
                                   color: Color(0xFF66BB6A),
                                   size: 24,
                                 ),
@@ -556,7 +649,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
                               Padding(
                                 padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                 child: Icon(
-                                  Icons.price_change,
+                                  Icons.location_on,
                                   color: Color(0xFF66BB6A),
                                   size: 24,
                                 ),
@@ -571,7 +664,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
                                         padding:
                                         EdgeInsets.fromLTRB(5, 15, 5, 0),
                                         child: Text(
-                                          'Pick Up Location:',
+                                          'Pick Up Point:',
                                           style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
@@ -706,7 +799,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
                               Padding(
                                 padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                 child: Icon(
-                                  Icons.price_change,
+                                  Icons.event_seat,
                                   color: Color(0xFF66BB6A),
                                   size: 24,
                                 ),
@@ -781,7 +874,7 @@ class _RegisterPreplannedScreenWidgetState extends State<RegisterPreplannedScree
                               Padding(
                                 padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
                                 child: Icon(
-                                  Icons.price_change,
+                                  Icons.location_off_sharp,
                                   color: Color(0xFF66BB6A),
                                   size: 24,
                                 ),

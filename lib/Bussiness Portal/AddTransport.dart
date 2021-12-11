@@ -1,13 +1,9 @@
-import 'dart:io';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Admin%20Portal/AdminScreens/ImagePick.dart';
+
 import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart';
+
 
 class RegisterTransportScreenWidget extends StatefulWidget {
   RegisterTransportScreenWidget({Key key}) : super(key: key);
@@ -16,10 +12,7 @@ class RegisterTransportScreenWidget extends StatefulWidget {
   _RegisterTransportScreenWidgetState createState() =>
       _RegisterTransportScreenWidgetState();
 }
-
 class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenWidget> {
-  CollectionReference Transport =
-  FirebaseFirestore.instance.collection("Transport");
   TextEditingController textController1;
   TextEditingController textController2;
   TextEditingController textController3;
@@ -29,8 +22,7 @@ class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenW
   TextEditingController textController7;
   TextEditingController textController8;
   TextEditingController textController9;
-  String _transport;
-  String _uploadedFileURL;
+
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
 
@@ -49,23 +41,77 @@ class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenW
   }
   Future adddata() async {
 
-    Map<String, dynamic> Transport = {
-
-      'name': textController1.text,
-      'location': textController2.text,
-      'seats':textController3.text,
-      'status':'pending',
-
-    };
     CollectionReference collection =
     FirebaseFirestore.instance.collection('Transport');
-    collection.add(Transport).then((value) => clearbutton()).catchError((error) => print("Failed to add data: $error"));
+    collection.doc(textController1.text).set(
+        {
+          'location':textController2.text,
+          'name': textController1.text,
+          'status':'pending',
+        }
+    );
+    CollectionReference collec = FirebaseFirestore.instance.collection('Transport').doc(textController1.text).collection('PickupPoints');
+    collec.doc(textController4.text).set(
+        {
+          'name':textController4.text,
+          'geopoint': GeoPoint(double.parse(textController5.text), double.parse(textController8.text)),
+        }
+    ).then((value) => clearbutton()).catchError((error) => print("Failed to add data on second: $error"));
+
+    CollectionReference coll = FirebaseFirestore.instance.collection('Transport').doc(textController1.text).collection('PickupPoints');
+    coll.doc(textController6.text).set(
+        {
+          'name':textController6.text,
+          'geopoint': GeoPoint(double.parse(textController7.text), double.parse(textController9.text)),
+        }
+    ).then((value) => clearbutton()).catchError((error) =>
+        print("Failed to add data on second: $error"));
+    final snackBar = SnackBar(
+      content: Text('Yay! Your Proposal has been Sent!'),
+      action: SnackBarAction(
+        label: 'Thanks',
+        onPressed: () {
+          Navigator.of(context).pop();
+
+
+          // Some code to undo the change.
+        },
+      ),
+    );
+
+    // Map<String, dynamic> Transport = {
+    //
+    //   'name': textController1.text,
+    //   'location': textController2.text,
+    //   'seats':textController3.text,
+    //   'status':'pending',
+    //
+    // };
+    // Map<String, dynamic> PickupPoint = {
+    //
+    //   'name': textController1.text,
+    //   'location': textController2.text,
+    //   'seats':textController3.text,
+    //   'status':'pending',
+    //
+    // };
+
+
+    // CollectionReference collection =
+    // FirebaseFirestore.instance.collection('Transport');
+    // collection.doc(textController1.text).collection('PickupPoints').add(Transport).then((value) => clearbutton()).catchError((error) => print("Failed to add data: $error"));
   }
 
   Future clearbutton(){
     textController1.clear();
     textController2.clear();
     textController3.clear();
+    textController4.clear();
+    textController5.clear();
+    textController6.clear();
+    textController7.clear();
+    textController8.clear();
+    textController9.clear();
   }
 
 
@@ -273,7 +319,7 @@ class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenW
                                         padding:
                                         EdgeInsets.fromLTRB(5, 15, 5, 0),
                                         child: Text(
-                                          'location :',
+                                          'City :',
                                           style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             color: Colors.black,
@@ -319,7 +365,7 @@ class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenW
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
                             ],
                           ),
                         ),
@@ -376,7 +422,7 @@ class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenW
                               ),
                               Expanded(
                                 child: Padding(
-                                  padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
                                   child: TextFormField(
                                     controller: textController3,
 
@@ -413,6 +459,432 @@ class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenW
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.control_point,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Pickup point 1 Name :',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController4,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.location_on,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Location :',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController5,
+
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '11.22',
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.blue,
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.grey,
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController8,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '44.43',
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.blue,
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.control_point,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Pickup point 2 Name :',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(50, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController6,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.white,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.fromLTRB(8, 8, 8, 0),
+                      child: Container(
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.transparent,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        child: Card(
+                          clipBehavior: Clip.antiAliasWithSaveLayer,
+                          color: Colors.white,
+                          elevation: 2,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: Row(
+                            mainAxisSize: MainAxisSize.max,
+                            children: [
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 5, 0),
+                                child: Icon(
+                                  Icons.location_on,
+                                  color: Color(0xFF66BB6A),
+                                  size: 24,
+                                ),
+                              ),
+                              Padding(
+                                padding: EdgeInsets.fromLTRB(5, 0, 0, 0),
+                                child: Stack(
+                                  children: [
+                                    Align(
+                                      alignment: Alignment(-0.1, -0.5),
+                                      child: Padding(
+                                        padding:
+                                        EdgeInsets.fromLTRB(5, 15, 5, 0),
+                                        child: Text(
+                                          'Location :',
+                                          style: TextStyle(
+                                            fontFamily: 'Montserrat',
+                                            color: Colors.black,
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController7,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: "22.22",
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.grey,
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.blue,
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Expanded(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                                  child: TextFormField(
+                                    controller: textController9,
+                                    obscureText: false,
+                                    decoration: InputDecoration(
+                                      hintText: '33.12',
+                                      enabledBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.grey,
+                                          width: 1,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(0.0),
+                                          topRight: Radius.circular(0.0),
+                                        ),
+                                      ),
+                                      focusedBorder: UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: Colors.blue,
+                                          width: 2,
+                                        ),
+                                        borderRadius: const BorderRadius.only(
+                                          topLeft: Radius.circular(4.0),
+                                          topRight: Radius.circular(4.0),
+                                        ),
+                                      ),
+                                    ),
+                                    style: TextStyle(
+                                      fontFamily: 'Poppins',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+
                     SizedBox(
                       height: 35,
                     ),
@@ -425,7 +897,7 @@ class _RegisterTransportScreenWidgetState extends State<RegisterTransportScreenW
                               borderRadius: BorderRadius.circular(20)),
                           onPressed: () {
                             clearbutton();
-                            //Navigator.pop(context);
+                            Navigator.pop(context);
                           },
                           child: Text("CANCEL",
                               style: TextStyle(
