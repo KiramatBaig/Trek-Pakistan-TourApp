@@ -16,16 +16,14 @@ class _sentiScreenState extends State<sentiScreen> {
   @override
 
 
-  void helloworld() {
+  void helloworld(String a) {
 
     final sentiment = Sentiment();
 
-    print(sentiment.analysis("The cake she made was terrible 😐"));
+    Map<String, dynamic> b = sentiment.analysis(a);
 
-    print(sentiment.analysis("The cake she made was terrible 😐", emoji: true));
+    print(b.values.first);
 
-    print(sentiment.analysis("I love cats, but I am allergic to them.",));
-    print(sentiment.analysis("I love cats and i want to marry them. love you, you are beautiful thanks much love",));
 
 
   }
@@ -41,7 +39,7 @@ class _sentiScreenState extends State<sentiScreen> {
           elevation: 4,
           leading: IconButton(
             onPressed: () {
-              helloworld();
+              helloworld("hello it is a good one thank for making perfect. beautifull");
              // Navigator.of(context).pop();
             },
             icon: Icon(

@@ -3,8 +3,8 @@ class DestinationModel{
   String description;
   String Image;
   String rating;
-
-  DestinationModel({this.description,this.Image,this.name,this.rating});
+  List<String> Category;
+  DestinationModel({this.description,this.Image,this.name,this.rating,this.Category});
 
   //receive data from server
   factory DestinationModel.fromMap(map){
@@ -13,6 +13,7 @@ class DestinationModel{
         description: map['description'],
         name: map['name'],
       Image: map['Image'],
+      Category: map['Category'],
     );
   }
 

@@ -7,25 +7,6 @@ enum LanguageCode { english}
 
 /// Sentiment class
 class Sentiment {
-  // / Analysis function
-  // /
-  // / syntax:
-  // /
-  // / ```dart
-  // /   analysis(String text,{bool emoji = false, LanguageCode languageCode = LanguageCode.english})
-  // /```
-  // /<br />
-  // / return `Map<String, dynamic>`
-  // /
-  // /<br />
-  // / example:
-  // / ```dart
-  // /   final sentiment = Sentiment();
-  // /   print(sentiment.analysis("The cake she made was terrible 😐", emoji: true));
-  // /   // {score: -5, comparative: -0.7142857142857143, tokens: [the, cake, she, made, was, terrible, 😐], positive: [], negative: [[terrible, -3], [😐, -2]]}
-  // /   print(sentiment.analysis("I love cats, but I am allergic to them.",));
-  // /   //{score: 1, comparative: 0.1111111111111111, tokens: [i, love, cats, but, i, am, allergic, to, them], positive: [[love, 3]], negative: [[allergic, -2]]}
-  // /```
 
   List<String> filterText(String text, bool emoji) {
     List<String> duList =     emoji
@@ -57,7 +38,7 @@ class Sentiment {
 
     return analysedList;
   }
-
+  ///for array return use Map<String, dynamic>
   Map<String, dynamic> analysis(String text,
       {bool emoji = false, LanguageCode languageCode = LanguageCode.english}) {
     try {
@@ -99,6 +80,7 @@ class Sentiment {
         'negative': badwords
       };
       return result;
+
     } catch (e) {
       throw Exception(e);
     }

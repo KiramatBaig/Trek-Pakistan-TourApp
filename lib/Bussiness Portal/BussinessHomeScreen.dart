@@ -2,13 +2,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-
-import 'package:flutter_auth/Bussiness%20Portal/BusinessSignUp/BsignupScreen.dart';
-import 'package:flutter_auth/Bussiness%20Portal/Login/BusinessLoginScreen.dart';
 import 'package:flutter_auth/Bussiness%20Portal/SelectBussiness.dart';
 import 'package:flutter_auth/Models/user_model.dart';
-import 'package:flutter_auth/Twilio/EmergencyMessage.dart';
-import 'package:provider/provider.dart';
 
 
 class BusinessHomeScreen extends StatefulWidget {
@@ -138,7 +133,7 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                         height: 40,
                       ),
                       Text(
-                        "Bussiness PORTAL",
+                        "BUSINESS PORTAL",
                         style: TextStyle(color:Colors.black, fontWeight: FontWeight.bold,fontSize: 34,),
                       ),
                       Text(
@@ -149,75 +144,69 @@ class _BusinessHomeScreenState extends State<BusinessHomeScreen> {
                   ),
                 ),
                 Expanded(
-                  child: GridView.count(
-                    mainAxisSpacing: 60,
-                    crossAxisCount: 2,
+                  child: Column(
                     children: <Widget>[
                       InkWell(
                         onTap:  (){
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (BuildContext context) => SelectBussinessWidget()));
                         },
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              // Image.asset('assets/images/download(1).png',height: 120,),
-                              Icon(Icons.add,size: 120,color: Colors.green,),
-                              Text('Register Bussiness'),
-                            ],
+                        child: Container(
+                          width: 500,
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Card(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: <Widget>[
+                                  // Image.asset('assets/images/download(1).png',height: 120,),
+                                  Icon(Icons.cloud_done_rounded,size: 150,color: Colors.green,),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(0,0,0,10),
+                                    child: Text('REGISTER BUSINESS',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),),
+                                  ),
+                                ],
+                              ),
+                            ),
                           ),
                         ),
                       ),
-                      InkWell(
-                        onTap:(){
-                          // Navigator.of(context).push(MaterialPageRoute(
-                          //     builder: (BuildContext context) => HomePageWidget()));
-                        },
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              // Image.asset('assets/images/download.png',height: 120,),
-                              Icon(Icons.app_registration,size: 120,color: Colors.green,),
-                              Text('Applied Bussiness'),
-                            ],
+                      Container(
+                        width: 500,
+                        child: Padding(
+                            padding: EdgeInsets.all(20.0),
+                        child: InkWell(
+                          onTap:  (){
+                            // Navigator.of(context).push(MaterialPageRoute(
+                            //     builder: (BuildContext context) => DocPicker()));
+                          },
+                          child: Card(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                // Image.asset('assets/images/download(1).png',height: 120,),
+                                Icon(Icons.upload_file,size: 150,color: Colors.green,),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(0,0,0,20),
+                                  child: Text('UPLOAD DOCUMENTS',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                  ),),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ),
-                      InkWell(
-                        onTap:(){
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) => TwilioEmergencyScreen('kiramat787@gmail.com','islamabad')
-                          )
-                          );
-                        },
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              // Image.asset('assets/images/tourguide.png',height: 120,),
-                              Icon(Icons.add_chart,size: 120,color: Colors.green,),
-                              Text('States'),
-                            ],
-                          ),
                         ),
                       ),
-                      InkWell(
-                        onTap: (){
 
-                        },
-                        child: Card(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: <Widget>[
-                              Image.asset('assets/images/stats.jpg',height: 120,),
-                              Text('View Statistics'),
-                            ],
-                          ),
-                        ),
-                      ),
                     ],
                   ),
                 )

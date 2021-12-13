@@ -32,7 +32,6 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,7 +148,7 @@ class _AdminTransportPageWidgetState extends State<AdminTransportPageWidget> {
                                         padding:
                                         EdgeInsets.fromLTRB(20, 16, 0, 0),
                                         child: Text(
-                                          "Date = $finalDate",
+                                          "Date = date.now()",
                                           style: TextStyle(
                                             fontFamily: 'Montserrat',
                                             color: Color(0xFF8B97A2),

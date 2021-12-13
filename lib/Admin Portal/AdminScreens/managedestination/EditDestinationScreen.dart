@@ -151,9 +151,6 @@ class _EditDestinationScreenWidgetState extends State<EditDestinationScreenWidge
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Container(
-                    child: FlowExample(),
-                  ),
                   Padding(
                     padding: EdgeInsets.fromLTRB(0, 5, 0, 0),
                     child: AutoSizeText(

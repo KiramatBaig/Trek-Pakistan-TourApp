@@ -1,11 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
-import 'package:flutter_auth/Admin%20Portal/Components/FlowBar.dart';
-
 import 'package:firebase_storage/firebase_storage.dart'; // For File Upload To Firestore
 import 'package:flutter_auth/Components/loading.dart';
-
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
@@ -22,6 +18,7 @@ class DestinationScreenWidget extends StatefulWidget {
 }
 
 class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
+  List<String> items = [];
   CollectionReference destinations =
       FirebaseFirestore.instance.collection("destinations");
   TextEditingController textController1;
@@ -36,6 +33,10 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
   File _imageFile;
 
   final picker = ImagePicker();
+
+  var checkedValue;
+
+  //String checkedValue;
 
   Future pickImage() async {
     final pickedFile = await picker.getImage(source: ImageSource.gallery);
@@ -66,6 +67,8 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
   }
 
   Future adddata() async {
+
+
     Map<String, dynamic> destinations = {
       'description': textController3.text,
       'location': GeoPoint(double.parse(textController2.text), double.parse(textController4.text)),
@@ -73,6 +76,7 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
       'name': textController1.text,
       'rating': 5,
       'Image': _uploadedFileURL,
+      'Category': FieldValue.arrayUnion(items),
     };
     CollectionReference collection =
         FirebaseFirestore.instance.collection('destinations');
@@ -936,7 +940,87 @@ class _DestinationScreenWidgetState extends State<DestinationScreenWidget> {
                                               ),
                                             ),
                                             SizedBox(
-                                              child: Text("Select your image"),
+                                              child: Text("Select Category",textAlign: TextAlign.center,style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),),
+                                            ),
+                                            ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                children: <Widget>[
+                                                  Expanded(child: RaisedButton(onPressed: () {
+                                                    if(items.contains('Mountain')){
+                                                      print("already exists");
+                                                    }else{
+                                                      items.add('Mountain');
+                                                    }
+                                                  },
+                                                    child: Text("Mountain"),color: Colors.blueGrey,
+                                                    textColor: Colors.white,focusColor: Colors.redAccent,)),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Expanded(child: RaisedButton(onPressed: () {
+                                                    if(items.contains('Plain')){
+                                                      print("already exists plain");
+                                                    }else{
+                                                      items.add('Plain');
+                                                      print("plain aded");
+                                                    }
+                                                  },child: Text("Plain"),color: Colors.blueGrey,textColor: Colors.white,)),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Expanded(child: RaisedButton(onPressed: () {
+                                                    if(items.contains('River')){
+                                                      print("already exists riv");
+                                                    }else{
+                                                      items.add('River');
+                                                      print(items);
+                                                      print('river added');
+                                                    }
+                                                  },child: Text("River"),color: Colors.blueGrey,textColor: Colors.white,)),
+
+                                                ],
+                                              ),
+
+                                            ),
+                                            ListTile(
+                                              title: Row(
+                                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                                children: <Widget>[
+                                                  Expanded(child: RaisedButton(onPressed: () {
+                                                    if(items.contains('Historic')){
+                                                      print("already exists");
+                                                    }else{
+                                                      items.add('Historic');
+                                                    }
+                                                  },
+                                                    child: Text("Historic"),color: Colors.blueGrey,
+                                                    textColor: Colors.white,focusColor: Colors.redAccent,)),
+                                                  SizedBox(
+                                                    width: 5,
+                                                  ),
+                                                  Expanded(child: RaisedButton(onPressed: () {
+                                                    if(items.contains('Hill')){
+                                                      print("already exists");
+                                                    }else{
+                                                      items.add('Hill');
+                                                      print("hill added");
+                                                    }
+                                                  },child: Text("Hill"),color: Colors.blueGrey,textColor: Colors.white,)),
+
+                                                ],
+                                              ),
+
+                                            ),
+
+                                            SizedBox(
+                                              child: Text("Select your image",textAlign: TextAlign.center,style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),),
                                             ),
                                             Container(
                                               alignment: Alignment.center,

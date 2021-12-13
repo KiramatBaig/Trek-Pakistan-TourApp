@@ -9,6 +9,7 @@ import 'package:flutter_auth/Admin%20Portal/AdminScreens/manageTransport/AdminTr
 import 'package:flutter_auth/Components/loading.dart';
 import 'package:flutter_auth/charts/barchar.dart';
 import 'package:flutter_auth/charts/piechart.dart';
+import 'package:flutter_auth/sentimentalModule/userMod/UserInterest.dart';
 
 
 import 'AdminProfileScreen.dart';
@@ -95,7 +96,7 @@ class _HomeScreenState extends State<HomeScreen> {
             IconButton(
               onPressed: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => AdminProfileWidget()));
+                    builder: (BuildContext context) => UserIntrest()));
               },
               icon: Icon(
                 Icons.admin_panel_settings,

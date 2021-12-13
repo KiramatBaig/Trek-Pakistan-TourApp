@@ -54,14 +54,15 @@ class _TransportShowPageState extends State<TransportShowPage> {
                 SingleChildScrollView(
                   padding: const EdgeInsets.only(bottom: 20.0),
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
-                      const SizedBox(height: 250),
+                      const SizedBox(height: 150),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal:16.0),
                         child: Text(
-                          "${list[0]['name']}",
-                          style: TextStyle(color: Colors.green, fontSize: 28.0, fontWeight: FontWeight.bold),
+                          "${list[0]['name']}".toUpperCase(),
+                          style: TextStyle(color: Colors.black, fontSize: 28.0, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
                         ),
                       ),
                       SizedBox(height: 10,),
@@ -70,39 +71,14 @@ class _TransportShowPageState extends State<TransportShowPage> {
                         padding: const EdgeInsets.all(32.0),
                         color: Colors.white,
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
-                            SizedBox(
-                              width: double.infinity,
-                              child: RaisedButton(
-                                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                                color: Colors.green,
-                                textColor: Colors.white,
-                                child: Text("Delete Transport", style: TextStyle(
-                                    fontWeight: FontWeight.normal
-                                ),),
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 16.0,
-                                  horizontal: 32.0,
-                                ),
-                                onPressed: ()async {
-                                  var collection = FirebaseFirestore.instance.collection('Transport');
-                                  var querySnapshots = await collection.where('name',isEqualTo: widget.name).get();
-                                  for (var snapshot in querySnapshots.docs) {
-                                    print(snapshot.id);
-                                    DocumentReference documentreference = FirebaseFirestore.instance.collection('Transport').doc(snapshot.id);
-                                    documentreference.delete().whenComplete(() {
-                                      print("document deleted");
-                                    });
 
-                                    final documentID = snapshot.id; // <-- Document ID
-                                  }
-
-                                },
-                              ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text("Detail",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),textAlign: TextAlign.center,),
                             ),
-                            Text("Detail",style: TextStyle(fontSize: 25,fontWeight: FontWeight.bold),),
                             Divider(
                               color: Colors.black,
                               thickness: 1.0,
@@ -120,7 +96,7 @@ class _TransportShowPageState extends State<TransportShowPage> {
                                     width: MediaQuery.of(context).size.width * 0.8,
                                         child: RectangluarButton(color: Colors.lightBlueAccent.withOpacity(0.7) ,icon: Icon(Icons.event_seat),press: (){
 
-                                        },text: "Total Seats: ${list[0]['seats']}",),
+                                        },text: "Total Seats: ",),
                                         ),
                                         Container(
                                           width: MediaQuery.of(context).size.width * 0.8,
@@ -128,6 +104,40 @@ class _TransportShowPageState extends State<TransportShowPage> {
                                           padding: const EdgeInsets.only(top: 10),
                                           child: RectangluarButton(color: Colors.lightBlueAccent.withOpacity(0.7),icon: Icon(Icons.location_on),press: (){},text: "Location: ${list[0]['location']}",),
                                         ),
+
+                                        ),
+
+                                        Padding(
+                                          padding: const EdgeInsets.all(12),
+                                          child: SizedBox(
+                                            width: double.infinity,
+                                            child: RaisedButton(
+                                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                                              color: Colors.green,
+                                              textColor: Colors.white,
+                                              child: Text("Delete Transport", style: TextStyle(
+                                                  fontWeight: FontWeight.normal
+                                              ),),
+                                              padding: const EdgeInsets.symmetric(
+                                                vertical: 16.0,
+                                                horizontal: 32.0,
+                                              ),
+                                              onPressed: ()async {
+                                                var collection = FirebaseFirestore.instance.collection('Transport');
+                                                var querySnapshots = await collection.where('name',isEqualTo: widget.name).get();
+                                                for (var snapshot in querySnapshots.docs) {
+                                                  print(snapshot.id);
+                                                  DocumentReference documentreference = FirebaseFirestore.instance.collection('Transport').doc(snapshot.id);
+                                                  documentreference.delete().whenComplete(() {
+                                                    print("document deleted");
+                                                  });
+
+                                                  final documentID = snapshot.id; // <-- Document ID
+                                                }
+
+                                              },
+                                            ),
+                                          ),
                                         ),
                                       ],
                                     ),
